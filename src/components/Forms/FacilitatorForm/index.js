@@ -1,0 +1,1 @@
+export { default } from './FacilitatorForm.component.js';

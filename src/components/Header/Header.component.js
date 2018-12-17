@@ -1,0 +1,157 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'; 
+import { withRouter } from 'react-router';
+import styles from './Header.component.module.css';
+import { getStorage, removeStorage } from '../../utils/storage.js';
+
+class Header extends React.Component {
+	
+	state = {
+		role_id: 0,
+		showDropDown: false
+	}
+
+	logout = () => {
+		removeStorage("DayStar:auth_token");
+		removeStorage("DayStar:role_id");
+		
+		return this.props.history.push('/');
+	}
+
+	getUserRole = async () => {
+		try {
+			const authUserId = await getStorage("DayStar:role_id") || 0;
+
+			this.setState({
+				role_id: authUserId
+			});
+
+		} catch (error) {
+			console.dir('Error getting in storage');
+		}
+	}
+
+	componentDidMount() {
+		this.getUserRole();
+	}
+
+	componentWillUnmount() {
+	}
+
+	toogleDropdown = () => {
+		this.setState(prevState => ({
+			showDropDown: !prevState.showDropDown
+		}));
+	}
+
+	
+	render() {
+
+		let dropdown;
+
+		if (this.state.showDropDown) {
+			dropdown = (
+				<div className={styles.dropdown}>
+					<div className={[styles.dropdown1, styles.profile].join(" ")}>
+						<div className={styles.profileName}>Agoi Abel</div>
+						<div className={styles.profileLink}>View Profile</div>
+					</div>
+
+					<div className={styles.dropdown1}>Certificates</div>
+
+					<div className={styles.dropdown1} onClick={this.logout}>Logout</div>
+				</div>
+			);
+		}
+
+		let rightSideBar = (
+			<div>
+				<div className={styles.account} onClick={this.toogleDropdown}>
+					<i className="fa fa-caret-down" aria-hidden="true"></i>
+				</div>
+
+				{ dropdown }				
+			</div>
+		)
+
+		let navs = (
+			<div className={styles.navItems}>
+				<div className={[styles.navItem, styles.active].join(" ")}>
+					<Link to={{ pathname: '/dashboard' }}>Dashboard</Link>
+				</div>
+				<div className={styles.navItem}>
+					<Link to={{ pathname: '/batches' }}>Forum</Link>
+				</div>
+				<div className={styles.navItem}>
+					<Link to={{ pathname: '/batches' }}>Messaging</Link>
+				</div>
+				<div className={styles.navItem}>
+					<Link to={{ pathname: '/batches' }}>Donate</Link>
+				</div>
+			</div>
+		);
+
+		if (this.state.role_id === 2) {
+			navs = (
+				<div className={styles.navItems}>
+					<div className={[styles.navItem, styles.active].join(" ")}>
+						<Link to={{ pathname: '/course/index' }}>Dashboard</Link>
+					</div>
+					{/* <div className={[styles.navItem, styles.active].join(" ")}>
+						<Link to={{ pathname: '/dashboard' }}>Dashboard</Link>
+					</div> */}
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/course/index' }}>Courses</Link>
+					</div>
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/session/index' }}>Sessions</Link>
+					</div>
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/outline/index' }}>Outlines</Link>
+					</div>
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/facilitator/index' }}>Facilitators</Link>
+					</div>
+				</div>
+			);
+
+			rightSideBar = (
+				<a className={styles.account} onClick={this.logout}>
+					<i className="fa fa-sign-out" aria-hidden="true"></i>
+				</a>
+			);
+
+		}
+
+
+		// if () {
+
+		// }
+
+		return (
+
+			<div className={styles.headerContainer}>
+				<div className={styles.container}>
+					<div className={styles.header}>
+
+						<div className={styles.logoNav}>
+							<div className={styles.logo}><a><img src={require('../../assets/images/dlalogo.png')} /></a></div>
+							{ navs }
+						</div>
+
+						{ rightSideBar }
+
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+}
+
+const mapStateToProps = state => {
+	return {}
+}
+
+export default withRouter(connect(mapStateToProps)(Header));

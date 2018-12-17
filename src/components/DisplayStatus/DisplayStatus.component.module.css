@@ -1,0 +1,18 @@
+.rejected {
+  color: #e43829;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.pending {
+  color: grey;
+  padding: 2px 2px;
+  display: inline-block;
+  font-weight: light;
+}
+
+.approved {
+  color: #4F8A10;
+  padding: 2px 2px;
+  display: inline-block;
+}

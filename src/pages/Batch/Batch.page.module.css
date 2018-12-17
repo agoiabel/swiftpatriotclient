@@ -1,0 +1,139 @@
+.container {
+    width: 90%;
+    margin: 25px auto;
+}
+
+.agentMembers {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.agent {
+    width: 22%; 
+    background: #FFF;
+    padding: 25px 25px;
+    height: 1%;
+    overflow:hidden;
+}
+.members {
+    width: 76%;
+    background: #FFF;
+    padding: 15px 15px;
+    display: table;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img {
+    width: 40%;
+}
+
+.details {
+    margin-top: 25px;
+    text-align: center;
+}
+.detail {
+    margin-bottom: 35px;
+}
+.title,
+.stat_title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #4a4a4d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.detail {
+    display: flex;
+    justify-content: space-around;
+}
+.reason {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+
+.agent_name {
+    font-size: 25px;
+    font-weight: bold;
+    color: #4a4a4d;   
+}
+.agent_name:after {
+    content: ""; 
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 15px; 
+    border-bottom: 2px solid rgba(46,109,164);;
+}
+
+.stats {
+    display: flex;
+    margin-top: 35px;
+    justify-content: space-around;
+}
+.stat_title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: rgba(74,74,77, .8);
+}
+.stat_value {
+    font-size: 16px;
+}
+
+.actionContainer {
+  position: relative;
+}
+.actions {
+  width: 170px;
+  background: #FFF;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+
+  position: absolute;
+  z-index: 2;
+
+  top: 35px;
+  right: 40px;
+}
+.action {
+  display: flex;
+  padding: 15px 15px;
+  align-items: center;
+  cursor: pointer;
+}
+.action:hover {
+  background: #f0f0f2;
+}
+.actionIcon {
+  margin-right: 25px;
+}
+
+
+
+@media screen and (max-width: 1300px) { 
+    .container {
+        width: 98%;
+        margin: 25px auto;
+    }   
+    .agentMembers {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .agent {
+        width: 100%; 
+        margin-bottom: 25px;
+    }
+    .members {
+        width: 100%;
+    }
+}

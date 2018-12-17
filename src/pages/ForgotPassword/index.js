@@ -1,0 +1,4 @@
+export { default } from './ForgotPassword.page.js';
+
+export const FORGOT_PASSWORD_SUCCESSFUL = 'FORGOT_PASSWORD_SUCCESSFUL';
+export const FORGOT_PASSWORD_UNSUCCESSFUL = 'FORGOT_PASSWORD_UNSUCCESSFUL';

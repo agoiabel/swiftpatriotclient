@@ -1,0 +1,23 @@
+.formGroup {
+	margin-bottom: 25px;
+	display: block;
+	width: 100%;
+}
+.formControl {
+	padding: 20px 20px;
+	width: 100%;
+	font-size: 15px;
+	border-radius: 5px;
+	color: #464a4c;
+	border: 1px solid #cecece;
+}
+.formControlValid {
+	border: 1px solid #5CB85C;
+}
+.formControlError {
+	border: 1px solid #d9534f;
+}
+.errorText {
+	color: #d9534f;
+	margin-top: 10px;
+}

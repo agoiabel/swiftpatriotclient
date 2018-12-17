@@ -1,0 +1,39 @@
+.container {
+    width: 75%;
+    margin: 25px auto;
+
+    background: #FFF;
+    padding: 25px 25px;
+
+    display: table;
+    overflow-x: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+}
+.addNew {
+    color: #FFF;
+    display: inline;
+    background: rgba(56,91,160);
+
+    cursor: pointer;
+    padding: 15px 15px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    margin-bottom: 25px;
+    margin-left: 25px;
+
+    opacity: 1;
+    transition: all 0.3s ease 0s;
+}
+
+.addNew:hover {
+  color: #FFF;
+  background-color: #e43829;
+
+  opacity: 0.75;
+}
+
+

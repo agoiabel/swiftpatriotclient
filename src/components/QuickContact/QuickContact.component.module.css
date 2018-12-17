@@ -1,0 +1,45 @@
+.container {
+    width: 75%;
+    margin: 35px auto;
+    background: #fff;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+    border-radius: 4px;
+
+    padding: 25px 25px;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+.header {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    
+    margin-bottom: 15px;
+}
+
+.contactUs {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 2;
+}
+.informations {
+    width: 40%;
+}
+.imageContainer {
+    width: 40%;
+}
+.imageContainer img {
+    width: 50%;
+}
+.accountDetailsHeader {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+}

@@ -1,0 +1,97 @@
+.course {
+    width: 32%;
+    background: #FFF;
+    margin-bottom: 25px;
+
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    color: #FFF;
+    padding: 15px 35px;
+    background: rgba(56,91,160);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.course:nth-child(even) .header,
+.course:nth-child(even) .joinButton {
+    background: #993C5B;
+}
+.headerTitle {
+    color: rgba(255, 255, 255, .5);
+    margin-bottom: 3px;
+    font-size: 10px;
+}
+.headerContent {
+    font-size: 14px;
+}
+
+.fees {
+    text-align: right;
+}
+.duration {
+    text-align: left;
+}
+
+.body {
+    padding: 35px 35px;
+/* 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+.name {
+    margin-bottom: 30px;
+}
+.theme {
+}
+.bodyTitle {
+    margin-bottom: 5px;
+    color: rgba(0, 0, 0, .4);
+}
+.themeTitle {
+    margin-bottom: 2px;
+    color: rgba(0, 0, 0, .4);
+}
+.courseName {
+    font-size: 18px;
+    color: rgba(0, 0, 0, .6);
+}
+.joinButton {
+    background: rgba(56,91,160);
+    padding: 10px 25px;
+    color: #FFF;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+
+.theme {
+    margin-bottom: 50px;
+}
+.themeName {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .5);
+    line-height: 1.6;
+}
+.courseDuration {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .5);
+}
+.body_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1300px) {
+    .course {
+        width: 100%;
+    }
+}

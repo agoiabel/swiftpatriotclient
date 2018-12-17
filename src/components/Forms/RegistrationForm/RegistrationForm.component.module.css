@@ -1,0 +1,8 @@
+.inlineGroup {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.inlineGroup .formGroup {
+    width: 48%;
+}

@@ -1,0 +1,11 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.content {
+	text-align: center;
+}
+.message {
+	margin-top: 35px;
+}

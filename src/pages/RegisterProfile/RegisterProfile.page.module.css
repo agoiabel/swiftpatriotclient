@@ -1,0 +1,58 @@
+.container {
+
+}
+.formContainer {
+    background: #FFF;
+    padding: 35px 55px;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+
+    position: absolute;
+    z-index: 1;
+    left: 25%;
+    top: 5%;
+
+    width: 48%;
+}
+
+
+.header {
+    text-align: center;
+    margin: 15px 0 55px 0;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: rgba(0, 0, 0, 1);
+}
+
+a.forgotPassword {
+    display: block;
+    cursor: pointer;
+    margin-top: 15px;
+    text-align: center;
+
+    color: #989898;
+}
+
+@media screen and (max-width: 700px) { 
+    .formContainer {
+        width: 80%;
+        position: absolute;
+        z-index: 1;        
+        left: 10%;
+        top: 25%;
+    }   
+}
+
+@media (min-width: 701px) and (max-width: 1000px) { 
+    .formContainer {
+        width: 90%;
+        position: absolute;
+        z-index: 1;        
+        left: 5%;
+        top: 25%;
+    }   
+}

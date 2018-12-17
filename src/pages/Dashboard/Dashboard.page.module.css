@@ -1,0 +1,99 @@
+.dashboard {
+    width: 90%;
+    /* display: flex; */
+    margin: 25px auto;
+    /* justify-content: space-between; */
+}
+.sidebar {
+    width: 22%; 
+    background: #FFF;
+    padding: 25px 25px;
+    height: 1%;
+    overflow:hidden;
+    border-radius: 6px;
+}
+.content {
+    width: 100%;
+    background: #FFF;
+    padding: 45px 25px 25px 25px;
+    border-radius: 6px;
+}
+
+
+.navigation {
+    margin-bottom: 25px;
+    padding: 25px 25px;
+    border-radius: 6px;
+    border: 1px solid #ECECEC;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+}
+.navigation:hover,
+.active {
+    color: #FFF;
+    background: rgba(46,109,164);
+}
+.navIcon {
+    margin-right: 25px;
+}
+
+.navTitle {
+    font-size: 16px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.stat {
+    width: 30%;
+    padding: 35px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    border: 1px solid #ECECEC;
+}
+.stat:hover {
+    border: 1px solid rgba(46,109,164);
+}
+
+.statIcon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.statTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.statNumber {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1300px) {
+    .dashboard {
+        width: 90%;
+        /* display: flex; */
+        margin: 25px auto;
+        /* justify-content: space-between; */
+        /* flex-wrap: wrap; */
+    }
+    .sidebar {
+        width: 100%;
+        margin-bottom: 15px; 
+    }
+    .content {
+        width: 100%;
+    }
+    .stats {
+
+    }
+    .stat {
+        width: 100%;
+    }
+   
+}

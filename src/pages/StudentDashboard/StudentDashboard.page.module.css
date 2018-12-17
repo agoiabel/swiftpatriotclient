@@ -1,0 +1,24 @@
+.dashboard {
+    width: 75%;
+    margin: 25px auto;
+}
+.content {
+
+}
+
+
+
+.courses {
+    display: flex;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 1300px) {
+    .dashboard {
+        width: 75%;
+        margin: 25px auto;
+    }
+}

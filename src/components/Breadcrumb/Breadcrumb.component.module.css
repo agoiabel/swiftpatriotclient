@@ -1,0 +1,18 @@
+.container {
+    width: 75%;
+    margin: 25px auto;
+}
+.header {
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #E8E8E8;
+
+    margin: 45px 0;
+}
+.name {
+    font-size: 20px;
+    padding-bottom: 12px;
+    text-transform: uppercase;
+    /* border-bottom: 2px solid rgba(46,109,164); */
+    border-bottom: 2px solid rgba(56,91,160);
+}

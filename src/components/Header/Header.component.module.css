@@ -1,0 +1,92 @@
+.headerContainer {
+    background: rgba(62,71,79);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(62,71,79);
+}
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+}
+.logoNav {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: 50%;
+}
+
+.navItems {
+    display: flex;
+}
+.navItem a {
+    opacity: 0.6;
+    font-size: 16px;
+    cursor: pointer;
+
+    color: #FFF;
+    margin-right: 25px;   
+    letter-spacing: 1.9px;
+    text-transform: uppercase;
+
+    transition: all 0.3s ease 0s;
+}
+.navItem a:hover {
+  font-size: 18px;
+  opacity: 1;
+}
+.account {
+    padding: 15px 18px;
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    color: #FFF;
+    font-size: 16px;
+
+    opacity: 0.6;
+}
+.account:hover {
+    opacity: 1;
+}
+.active {
+    color: #FFF;
+}
+
+
+
+.dropdown {
+    position: absolute;
+    top: 70px;
+    right: 230px;
+    width: 200px;
+    border-radius: 4px;
+    background: #EDEFF0;
+    border: 1px solid #EDEFF0;
+    box-shadow: 0 1px 0 0 rgba(0,0,0,0.1), 0 0 1px 1px rgba(0,0,0,0.08);
+}
+.dropdown1 {
+    margin-bottom: 10px;
+    padding: 15px 15px 15px 15px;
+
+    font-size: 14px;
+    color: #4B5658;
+    cursor: pointer;
+}
+
+.profile {
+    background: #f9fafa;
+    border-bottom: 2px solid #f9fafa; 
+}
+.profileName {
+    margin-bottom: 10px;
+    color: rgba(0,0,0,.8);
+    font-size: 16px;
+}
+.profileLink {
+    color: rgba(0,0,0,0.4);
+    font-size: 12px;
+}

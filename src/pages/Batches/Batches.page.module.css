@@ -1,0 +1,39 @@
+.container {
+    width: 90%;
+    margin: 25px auto;
+
+    background: #FFF;
+    padding: 25px 25px;
+
+    display: table;
+    overflow-x: auto;
+}
+
+
+.actionContainer {
+  position: relative;
+}
+.actions {
+  width: 170px;
+  background: #FFF;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+
+  position: absolute;
+  z-index: 2;
+
+  top: 35px;
+  right: 75px;
+}
+.action {
+  display: flex;
+  padding: 15px 15px;
+  align-items: center;
+  cursor: pointer;
+}
+.action:hover {
+  background: #f0f0f2;
+}
+.actionIcon {
+  margin-right: 25px;
+}
