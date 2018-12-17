@@ -7,7 +7,7 @@ class CourseCard extends React.Component {
 
 
 	componentDidMount() {
-		this.setActionButtonStatusFor(this.props.session, this.props.user);
+		// this.setActionButtonStatusFor(this.props.session, this.props.user);
 	}
 
 

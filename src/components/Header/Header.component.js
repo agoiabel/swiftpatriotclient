@@ -9,7 +9,8 @@ class Header extends React.Component {
 	
 	state = {
 		role_id: 0,
-		showDropDown: false
+		showDropDown: false,
+		showMobileMenu: false
 	}
 
 	logout = () => {
@@ -45,10 +46,47 @@ class Header extends React.Component {
 		}));
 	}
 
+	showMobileMenu = () => {
+		this.setState(prevState => ({
+			showMobileMenu: !prevState.showMobileMenu
+		}));
+	}
+
 	
 	render() {
 
-		let dropdown;
+		let mobileMenu, dropdown;
+
+		if (this.state.showMobileMenu) {
+			mobileMenu = (
+				<div className={styles.mobileMenu}>
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/batches' }}>Dashboard</Link>
+					</div>
+
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/forum' }}>Forum</Link>
+					</div>
+
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/messaging' }}>Messaging</Link>
+					</div>
+
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/donate' }}>Donate</Link>
+					</div>
+
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/donate' }}>View Profile</Link>
+					</div>
+
+					<div className={styles.mobileNavItem}>
+						<a onClick={this.logout}>Logout</a>
+					</div>
+
+				</div>
+			)
+		}
 
 		if (this.state.showDropDown) {
 			dropdown = (
@@ -67,11 +105,20 @@ class Header extends React.Component {
 
 		let rightSideBar = (
 			<div>
-				<div className={styles.account} onClick={this.toogleDropdown}>
-					<i className="fa fa-caret-down" aria-hidden="true"></i>
+				<div>
+					<div className={styles.account} onClick={this.toogleDropdown}>
+						<i className="fa fa-caret-down" aria-hidden="true"></i>
+					</div>
+
+					{dropdown}
 				</div>
 
-				{ dropdown }				
+				<div>
+					<div className={styles.mobileMenuIcon} onClick={this.showMobileMenu}>
+						<i className="fa fa-bars" aria-hidden="true"></i>
+					</div>
+				</div>
+
 			</div>
 		)
 
@@ -98,9 +145,6 @@ class Header extends React.Component {
 					<div className={[styles.navItem, styles.active].join(" ")}>
 						<Link to={{ pathname: '/course/index' }}>Dashboard</Link>
 					</div>
-					{/* <div className={[styles.navItem, styles.active].join(" ")}>
-						<Link to={{ pathname: '/dashboard' }}>Dashboard</Link>
-					</div> */}
 					<div className={styles.navItem}>
 						<Link to={{ pathname: '/course/index' }}>Courses</Link>
 					</div>
@@ -117,33 +161,70 @@ class Header extends React.Component {
 			);
 
 			rightSideBar = (
-				<a className={styles.account} onClick={this.logout}>
-					<i className="fa fa-sign-out" aria-hidden="true"></i>
-				</a>
+				<div>
+					<a className={styles.account} onClick={this.logout}>
+						<i className="fa fa-sign-out" aria-hidden="true"></i>
+					</a>
+
+					<div>
+						<div className={styles.mobileMenuIcon} onClick={this.showMobileMenu}>
+							<i className="fa fa-bars" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
 			);
 
+			if (this.state.showMobileMenu) {
+				mobileMenu = (
+					<div className={styles.mobileMenu}>
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/course/index' }}>Dashboard</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/course/index' }}>Courses</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/session/index' }}>Sessions</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/outline/index' }}>Outlines</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/facilitator/index' }}>Facilitators</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<a onClick={this.logout}>Logout</a>
+						</div>
+					</div>
+				)
+			}
 		}
 
 
-		// if () {
-
-		// }
 
 		return (
+			<div>
+				<div className={styles.headerContainer}>
+					<div className={styles.container}>
+						<div className={styles.header}>
 
-			<div className={styles.headerContainer}>
-				<div className={styles.container}>
-					<div className={styles.header}>
+							<div className={styles.logoNav}>
+								<div className={styles.logo}><a><img src={require('../../assets/images/dlalogo.png')} /></a></div>
+								{navs}
+							</div>
 
-						<div className={styles.logoNav}>
-							<div className={styles.logo}><a><img src={require('../../assets/images/dlalogo.png')} /></a></div>
-							{ navs }
+							{rightSideBar}
+
 						</div>
-
-						{ rightSideBar }
-
 					</div>
 				</div>
+
+				{ mobileMenu }
 			</div>
 		);
 	}
