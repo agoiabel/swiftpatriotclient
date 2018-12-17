@@ -87,9 +87,8 @@ class RegistrationForm extends React.Component {
 					name="date_of_birth"
 					component={CustomInput}
 					type="date"
-					placeholder="Date Of Birth"
+					label="Date Of Birth"
 				/>
-
 
 				<Field
 					name="residence_address"
