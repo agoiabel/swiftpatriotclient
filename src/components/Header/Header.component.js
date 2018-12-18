@@ -92,7 +92,7 @@ class Header extends React.Component {
 			dropdown = (
 				<div className={styles.dropdown}>
 					<div className={[styles.dropdown1, styles.profile].join(" ")}>
-						<div className={styles.profileName}>Agoi Abel</div>
+						<div className={styles.profileName}>{this.props.user.name}</div>
 						<div className={styles.profileLink}>View Profile</div>
 					</div>
 
@@ -232,7 +232,9 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {}
+	return {
+		user: state.authReducer.user
+	}
 }
 
 export default withRouter(connect(mapStateToProps)(Header));

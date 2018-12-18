@@ -4,10 +4,15 @@ import styles from './CourseCard.component.module.css';
 
 class CourseCard extends React.Component {
 
-
+	state = {
+		action: null
+		//1 = can_register
+		//2 = view
+		//3 = show nothing
+	}
 
 	componentDidMount() {
-		// this.setActionButtonStatusFor(this.props.session, this.props.user);
+		this.setActionButtonStatusFor(this.props.session, this.props.user);
 	}
 
 
@@ -15,48 +20,46 @@ class CourseCard extends React.Component {
 
 		const today = new Date();
 		const studentId = student.id;
-		const sessionStatus = session.status;
 		const sessionStudents = session.sessionStudents;
-		const endDate = new Date(session.registration_end_date);
-		const startDate = new Date(session.registration_start_date);
+		const RegistrationEndDate = new Date(session.registration_end_date);
+		const RegistrationStartDate = new Date(session.registration_start_date);
 
-		//active
-		if (sessionStatus == 2) {
-			if (sessionStudents.length) {
-				const studentPaid = sessionStudents.find(sessionStudent => {
-					return sessionStudent.student_id == studentId;
-				});
+		const studentPaid = sessionStudents.find(sessionStudent => {
+			return sessionStudent.student_id == studentId;
+		});
 
-				if (studentPaid) {
-					return console.dir('Can show View Course');
-				}
-				if (today > startDate && today < endDate) {
-					return console.dir('Can show register');
-				}
-				if (today > endDate) {
-					return console.dir('Do not show anything');
-				}
-			}
-
-			if ((today > startDate) && (today < endDate)) {
-				return console.dir('Can show register');
-			}
-			if (today > endDate) {
-				return console.dir('Do not show anything');
-			}
+		if (studentPaid != undefined) {
+			return this.setState({
+				action: 2
+			});
 		}
 
-		// console.dir(session);
+		if ((today > RegistrationStartDate) && (today < RegistrationEndDate)) {
+			return this.setState({
+				action: 1
+			});
+		}
+
 	}
 
 	render() {
 
-		let actionButton = (
-			<div>
-				VIEW
-			</div>
-		)
+		let actionButton;
 
+		if (this.state.action == 1) {
+			actionButton = (
+				<div className={styles.joinButton}>
+					JOIN
+                </div>
+			)
+		}
+		if (this.state.action == 2) {
+			actionButton = (
+				<div className={styles.joinButton}>
+					VIEW
+                </div>
+			)
+		}
 
 
 		return (
@@ -81,7 +84,7 @@ class CourseCard extends React.Component {
 					<div className={styles.theme}>
 						<div className={styles.themeTitle}>Theme</div>
 						<div className={styles.themeName}>
-							{ this.props.session.theme }
+							{this.props.session.theme}
 						</div>
 					</div>
 
@@ -89,13 +92,11 @@ class CourseCard extends React.Component {
 						<div className={styles.registrationDuration}>
 							<div className={styles.bodyTitle}>Registration</div>
 							<div className={styles.courseDuration}>
-								{moment(this.props.session.start_date).format('MMMM Do')} - {moment(this.props.session.end_date).format('MMMM Do')}
+								{moment(this.props.session.registration_start_date).format('MMMM Do')} - {moment(this.props.session.registration_end_date).format('MMMM Do YYYY')}
 							</div>
 						</div>
 
-						<div className={styles.joinButton}>
-							{ actionButton }
-						</div>
+						{actionButton}
 					</div>
 				</div>
 			</div>

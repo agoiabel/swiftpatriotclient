@@ -25,10 +25,13 @@ class SessionData extends React.Component {
 	}
 
 	formatStatusFor = status => {
-		if (status) {
-			return 'ACTIVE'
+		if (status == 1) {
+			return 'PAST';
 		}
-		return "INACTIVE";
+		if (status == 2) {
+			return 'ACTIVE';
+		}
+		return "UP COMING";
 	}
 
 	render () {

@@ -1,3 +1,4 @@
+import { getStorage } from '../../utils/storage';
 import { updateObject } from '../../utils/updateObject';
 import { AUTH_SUCCESSFUL, AUTH_UNSUCCESSFUL } from './index';
 
@@ -22,9 +23,9 @@ const authWasUnSuccessFul = (state, action) => {
 
 const initialState = {
     status: null,
-    user: null,
     message: null,
     role_id: null,
+    user: getStorage("DayStar:user") || null,
 };
 
 const reducer = (state = initialState, action) => {

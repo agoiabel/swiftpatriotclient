@@ -12,6 +12,7 @@ import { get_sessions, deleteSession, reset_store_session_status, activate } fro
 class SessionIndex extends React.Component {
 
 	state = {}
+	//make sure session activation shows real time
 
 	componentDidMount() {
 		this.props.get_sessions();
