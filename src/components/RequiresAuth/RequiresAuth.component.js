@@ -17,8 +17,8 @@ export default function requireAuth(Component) {
 
 			try {
 				const authUserId = await getStorage("DayStar:auth_token") || 0;
-				const account_type = await getStorage("DayStar:account_type") || 0;
-				const email_confirmed = await getStorage("DayStar:email_confirmed") || 3;
+				// const account_type = await getStorage("DayStar:account_type") || 0;
+				// const email_confirmed = await getStorage("DayStar:email_confirmed") || 3;
 
 		        this.setState({
 		        	isLogedIn: authUserId
@@ -28,9 +28,9 @@ export default function requireAuth(Component) {
 			        return this.props.history.push('/');
 				}
 				
-				if ( (account_type == 'ADULT' && email_confirmed == 0) || (account_type == 0 && email_confirmed == 3) ) {
-					return this.props.history.push('/');
-				}
+				// if ( (account_type == 'ADULT' && email_confirmed == 0) || (account_type == 0 && email_confirmed == 3) ) {
+				// 	return this.props.history.push('/');
+				// }
 
 		    } catch (error) {
 		        console.dir('Error getting in storage');
