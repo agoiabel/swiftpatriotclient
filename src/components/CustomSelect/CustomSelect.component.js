@@ -12,7 +12,7 @@ const CustomSelect = props => {
     
     return (
         <div className={styles.formGroup}>
-            <label>{label}</label>
+            <label className={styles.formLabel}>{label}</label>
             <select className={classes} {...input}>
                 <option value="" disabled={true}>{placeholder}</option>
                 {props.options.map(option => (

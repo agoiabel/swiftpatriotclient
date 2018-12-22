@@ -11,27 +11,29 @@ const OutlineForm = props => {
 				name="name"
 				component={CustomInput}
 				type="name"
+				label="Outline Name"
 				placeholder="Outline Name"
 				validate={[requiredValidator]}
 			/>
 
-			<Field
+			{/* <Field
 				name="code"
 				component={CustomInput}
 				type="text"
 				placeholder="Outline Code"
 				validate={[requiredValidator]}
-			/>
+			/> */}
 
 			<Field
 				name="description"
 				component={CustomInput}
 				type="text"
+				label="Outline Description"
 				placeholder="Outline Description"
 				validate={[requiredValidator]}
 			/>
 
-			<CustomButton disabled={props.invalid || props.pristine} submittingForm={props.submittingForm}>CREATE</CustomButton>
+			<CustomButton disabled={props.invalid || props.pristine} submittingForm={props.submittingForm}>{props.submitText}</CustomButton>
 		</form>
 	);
 }

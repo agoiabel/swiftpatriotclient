@@ -42,20 +42,26 @@ class CourseCard extends React.Component {
 
 	}
 
+	
+	navigateWith = () => {
+		this.props.navigateWith(this.props.session);
+	}
+
+
 	render() {
 
 		let actionButton;
 
 		if (this.state.action == 1) {
 			actionButton = (
-				<div className={styles.joinButton}>
+				<div className={styles.joinButton} onClick={this.navigateWith}>
 					JOIN
                 </div>
 			)
 		}
 		if (this.state.action == 2) {
 			actionButton = (
-				<div className={styles.joinButton}>
+				<div className={styles.joinButton} onClick={this.navigateWith}>
 					VIEW
                 </div>
 			)
@@ -67,18 +73,21 @@ class CourseCard extends React.Component {
 				<div className={styles.header}>
 					<div className={styles.duration}>
 						<div className={styles.headerTitle}>Duration</div>
-						<div className={styles.headerContent}>{this.props.course.duration} days</div>
+						<div className={styles.headerContent}>
+							{moment(this.props.session.start_date).format('MMMM Do')} - {moment(this.props.session.end_date).format('MMMM Do YYYY')}
+						</div>
 					</div>
 					<div className={styles.fees}>
 						<div className={styles.headerTitle}>Fees</div>
 						<div className={styles.headerContent}>&#8358;{this.props.session.fee}</div>
 					</div>
 				</div>
+
 				<div className={styles.body}>
 
 					<div className={styles.name}>
 						<div className={styles.bodyTitle}>Name</div>
-						<div className={styles.courseName}>{this.props.session.name}</div>
+						<div className={styles.courseName}>{this.props.session.course.name}</div>
 					</div>
 
 					<div className={styles.theme}>
@@ -99,6 +108,7 @@ class CourseCard extends React.Component {
 						{actionButton}
 					</div>
 				</div>
+
 			</div>
 		);
 	}

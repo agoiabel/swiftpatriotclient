@@ -82,7 +82,6 @@ class FacilitatorIndex extends React.Component {
 						<tr>
 							<th>S/N</th>
 							<th>Firstname</th>
-							<th>Othername</th>
 							<th>Lastname</th>
 							<th>Phone number</th>
 							<th>gender</th>

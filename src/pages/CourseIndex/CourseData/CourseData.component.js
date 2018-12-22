@@ -31,8 +31,11 @@ class CourseData extends React.Component {
 		this.props.delete(this.props.course);
 	}
 
-	makeDecisionOn = () => {
-		// this.props.makeDecisionOn(this.props.candidate);
+	displayStatusFor = status => {
+		if (status == 1) {
+			return 'ACTIVE';
+		}
+		return 'INACTIVE';
 	}
 
 	render () {
@@ -52,11 +55,11 @@ class CourseData extends React.Component {
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
 						</span>
 					</div>
-					<div className={styles.action}>
+					{/* <div className={styles.action}>
 						<span className={styles.actionIcon}>
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Info
 						</span>
-					</div>
+					</div> */}
 				
 				</div>
 			);
@@ -68,7 +71,7 @@ class CourseData extends React.Component {
 			<tr key={this.props.course.id}>
 				<td>{this.props.course.id}</td>
 				<td>{this.props.course.name}</td>
-				<td>{this.props.course.duration} days</td>
+				<td>{this.displayStatusFor(this.props.course.status)}</td>
 
 				<td className={styles.actionContainer} onClick={this.showActionFor}>
 					<i className="fa fa-ellipsis-v" aria-hidden="true"></i>

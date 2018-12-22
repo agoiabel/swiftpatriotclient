@@ -35,17 +35,10 @@ class SessionForm extends React.Component {
 			<form onSubmit={this.props.handleSubmit}>
 
 				<Field
-					name="name"
-					component={CustomInput}
-					type="text"
-					placeholder="Session Name"
-					validate={[requiredValidator]}
-				/>
-
-				<Field
 					name="course_id"
 					component={CustomSelect}
 					validate={[requiredValidator]}
+					label="Choose Session Course?"
 					placeholder="Choose Session Course?"
 					options={this.state.courses}
 				/>
@@ -86,6 +79,7 @@ class SessionForm extends React.Component {
 					name="fee"
 					component={CustomInput}
 					type="number"
+					label="Fee"
 					placeholder="Fee"
 					validate={[requiredValidator]}
 				/>
@@ -94,12 +88,13 @@ class SessionForm extends React.Component {
 					name="theme"
 					component={CustomInput}
 					type="text"
+					label="Theme"
 					placeholder="Theme"
 					validate={[requiredValidator]}
 				/>
 
 
-				<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>CREATE</CustomButton>
+				<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>{this.props.submitText}</CustomButton>
 			</form>
 		);
 	}

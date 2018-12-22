@@ -13,6 +13,7 @@ const OutlineForm = props => {
 				name="email"
 				component={CustomInput}
 				type="email"
+				label="Facilitator Email"
 				placeholder="Facilitator Email"
 				validate={[requiredValidator, emailValidator]}
 			/>
@@ -21,6 +22,7 @@ const OutlineForm = props => {
 				name="firstname"
 				component={CustomInput}
 				type="text"
+				label="Firstname"
 				placeholder="Firstname"
 				validate={[requiredValidator]}
 			/>
@@ -29,15 +31,8 @@ const OutlineForm = props => {
 				name="lastname"
 				component={CustomInput}
 				type="text"
+				label="Lastname"
 				placeholder="Lastname"
-				validate={[requiredValidator]}
-			/>
-
-			<Field
-				name="othername"
-				component={CustomInput}
-				type="text"
-				placeholder="Othername"
 				validate={[requiredValidator]}
 			/>
 
@@ -45,6 +40,7 @@ const OutlineForm = props => {
 				name="phone_number"
 				component={CustomInput}
 				type="number"
+				label="Phone number"
 				placeholder="Phone number"
 				validate={[requiredValidator]}
 			/>
@@ -53,6 +49,7 @@ const OutlineForm = props => {
 				name="gender"
 				component={CustomSelect}
 				validate={[requiredValidator]}
+				label="What is the facilitator gender?"
 				placeholder="What is the facilitator gender?"
 				options={[
 					{ value: 'MALE', displayValue: 'MALE' },
@@ -61,7 +58,36 @@ const OutlineForm = props => {
 			/>
 
 
-			<CustomButton disabled={props.invalid || props.pristine} submittingForm={props.submittingForm}>CREATE</CustomButton>
+			<Field
+				name="facebook"
+				component={CustomInput}
+				type="text"
+				label="Facebook"
+				placeholder="Facebook"
+				validate={[requiredValidator]}
+			/>
+
+
+			<Field
+				name="instagram"
+				component={CustomInput}
+				type="text"
+				label="Instagram"
+				placeholder="Instagram"
+				validate={[requiredValidator]}
+			/>
+
+
+			<Field
+				name="twitter"
+				component={CustomInput}
+				type="text"
+				label="Twitter"
+				placeholder="Twitter"
+				validate={[requiredValidator]}
+			/>
+
+			<CustomButton disabled={props.invalid || props.pristine} submittingForm={props.submittingForm}>{props.submitText}</CustomButton>
 		</form>
 	);
 }

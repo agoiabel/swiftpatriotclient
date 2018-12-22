@@ -6,7 +6,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 
 import styles from './FacilitatorCreate.page.module.css';
 import FacilitatorForm from '../../components/Forms/FacilitatorForm';
-import { get_facilitators, store_facilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
+import { store_facilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorCreate extends React.Component {
 
@@ -65,7 +65,7 @@ class FacilitatorCreate extends React.Component {
 						<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/index')}> ALL FACILITATOR </div>
 					</div>
 					<div>
-						<FacilitatorForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} />
+						<FacilitatorForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} submitText="CREATE" />
 					</div>
 				</div>
 			</React.Fragment>

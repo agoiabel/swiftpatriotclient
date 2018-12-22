@@ -1,21 +1,19 @@
-export const loadState = () => {
-    try {
-        const serializedState = localStorage.getItem('state');
-        if (serializedState === null) {
-            return undefined;
+import isEqual from 'lodash'
+
+export default function localStorageMiddleware(key) {
+    return ({ getState }) => next => action => {
+        const previousState = Object.assign({}, getState())
+
+        const result = next(action)
+
+        const nextState = Object.assign({}, getState())
+
+        if (!isEqual(previousState, nextState)) {
+            const storageValue = JSON.stringify(nextState)
+            window.localStorage.setItem(key, storageValue)
         }
-        return JSON.parse(serializedState);
-    } catch (err) {
-        return undefined;
-    }
-};
 
-
-export const saveState = (state) => {
-    try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
-    } catch (err) {
-        // Ignore write errors.
+        return result
     }
-};
+}
+

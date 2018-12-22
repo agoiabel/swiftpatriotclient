@@ -35,7 +35,7 @@ class SessionEdit extends React.Component {
 		if (nextProps.update_session_status === 200) {
 			swal({
 				type: 'success',
-				title: `Session was created successfully`,
+				title: `Session was updated successfully`,
 				allowOutsideClick: false
 			}).then((result) => {
 				if (result.value) {
@@ -56,7 +56,6 @@ class SessionEdit extends React.Component {
 	setInitialSessionFrom = nextProps => {
 		this.setState({
 			session: {
-				name: nextProps.session.name,
 				theme: nextProps.session.theme,
 
 				fee: parseInt(nextProps.session.fee),
@@ -64,6 +63,7 @@ class SessionEdit extends React.Component {
 
 				end_date: moment(nextProps.session.end_date).format('YYYY-MM-DD'),
 				start_date: moment(nextProps.session.start_date).format('YYYY-MM-DD'),
+
 				registration_end_date: moment(nextProps.session.registration_end_date).format('YYYY-MM-DD'),
 				registration_start_date: moment(nextProps.session.registration_start_date).format('YYYY-MM-DD')
 			}
@@ -90,6 +90,7 @@ class SessionEdit extends React.Component {
 								courses={this.props.courses} 
 								initialValues={this.state.session}
 								session={this.props.session}
+								submitText="UPDATE"
 					/>
 				</div>
 			);

@@ -32,11 +32,11 @@ class OutlineData extends React.Component {
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
 						</span>
 					</div>
-					<div className={styles.action}>
+					{/* <div className={styles.action}>
 						<span className={styles.actionIcon}>
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Info
 						</span>
-					</div>
+					</div> */}
 				
 				</div>
 			);
@@ -48,7 +48,8 @@ class OutlineData extends React.Component {
 			<tr key={this.props.outline.id}>
 				<td>{this.props.outline.id}</td>
 				<td>{this.props.outline.name}</td>
-				<td>{this.props.outline.description} days</td>
+				<td>{this.props.outline.code}</td>
+				<td>{this.props.outline.description}</td>
 
 				<td className={styles.actionContainer} onClick={this.showActionFor}>
 					<i className="fa fa-ellipsis-v" aria-hidden="true"></i>

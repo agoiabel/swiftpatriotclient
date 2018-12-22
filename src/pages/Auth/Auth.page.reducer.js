@@ -5,10 +5,12 @@ import { AUTH_SUCCESSFUL, AUTH_UNSUCCESSFUL } from './index';
 
 const authWasSuccessFul = (state, action) => {
     return updateObject(state, {
+        user: action.payload.data,
         status: action.payload.status,
         message: action.payload.message,
         role_id: action.payload.data.role_id,
-        user: action.payload.data
+        account_type: action.payload.data.account_type,
+        email_confirmed: action.payload.data.email_confirmed
     });
 }
 
@@ -22,10 +24,12 @@ const authWasUnSuccessFul = (state, action) => {
 
 
 const initialState = {
+    user: null,
     status: null,
     message: null,
     role_id: null,
-    user: getStorage("DayStar:user") || null,
+    account_type: null,
+    email_confirmed: null,
 };
 
 const reducer = (state = initialState, action) => {

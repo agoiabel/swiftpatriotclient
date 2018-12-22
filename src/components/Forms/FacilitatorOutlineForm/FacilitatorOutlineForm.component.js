@@ -57,6 +57,7 @@ class FacilitatorOutlineForm extends React.Component {
 					name="outline_id"
 					component={CustomSelect}
 					type="name"
+					label="Outline"
 					placeholder="Outline"
 					validate={[requiredValidator]}
 					options={this.state.outlines}
@@ -66,6 +67,7 @@ class FacilitatorOutlineForm extends React.Component {
 					name="facilitator_id"
 					component={CustomSelect}
 					type="text"
+					label="Facilitator"
 					placeholder="Facilitator"
 					validate={[requiredValidator]}
 					options={this.state.facilitators}

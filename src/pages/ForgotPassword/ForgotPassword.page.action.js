@@ -6,22 +6,17 @@ export const start_forgot_password = payload => {
     return async dispatch => {
 
         try {
-            let response = await post(payload, 'user/forgotpassword');
+            let response = await post(payload, 'forgot_password/store');
 
             response = await response.json();
 
-            const responsePayload = {
-                status: response.status,
-                message: `${response.message} ${Date.now()}`
-            }
-
             if (response.status !== 200) {
                 return window.setTimeout((() => {
-                    dispatch(forgot_password_unsucessful(responsePayload));
+                    dispatch(forgot_password_unsucessful(response));
                 }));
             }
 
-            return dispatch(forgot_password_sucessful(responsePayload));
+            return dispatch(forgot_password_sucessful(response));
         } catch (error) {
             console.dir(error);
         }

@@ -52,8 +52,10 @@ class FacilitatorEdit extends React.Component {
 				gender: nextProps.facilitator.gender,
 				lastname: nextProps.facilitator.lastname,
 				firstname: nextProps.facilitator.firstname,
-				othername: nextProps.facilitator.othername,
-				phone_number: parseInt(nextProps.facilitator.phone_number)
+				twitter: nextProps.facilitator.twitter,
+				facebook: nextProps.facilitator.facebook,
+				instagram: nextProps.facilitator.instagram,
+				phone_number: parseInt(nextProps.facilitator.phone_number),
 			}
 		});
 	}
@@ -75,7 +77,8 @@ class FacilitatorEdit extends React.Component {
 				<div>
 					<FacilitatorForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} 
 								 	 initialValues={this.state.facilitator}
-								 	 facilitator={this.props.facilitator}
+									 facilitator={this.props.facilitator}
+									 submitText="UPDATE"
 					/>
 				</div>
 			);

@@ -43,10 +43,10 @@
 	display: flex;
 }
 .goBack {
-	margin-bottom: 25px;
+	margin-bottom: 35px;
 	cursor: pointer;
 }
 .action {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 }

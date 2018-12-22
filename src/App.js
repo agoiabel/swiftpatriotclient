@@ -1,10 +1,8 @@
 import React from 'react';
 import Auth from './pages/Auth';
 
-import Batch from './pages/Batch';
-import Batches from './pages/Batches';
-
 import Register from './pages/Register';
+import ConfirmEmail from './pages/ConfirmEmail';
 import RegisterProfile from './pages/RegisterProfile';
 
 import Dashboard from './pages/Dashboard';
@@ -23,12 +21,14 @@ import SessionEdit from './pages/SessionEdit';
 import SessionIndex from './pages/SessionIndex';
 import SessionCreate from './pages/SessionCreate';
 
+import SessionDashboard from './pages/SessionDashboard';
+
 import FacilitatorEdit from './pages/FacilitatorEdit';
 import FacilitatorIndex from './pages/FacilitatorIndex';
 import FacilitatorCreate from './pages/FacilitatorCreate';
 
+import StudentSession from './pages/StudentSession';
 import StudentDashboard from './pages/StudentDashboard';
-import SessionDashboard from './pages/SessionDashboard';
 
 import FacilitatorOutlineIndex from './pages/FacilitatorOutlineIndex';
 import FacilitatorOutlineCreate from './pages/FacilitatorOutlineCreate'
@@ -47,14 +47,15 @@ class App extends React.Component {
 
         <Switch>
           <Route path="/" exact component={Auth} />
-          <Route path="/resetPassword" exact component={ResetPassword} />
+          <Route path="/resetPassword/:token" exact component={ResetPassword} />
           <Route path="/forgotPassword" exact component={ForgotPassword} />          
-          
+          <Route path="/confirmEmail/:token" exact component={ConfirmEmail} />
+
           <Route path="/register" exact component={Register} />
           <Route path="/register-profile/:accountType/:userSlug" exact component={RegisterProfile} />
 
-
-          <Route path="/student-dashboard" exact component={StudentDashboard} />
+          <Route path="/student-dashboard" exact component={RequiresAuth(StudentDashboard)} />
+          <Route path="/student-session/:sessionSlug" exact component={RequiresAuth(StudentSession)} />
 
           <Route path="/dashboard" exact component={RequiresAuth(Dashboard)} />
           <Route path="/course/index" exact component={RequiresAuth(CourseIndex)} />

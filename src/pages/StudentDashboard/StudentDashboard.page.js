@@ -20,6 +20,9 @@ class StudentDashboard extends React.Component {
 	}
 
 
+	navigateWith = session => {
+		this.navigateTo(`/student-session/${session.id}`);
+	}
 
 	render() {
 
@@ -32,7 +35,7 @@ class StudentDashboard extends React.Component {
 		if (this.props.get_active_and_future_session_status === 200 && this.props.sessions.length) {
 
 			sessions = this.props.sessions.map(session => (
-				<Course session={session} key={session.id} course={session.course} user={this.props.user} />
+				<Course session={session} key={session.id} course={session.course} user={this.props.user} navigateWith={this.navigateWith} />
 			))
 
 		}

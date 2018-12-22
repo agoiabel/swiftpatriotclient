@@ -1,0 +1,119 @@
+.dashboard {
+    width: 75%;
+    margin: 25px auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+.courseDescription {
+    width: 30%;
+    background: #FFF;
+    padding: 25px 25px;
+    border-radius: 4px;
+    text-align: center;
+
+    height: 1%;
+}
+.courseOutlines {
+    width: 68%;
+    background: #FFF;
+    padding: 25px 15px;
+    border-radius: 4px;
+}
+.courseTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: rgb(56, 64, 71, .7);
+}
+.courseTheme {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+
+    width: 80%;
+    margin: 0 auto 25px auto;
+    text-align: center;
+}
+.coursePrice {
+    font-size: 16px;
+    letter-spacing: 1.7;
+    margin-bottom: 20px;
+}
+.enrollButtons {
+    margin: 25px auto;
+    width: 70%;
+}
+.enrollButton {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 32px;
+    white-space: nowrap;
+    position: relative;
+    text-align: center;
+    border-radius: 100px;
+    border-width: 2px;
+    border-style: solid;
+    border-image: initial;
+    padding: 0px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    background: transparent;
+    border-color: rgba(48, 73, 97, 0.1);
+    transition: border-color 0.15s ease 0s, background-color 0.15s ease 0s, color 0.15s ease 0s;
+}
+.enrollButton:hover {
+    color: rgba(56,91,160); 
+    border-color: rgba(56,91,160); 
+}
+.buttonOutline {
+    border-style: dotted;
+    background: #FFF;
+    color: rgba(56,91,160);
+}
+
+.durations {
+    display: flex;
+    justify-content: space-between;
+
+    width: 90%;
+    margin: 0 auto 25px auto;
+}
+.duration {
+}
+.enrollButton:hover {
+
+}
+.durationHeader {
+    margin-bottom: 10px;
+}
+.date {
+    font-size: 10px;
+}
+.outlineHeader {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: rgb(56, 64, 71, .7);
+}
+.courseOutlines {
+    padding: 25px 25px;
+}
+@media screen and (max-width: 1300px) {
+    .dashboard {
+        width: 75%;
+        margin: 25px auto;
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .courseDescription {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    .courseOutlines {
+        width: 100%;
+    }
+}

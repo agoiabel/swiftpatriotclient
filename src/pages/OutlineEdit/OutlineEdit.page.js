@@ -33,7 +33,7 @@ class OutlineEdit extends React.Component {
 		if (nextProps.update_outline_status === 200) {
 			swal({
 				type: 'success',
-				title: `Outline was created successfully`,
+				title: `Outline was updated successfully`,
 				allowOutsideClick: false
 			}).then((result) => {
 				if (result.value) {
@@ -72,6 +72,7 @@ class OutlineEdit extends React.Component {
 					<OutlineForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} 
 								 initialValues={this.state.outline}
 								 outline={this.props.outline}
+								 submitText="UPDATE"
 					/>
 				</div>
 			);

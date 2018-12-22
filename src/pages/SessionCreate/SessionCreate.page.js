@@ -49,7 +49,15 @@ class SessionCreate extends React.Component {
 		this.props.get_courses();
 
 		if (! this.props.courses.length) {
-			this.navigateTo('/session/index');
+			swal({
+				type: 'warning',
+				title: `you need to create course first`,
+				allowOutsideClick: false
+			}).then((result) => {
+				if (result.value) {
+					return this.props.history.push('/course/index');
+				}
+			});
 		}
 	}
 
@@ -73,7 +81,7 @@ class SessionCreate extends React.Component {
 						<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSION </div>
 					</div>
 					<div>
-						<SessionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} />
+						<SessionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} submitText='CREATE' />
 					</div>
 				</div>
 			</React.Fragment>

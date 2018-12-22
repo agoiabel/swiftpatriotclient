@@ -16,6 +16,7 @@ class Header extends React.Component {
 	logout = () => {
 		removeStorage("DayStar:auth_token");
 		removeStorage("DayStar:role_id");
+		removeStorage("reduxState");
 		
 		return this.props.history.push('/');
 	}
@@ -61,23 +62,23 @@ class Header extends React.Component {
 			mobileMenu = (
 				<div className={styles.mobileMenu}>
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/batches' }}>Dashboard</Link>
+						<Link to={{ pathname: '/student-dashboard' }}>Dashboard</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/forum' }}>Forum</Link>
+						<Link to={{ pathname: '/student-dashboard' }}>Forum</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/messaging' }}>Messaging</Link>
+						<Link to={{ pathname: '/student-dashboard' }}>Messaging</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/donate' }}>Donate</Link>
+						<Link to={{ pathname: '/student-dashboard' }}>Donate</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/donate' }}>View Profile</Link>
+						<Link to={{ pathname: '/student-dashboard' }}>View Profile</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
@@ -125,16 +126,16 @@ class Header extends React.Component {
 		let navs = (
 			<div className={styles.navItems}>
 				<div className={[styles.navItem, styles.active].join(" ")}>
-					<Link to={{ pathname: '/dashboard' }}>Dashboard</Link>
+					<Link to={{ pathname: '/student-dashboard' }}>Dashboard</Link>
 				</div>
 				<div className={styles.navItem}>
-					<Link to={{ pathname: '/batches' }}>Forum</Link>
+					<Link to={{ pathname: '/student-dashboard' }}>Forum</Link>
 				</div>
 				<div className={styles.navItem}>
-					<Link to={{ pathname: '/batches' }}>Messaging</Link>
+					<Link to={{ pathname: '/student-dashboard' }}>Messaging</Link>
 				</div>
 				<div className={styles.navItem}>
-					<Link to={{ pathname: '/batches' }}>Donate</Link>
+					<Link to={{ pathname: '/student-dashboard' }}>Donate</Link>
 				</div>
 			</div>
 		);

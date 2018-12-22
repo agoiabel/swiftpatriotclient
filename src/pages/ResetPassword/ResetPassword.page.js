@@ -3,6 +3,7 @@ import swal from 'sweetalert2';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'; 
 import styles from './ResetPassword.page.module.css';
+import { start_reset_password } from './ResetPassword.page.action';
 import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
 
 
@@ -13,27 +14,31 @@ class ResetPassword extends React.Component {
 	};
 
 
-
-	handleSubmit = value => {
-		console.dir(value);
+	handleSubmit = formData => {
+		formData['token'] = this.props.match.params.token;
 		this.setState({
-			submitIsLoading: true
+			submittingForm: true
 		});
+		this.props.start_reset_password(formData);
 	}
 
 
 	redirectOrNotifyOnStatusChange = nextProps => {
+		this.setState({
+			submittingForm: false
+		});
 		if (nextProps.status === 200) {
-			this.setState({
-				showLoading: false
+			swal({
+				title: 'Success!',
+				text: `${nextProps.message}`,
+				type: 'success',
+				timer: 2500,
+				showConfirmButton: true
 			});
 
-			console.dir('can relocate to dashboard');
+			this.props.history.push('/');
 		}
 		if ((nextProps.status === 422) && !(nextProps.message === this.props.message)) {
-			this.setState({
-				showLoading: false
-			});
 			return swal({
 				title: 'Error!',
 				text: `${nextProps.message}`,
@@ -83,14 +88,14 @@ class ResetPassword extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		status: state.authReducer.status,
-		message: state.authReducer.message
+		status: state.resetPasswordReducer.status,
+		message: state.resetPasswordReducer.message
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		// start_login: credentials => dispatch(start_login(credentials)),
+		start_reset_password: credentials => dispatch(start_reset_password(credentials)),
 	}
 }
 

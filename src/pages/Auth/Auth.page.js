@@ -22,16 +22,21 @@ class Auth extends React.Component {
 	}
 
 
-	showErrorNotificationFor = nextProps => {
+	showErrorNotificationFor = message => {
 		this.setState({
 			submittingForm: false
-		});
+		});		
 		return swal({
-			title: 'Error!',
-			text: `${nextProps.message}`,
-			type: 'error',
-			timer: 2500,
-			showConfirmButton: true
+			title: `Error`,
+			type: 'warning',
+			text: `${message}`,
+			showCancelButton: false,
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Okay!'
+		}).then((result) => {
+			if (result.value) {
+				// console.dir('can reset user');
+			}
 		});
 	}
 
@@ -43,15 +48,16 @@ class Auth extends React.Component {
 	}
 
 	redirectOrNotifyOnStatusChange = nextProps => {
-		if (nextProps.status === 200) {
+		if (nextProps.status === 200 && nextProps.message) {
+			if (nextProps.account_type == 'ADULT' && nextProps.email_confirmed == 0) {
+				return this.showErrorNotificationFor('You need to verify your account first, check your email');
+			}
 			this.setState({
 				submittingForm: false
 			});
-
 			return this.redirectBaseOn(nextProps.role_id);
-			// return this.props.history.push('/dashboard');
 		}
-		return this.showErrorNotificationFor(nextProps);
+		return this.showErrorNotificationFor('Your Email/Password not correct');
 	}
 
 
@@ -94,7 +100,9 @@ const mapStateToProps = state => {
 	return {
 		status: state.authReducer.status,
 		message: state.authReducer.message,
-		role_id: state.authReducer.role_id
+		role_id: state.authReducer.role_id,
+		account_type: state.authReducer.account_type,
+		email_confirmed: state.authReducer.email_confirmed
 	}
 }
 

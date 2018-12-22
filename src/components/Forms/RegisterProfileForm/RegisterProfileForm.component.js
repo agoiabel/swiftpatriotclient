@@ -18,6 +18,7 @@ class RegisterProfileForm extends React.Component {
 					name="firstname"
 					component={CustomInput}
 					type="text"
+					label="First Name"
 					placeholder="First Name"
 					validate={[requiredValidator]}
 				/>
@@ -26,6 +27,7 @@ class RegisterProfileForm extends React.Component {
 					name="lastname"
 					component={CustomInput}
 					type="text"
+					label="Last Name"
 					placeholder="Last Name"
 					validate={[requiredValidator]}
 				/>
@@ -34,6 +36,7 @@ class RegisterProfileForm extends React.Component {
 					name="othername"
 					component={CustomInput}
 					type="text"
+					label="Other Name"
 					placeholder="Other Name"
 				/>
 
@@ -41,6 +44,7 @@ class RegisterProfileForm extends React.Component {
 					name="gender"
 					component={CustomSelect}
 					validate={[requiredValidator]}
+					label="Gender"
 					placeholder="Gender"
 					options={[
 						{ value: 'MALE', displayValue: 'MALE' },
@@ -53,6 +57,7 @@ class RegisterProfileForm extends React.Component {
 					name="phone_number"
 					component={CustomInput}
 					type="number"
+					label="Phone number"
 					placeholder="Phone number"
 				/>
 
@@ -75,10 +80,12 @@ class RegisterProfileForm extends React.Component {
 						name="employment_status"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Employment Status"
 						placeholder="Employment Status"
 						options={[
-							{ value: 'MALE', displayValue: 'MALE' },
-							{ value: 'FEMALE', displayValue: 'FEMALE' }
+							{ value: 'EMPLOYED', displayValue: 'EMPLOYED' },
+							{ value: 'UNEMPLOYED', displayValue: 'UNEMPLOYED' },
+							{ value: 'SELF EMPLOYED', displayValue: 'SELF EMPLOYED' }
 						]}
 					/>
 
@@ -86,6 +93,7 @@ class RegisterProfileForm extends React.Component {
 						name="company_name"
 						component={CustomInput}
 						type="text"
+						label="Business/Company Name"
 						placeholder="Business/Company Name"
 						validate={[requiredValidator]}
 					/>
@@ -94,6 +102,7 @@ class RegisterProfileForm extends React.Component {
 						name="office_position"
 						component={CustomInput}
 						type="text"
+						label="Office Designation/Position"
 						placeholder="Office Designation/Position"
 						validate={[requiredValidator]}
 					/>
@@ -103,6 +112,7 @@ class RegisterProfileForm extends React.Component {
 						name="office_address"
 						component={CustomInput}
 						type="text"
+						label="Business/Company Address"
 						placeholder="Business/Company Address"
 					/>
 
@@ -111,6 +121,7 @@ class RegisterProfileForm extends React.Component {
 						name="office_phone_number"
 						component={CustomInput}
 						type="number"
+						label="Business/Company Phone number"
 						placeholder="Business/Company Phone number"
 					/>
 
@@ -118,6 +129,7 @@ class RegisterProfileForm extends React.Component {
 						name="religion"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Religion"
 						placeholder="Religion"
 						options={[
 							{ value: 'Christain', displayValue: 'Christain' },
@@ -130,6 +142,7 @@ class RegisterProfileForm extends React.Component {
 						name="name_of_ministry"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Religion"
 						placeholder="Religion"
 						options={[
 							{ value: 'DayStar', displayValue: 'DayStar' },

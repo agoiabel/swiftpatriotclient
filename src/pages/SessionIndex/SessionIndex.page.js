@@ -121,7 +121,6 @@ class SessionIndex extends React.Component {
 					<thead>
 						<tr>
 							<th>S/N</th>
-							<th>Session Name</th>
 							<th>Session Course</th>
 							<th>Session Status</th>
 							<th>Session Start Date</th>

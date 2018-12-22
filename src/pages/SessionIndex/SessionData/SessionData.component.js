@@ -71,7 +71,6 @@ class SessionData extends React.Component {
 			<tr key={this.props.session.id}>
 				<td>{this.props.session.id}</td>
 
-				<td>{this.props.session.name}</td>
 				<td>{this.props.session.course.name}</td>
 				<td>{this.formatStatusFor(this.props.session.status)}</td>
 

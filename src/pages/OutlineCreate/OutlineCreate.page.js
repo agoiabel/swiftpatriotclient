@@ -64,7 +64,7 @@ class OutlineCreate extends React.Component {
 						<div className={styles.addNew} onClick={() => this.navigateTo('/outline/index')}> ALL OUTLINE </div>
 					</div>
 					<div>
-						<OutlineForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} />
+						<OutlineForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} submitText="CREATE" />
 					</div>
 				</div>
 			</React.Fragment>

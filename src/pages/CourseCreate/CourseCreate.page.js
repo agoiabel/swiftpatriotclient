@@ -44,9 +44,6 @@ class CourseCreate extends React.Component {
 
 	componentDidMount() {
 		this.props.get_courses();
-		// if (! this.props.courses.length) {
-		// 	this.navigateTo('/course/index');
-		// }
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -69,7 +66,7 @@ class CourseCreate extends React.Component {
 						<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/index')}> ALL COURSES </div>
 					</div>
 					<div>
-						<CourseForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} />
+						<CourseForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} submitText="CREATE" />
 					</div>
 				</div>
 			</React.Fragment>

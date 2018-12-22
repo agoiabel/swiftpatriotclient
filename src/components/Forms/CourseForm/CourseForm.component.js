@@ -3,6 +3,7 @@ import CustomInput from '../../CustomInput';
 import CustomSelect from '../../CustomSelect';
 import CustomButton from '../../CustomButton';
 import { Field, reduxForm } from 'redux-form';
+import MultipleSelect from '../../MultipleSelect';
 import {requiredValidator} from '../../../utils/validation';
 
 class CourseForm extends React.Component {
@@ -44,9 +45,10 @@ class CourseForm extends React.Component {
 		if (this.state.has_prerequisite == 1) {
 			showCoursePrerequsiteIfItHas = (
 	            <Field
-	                name="prerequisite_id"
-	                component={CustomSelect}
+	                name="prerequisite_ids"
+	                component={MultipleSelect}
 	                validate={[requiredValidator]}
+					label="Chose Course Prerequisite?"
 	                placeholder="Chose Course Prerequisite?"
 	                options={this.state.courses}
 	            />
@@ -60,30 +62,28 @@ class CourseForm extends React.Component {
 					component={CustomInput}
 					type="text"
 					placeholder="Course Name"
+					label="Course Name"
 					validate={[requiredValidator]}
 				/>
 
 				<Field
-					name="description"
-					component={CustomInput}
-					type="text"
-					placeholder="Course Description"
+					name="status"
+					component={CustomSelect}
 					validate={[requiredValidator]}
-				/>
-
-				<Field
-					name="duration"
-					component={CustomInput}
-					type="number"
-					placeholder="Number of days (duration)"
-					validate={[requiredValidator]}
+					placeholder="Status?"
+					label="Status?"
+					options={[
+						{ value: 0, displayValue: 'INACTIVE' },
+						{ value: 1, displayValue: 'ACTIVE' },
+					]}
 				/>
 
 	            <Field
 	                name="has_prerequisite"
 	                component={CustomSelect}
 	                validate={[requiredValidator]}
-	                placeholder="Does course has prerequisite?"
+					placeholder="Does course has prerequisite?"
+	                label="Does course has prerequisite?"
 	                options={[
 	                    { value: 0, displayValue: 'NO' },
 	                    { value: 1, displayValue: 'YES' },
@@ -94,7 +94,7 @@ class CourseForm extends React.Component {
 
 	            { showCoursePrerequsiteIfItHas }
 
-				<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>CREATE</CustomButton>
+				<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>{this.props.submitText}</CustomButton>
 			</form>
 		);
 	}

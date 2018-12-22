@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { ENUMERATOR } from './index';
-import Enumerator from './Enumerator';
+import { PayWithTeller } from './index';
+import PayWithTellerModal from './PayWithTeller';
 
 const MODAL_COMPONENTS = {
-    ENUMERATOR: Enumerator 
+    PayWithTeller: PayWithTellerModal 
 }
 
 const mapStateToProps = state => {

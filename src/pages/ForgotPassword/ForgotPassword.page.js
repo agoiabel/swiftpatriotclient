@@ -12,7 +12,6 @@ class ForgotPassword extends React.Component {
 		submittingForm: false,
 	};
 
-
 	handleSubmit = formData => {
 		this.setState({
 			submittingForm: true
@@ -23,11 +22,11 @@ class ForgotPassword extends React.Component {
 
 
 	redirectOrNotifyOnStatusChange = nextProps => {
-		if (nextProps.status === 200) {
-			this.setState({
-				submittingForm: false
-			});
+		this.setState({
+			submittingForm: false
+		});
 
+		if (nextProps.status === 200) {
 			return swal({
 				title: 'Success!',
 				text: `${nextProps.message}`,
@@ -36,9 +35,6 @@ class ForgotPassword extends React.Component {
 				showConfirmButton: true
 			});			
 		}
-		this.setState({
-			submittingForm: false
-		});
 		return swal({
 			title: 'Error!',
 			text: `${nextProps.message}`,

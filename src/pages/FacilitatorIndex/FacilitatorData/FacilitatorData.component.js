@@ -48,7 +48,6 @@ class FacilitatorData extends React.Component {
 			<tr key={this.props.facilitator.id}>
 				<td>{this.props.facilitator.id}</td>
 				<td>{this.props.facilitator.firstname}</td>
-				<td>{this.props.facilitator.othername}</td>
 				<td>{this.props.facilitator.lastname}</td>
 				<td>{this.props.facilitator.phone_number}</td>
 				<td>{this.props.facilitator.gender}</td>

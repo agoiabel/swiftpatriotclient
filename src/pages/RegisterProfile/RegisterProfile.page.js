@@ -42,8 +42,15 @@ class RegisterProfile extends React.Component {
 			this.setState({
 				submittingForm: false
 			});
-
-			return this.props.history.push('/student-dashboard');
+			return swal({
+				type: 'success',
+				title: `Profile registration was successfully`,
+				allowOutsideClick: false
+			}).then((result) => {
+				if (result.value) {
+					return this.props.history.push('/');
+				}
+			});
 		}
 		return this.showErrorNotificationFor(nextProps);
 	}
@@ -54,8 +61,8 @@ class RegisterProfile extends React.Component {
 	}
 
 	componentDidMount() {
-		console.dir(this.props.match.params.accountType);
-		console.dir(this.props.match.params.userSlug);
+		// console.dir(this.props.match.params.accountType);
+		// console.dir(this.props.match.params.userSlug);
 	}
 
 	render() {

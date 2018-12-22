@@ -33,7 +33,7 @@ class CourseEdit extends React.Component {
 		if (nextProps.update_course_status === 200) {
 			swal({
 				type: 'success',
-				title: `Course was created successfully`,
+				title: `Course was updated successfully`,
 				allowOutsideClick: false
 			}).then((result) => {
 				if (result.value) {
@@ -55,10 +55,9 @@ class CourseEdit extends React.Component {
 		this.setState({
 			course: {
 				name: nextProps.course.name,
-				description: nextProps.course.description,
-				duration: parseInt(nextProps.course.duration),
+				status: nextProps.course.status,
 				has_prerequisite: nextProps.course.has_prerequisite,
-				prerequisite_id: nextProps.course.prerequisite_id
+				// prerequisite_id: nextProps.course.prerequisite_id
 			}
 		});
 	}
@@ -83,6 +82,7 @@ class CourseEdit extends React.Component {
 								courses={this.props.courses} 
 								initialValues={this.state.course}
 								course={this.props.course}
+								submitText="UPDATE"
 					/>
 				</div>
 			);

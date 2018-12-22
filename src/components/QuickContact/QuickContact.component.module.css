@@ -1,11 +1,11 @@
 .container {
     width: 75%;
-    margin: 35px auto;
+    margin: 25px auto;
     background: #fff;
     box-shadow: 0 2px 0 rgba(0,0,0,0.06);
     border-radius: 4px;
 
-    padding: 25px 25px;
+    padding: 15px 35px;
 }
 
 .close {
@@ -16,9 +16,8 @@
 .header {
     font-size: 20px;
     font-weight: bold;
-    color: rgba(0,0,0,0.6);
-    
     margin-bottom: 15px;
+    color: rgba(0,0,0,0.6);    
 }
 
 .contactUs {
@@ -26,8 +25,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.6;
     letter-spacing: 2;
 }
 .informations {
@@ -41,7 +40,7 @@
 }
 .accountDetailsHeader {
     margin: 5px 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 

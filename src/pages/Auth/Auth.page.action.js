@@ -19,7 +19,9 @@ export const start_login = payload => {
             try {
                 await setStorage("DayStar:auth_token", response.data.auth_token);
                 await setStorage("DayStar:role_id", response.data.role_id);
-                await setStorage("DayStar:user", response.data);
+                await setStorage("DayStar:account_type", response.data.account_type);
+                await setStorage("DayStar:email_confirmed", response.data.email_confirmed);
+                // await setStorage("DayStar:user", response.data);
                 
             } catch (error) {
                 console.dir('Error storing in storage');

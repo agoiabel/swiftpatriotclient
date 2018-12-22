@@ -1,0 +1,4 @@
+export { default } from './PayWithTeller.component.js';
+
+export const PAY_WITH_TELLER_WAS_SUCCESSFUL = 'PAY_WITH_TELLER_WAS_SUCCESSFUL';
+export const PAY_WITH_TELLER_WAS_UNSUCCESSFUL = 'PAY_WITH_TELLER_WAS_UNSUCCESSFUL';
