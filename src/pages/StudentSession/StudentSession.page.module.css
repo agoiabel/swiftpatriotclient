@@ -99,6 +99,7 @@
 }
 .courseOutlines {
     padding: 25px 25px;
+    height: 1%;
 }
 @media screen and (max-width: 1300px) {
     .dashboard {

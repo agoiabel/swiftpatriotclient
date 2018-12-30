@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -10,9 +11,13 @@ import { openModal } from '../../components/Modal/Modal.action';
 
 class StudentSession extends React.Component {
 
+	//1 = unpaid
+	//2 = paid, not confirmed
+	//3 = paid confirmed
+
 	state = {
 		session: null,
-		isActiveStudent: false
+		studentType: 1
 	}
 
 	navigateTo = page => {
@@ -32,16 +37,41 @@ class StudentSession extends React.Component {
 			return sessionStudent.student_id === this.props.user.id;
 		});
 
-
 		if (typeof (studentPaid) == 'object') {			
+			
+			if (studentPaid.status == 1) {
+				return this.setState({
+					studentType: 3
+				});
+			}
+		
 			return this.setState({
-				isActiveStudent: true
+				studentType: 2
 			});
 		}
 	}
 
 	componentDidMount() {
 		this.setSessionFrom(this.props);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.transaction_status === 200) {
+
+			swal({
+				type: 'success',
+				title: `Payment transaction was created successfully, admin will contact you shortly`,
+				allowOutsideClick: false
+			}).then((result) => {
+				if (result.value) {
+					this.props.history.push('/student-dashboard');
+				}
+			});
+
+			return this.setState({
+				studentType: 2
+			});
+		}
 	}
 
 	navigateWith = session => {
@@ -60,18 +90,44 @@ class StudentSession extends React.Component {
 		});
 	}
 
+	rateCourseHandler = () => {
+		console.dir('rate course facilitator handler');
+	}
+
 	render() {
 
 		let sessions = <Spinner message="Loading sessions" />
 
-		let actionButton;
+		let actionButton, showRateHeader, showRateAction;
 
-		if (this.state.isActiveStudent == false) {
+		if (this.state.studentType == 1) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
 					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Pay With Teller </a>
 					<a className={[styles.enrollButton, styles.buttonOutline].join(' ')}> Pay Online </a>
 				</div>
+			)
+		}
+
+		if (this.state.studentType == 2) {
+			actionButton = (
+				<div className={styles.enrollButtons}>
+					<a className={styles.enrollButton}> Show Course Number  </a>
+				</div>
+			)
+		}
+
+
+		if (this.state.studentType === 3) {
+			showRateHeader = (
+				<th>Rate Course</th>
+			);
+			showRateAction = (
+				<td>
+					<div className={styles.enrollButtons}>
+						<a className={[styles.enrollButton, styles.buttonOutline].join(' ')} onClick={this.rateCourseHandler}> Rate Facilitator Course </a>
+					</div>
+				</td>
 			)
 		}
 
@@ -123,82 +179,21 @@ class StudentSession extends React.Component {
 										<th>Outline</th>
 										<th>Facilitator</th>
 										<th>Lecture Date</th>
-										<th>Rate Course</th>
+										{showRateHeader}
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
+									
+									{this.state.session.facilitatorSessionOutlines.map(facilitatorSessionOutline => (
+										<tr key={facilitatorSessionOutline.id}>
+											<td>1</td>
+											<td>{facilitatorSessionOutline.outline.name}</td>
+											<td>{facilitatorSessionOutline.facilitator.profile.firstname} {facilitatorSessionOutline.facilitator.profile.lastname}</td>
+											<td>{moment(facilitatorSessionOutline.date).format('MMMM Do YYYY')}</td>
+											{showRateAction}
+										</tr>
+									))}
 
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td>Outline 1</td>
-										<td>Facilitator 1</td>
-										<td>Jan 28th</td>
-										<td>1</td>
-									</tr>
 
 								</tbody>
 							</table>
@@ -242,6 +237,8 @@ const mapStateToProps = state => {
 	return {
 		user: state.authReducer.user,
 		sessions: state.studentDashboardReducer.sessions,
+		transaction: state.payWithTellerReducer.transaction,
+		transaction_status: state.payWithTellerReducer.status
 	}
 }
 

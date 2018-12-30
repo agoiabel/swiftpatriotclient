@@ -33,6 +33,9 @@ import StudentDashboard from './pages/StudentDashboard';
 import FacilitatorOutlineIndex from './pages/FacilitatorOutlineIndex';
 import FacilitatorOutlineCreate from './pages/FacilitatorOutlineCreate'
 
+import PendingTransaction from './pages/PendingTransaction';
+
+
 import {Route, Switch, Redirect} from 'react-router-dom';
 import ModalManager from './components/Modal/ModalManager.component';
 
@@ -78,6 +81,9 @@ class App extends React.Component {
           <Route path="/facilitator-outline/create/:sessionSlug" exact component={RequiresAuth(FacilitatorOutlineCreate)} />
 
           <Route path="/session/dashboard/:sessionSlug" exact component={RequiresAuth(SessionDashboard)} />
+
+          <Route path="/transaction/pending/:sessionSlug" exact component={RequiresAuth(PendingTransaction)} />
+
           <Redirect to="/" />
         </Switch>
         

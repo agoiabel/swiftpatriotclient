@@ -43,6 +43,7 @@ class PayWithTeller extends React.Component {
                 showConfirmButton: true
             });
         }
+        this.props.closeModal();
         return swal({
             title: 'success!',
             text: `${nextProps.message}`,
