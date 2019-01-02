@@ -26,6 +26,7 @@ class RegistrationForm extends React.Component {
 					name="firstname"
 					component={CustomInput}
 					type="text"
+					label="First Name"
 					placeholder="First Name"
 					validate={[requiredValidator]}
 				/>
@@ -34,6 +35,7 @@ class RegistrationForm extends React.Component {
 					name="lastname"
 					component={CustomInput}
 					type="text"
+					label="Last Name"
 					placeholder="Last Name"
 					validate={[requiredValidator]}
 				/>
@@ -42,6 +44,7 @@ class RegistrationForm extends React.Component {
 					name="othername"
 					component={CustomInput}
 					type="text"
+					label="Other Name"
 					placeholder="Other Name"
 				/>
 
@@ -52,6 +55,7 @@ class RegistrationForm extends React.Component {
 							name="gender"
 							component={CustomSelect}
 							validate={[requiredValidator]}
+							label="Gender"
 							placeholder="Gender"
 							options={[
 								{ value: 'MALE', displayValue: 'MALE' },
@@ -66,6 +70,7 @@ class RegistrationForm extends React.Component {
 							name="marital_status"
 							component={CustomSelect}
 							validate={[requiredValidator]}
+							label="Marital Status"
 							placeholder="Marital Status"
 							options={[
 								{ value: 'MARRIED', displayValue: 'MARRIED' },
@@ -80,6 +85,7 @@ class RegistrationForm extends React.Component {
 					name="phone_number"
 					component={CustomInput}
 					type="number"
+					label="Phone number"
 					placeholder="Phone number"
 				/>
 
@@ -94,6 +100,7 @@ class RegistrationForm extends React.Component {
 					name="residence_address"
 					component={CustomInput}
 					type="text"
+					label="Residence Address"
 					placeholder="Residence Address"
 				/>
 
@@ -102,6 +109,7 @@ class RegistrationForm extends React.Component {
 					name="country"
 					component={CustomSelect}
 					validate={[requiredValidator]}
+					label="Country"
 					placeholder="Country"
 					options={[
 						{ value: 'NIG', displayValue: 'Nigeria' },
@@ -113,6 +121,7 @@ class RegistrationForm extends React.Component {
 					name="email"
 					component={CustomInput}
 					type="email"
+					label="Email"
 					placeholder="Email"
 					validate={[requiredValidator, emailValidator]}
 				/>
@@ -126,6 +135,7 @@ class RegistrationForm extends React.Component {
 							name="password"
 							component={CustomInput}
 							type="password"
+							label="Password"
 							placeholder="Password"
 							validate={[requiredValidator]}
 						/>
@@ -137,6 +147,7 @@ class RegistrationForm extends React.Component {
 							name="password_confirmation"
 							component={CustomInput}
 							type="password"
+							label="Confirm Password"
 							placeholder="Confirm Password"
 							validate={[requiredValidator, matchesPassword]}
 						/>
@@ -156,6 +167,7 @@ class RegistrationForm extends React.Component {
 						name="firstname"
 						component={CustomInput}
 						type="text"
+						label="Guardian First Name"
 						placeholder="Guardian First Name"
 						validate={[requiredValidator]}
 					/>
@@ -164,6 +176,7 @@ class RegistrationForm extends React.Component {
 						name="lastname"
 						component={CustomInput}
 						type="text"
+						label="Guardian Last Name"
 						placeholder="Guardian Last Name"
 						validate={[requiredValidator]}
 					/>
@@ -172,6 +185,7 @@ class RegistrationForm extends React.Component {
 						name="gender"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Gender"
 						placeholder="Gender"
 						options={[
 							{ value: 'MALE', displayValue: 'MALE' },
@@ -183,6 +197,7 @@ class RegistrationForm extends React.Component {
 						name="phone_number"
 						component={CustomInput}
 						type="number"
+						label="Phone number"
 						placeholder="Phone number"
 					/>
 
@@ -190,6 +205,7 @@ class RegistrationForm extends React.Component {
 						name="country"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Country"
 						placeholder="Country"
 						options={[
 							{ value: 'NIG', displayValue: 'Nigeria' },
@@ -201,6 +217,7 @@ class RegistrationForm extends React.Component {
 						name="residence_address"
 						component={CustomInput}
 						type="text"
+						label="Residence Address"
 						placeholder="Residence Address"
 					/>
 
@@ -208,6 +225,7 @@ class RegistrationForm extends React.Component {
 						name="email"
 						component={CustomInput}
 						type="email"
+						label="Email"
 						placeholder="Email"
 						validate={[requiredValidator, emailValidator]}
 					/>
@@ -219,6 +237,7 @@ class RegistrationForm extends React.Component {
 								name="password"
 								component={CustomInput}
 								type="password"
+								label="Password"
 								placeholder="Password"
 								validate={[requiredValidator]}
 							/>
@@ -230,6 +249,7 @@ class RegistrationForm extends React.Component {
 								name="password_confirmation"
 								component={CustomInput}
 								type="password"
+								label="Confirm Password"
 								placeholder="Confirm Password"
 								validate={[requiredValidator, matchesPassword]}
 							/>
@@ -248,6 +268,7 @@ class RegistrationForm extends React.Component {
 						name="account_type"
 						component={CustomSelect}
 						validate={[requiredValidator]}
+						label="Chose Account Type"
 						placeholder="Chose Account Type"
 						options={[
 							{ value: 'ADULT', displayValue: 'Adult' },

@@ -48,7 +48,7 @@ class OutlineData extends React.Component {
 			<tr key={this.props.outline.id}>
 				<td>{this.props.outline.id}</td>
 				<td>{this.props.outline.name}</td>
-				<td>{this.props.outline.code}</td>
+				{/* <td>{this.props.outline.code}</td> */}
 				<td>{this.props.outline.description}</td>
 
 				<td className={styles.actionContainer} onClick={this.showActionFor}>

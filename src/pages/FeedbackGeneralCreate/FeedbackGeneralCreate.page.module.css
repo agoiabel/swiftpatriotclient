@@ -1,0 +1,36 @@
+.container {
+    width: 75%;
+    margin: 25px auto;
+}
+.outlineContainer {
+    margin-bottom: 25px;
+    background: #FFF;
+    padding: 45px 45px;
+    border-radius: 4px;
+    height: 1%;
+}
+
+.item {
+    margin-bottom: 20px;
+}
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgba(102,102,102, .8);
+}
+.body {
+    font-size: 14px;
+}
+.header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    color: rgba(102,102,102, .8);
+}
+@media screen and (min-width: 1300px) {
+    /* .outlineContainer {
+        width: 100%;
+    } */
+}

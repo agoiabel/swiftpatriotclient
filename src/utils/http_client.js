@@ -1,7 +1,7 @@
 import { getStorage } from './storage.js';
 
-// http://swiftpatriotapi.test/api/
 // http://api.hezedgetest.com.ng/api/
+// http://swiftpatriotapi.test/api/
 export const post = async (formData, end_point) => {
 
     const AuthToken = await getStorage('DayStar:auth_token');

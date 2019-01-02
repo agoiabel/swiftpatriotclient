@@ -82,7 +82,7 @@ class OutlineIndex extends React.Component {
 						<tr>
 							<th>S/N</th>
 							<th>Outline Name</th>
-							<th>Outline Code</th>
+							{/* <th>Outline Code</th> */}
 							<th>Outline Description</th>
 							<th>Action</th>
 						</tr>

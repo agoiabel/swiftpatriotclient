@@ -9,6 +9,11 @@ import QuickContact from '../../components/QuickContact';
 import { PayWithTeller } from '../../components/Modal/index';
 import { openModal } from '../../components/Modal/Modal.action';
 
+import { get_session_with } from './StudentSession.page.action';
+import { reset_transaction_status } from '../../components/Modal/PayWithTeller/PayWithTeller.component.action';
+
+import SessionOutline from './SessionOutline';
+
 class StudentSession extends React.Component {
 
 	//1 = unpaid
@@ -17,7 +22,8 @@ class StudentSession extends React.Component {
 
 	state = {
 		session: null,
-		studentType: 1
+		studentType: 1,
+		transaction: null
 	}
 
 	navigateTo = page => {
@@ -25,52 +31,64 @@ class StudentSession extends React.Component {
 	}
 
 	setSessionFrom = props => {
-		const session = props.sessions.find(session => {
-			return session.id == props.match.params.sessionSlug;
-		});
+		if (props.get_session_status === 200) {
 
-		this.setState({
-			session: session
-		});
-		
-		const studentPaid = session.sessionStudents.find(sessionStudent => {
-			return sessionStudent.student_id === this.props.user.id;
-		});
+			const session = props.session;
+			const transaction = props.userTransaction;
 
-		if (typeof (studentPaid) == 'object') {			
-			
-			if (studentPaid.status == 1) {
+			this.setState({
+				session: session,
+				transaction: transaction
+			});
+
+			const studentPaid = session.sessionStudents.find(sessionStudent => {
+				return sessionStudent.student_id === this.props.user.id;
+			});
+
+			if (typeof (studentPaid) == 'object') {
+
+				if (studentPaid.status == 1) {
+					return this.setState({
+						studentType: 3
+					});
+				}
+
 				return this.setState({
-					studentType: 3
+					studentType: 2
 				});
 			}
-		
-			return this.setState({
-				studentType: 2
-			});
 		}
 	}
 
+	setPaymentNotification = () => {
+		swal({
+			type: 'success',
+			title: `Payment transaction was created successfully, admin will contact you shortly`,
+			allowOutsideClick: false
+		}).then((result) => {
+			if (result.value) {
+				//reset transaction_status
+				this.props.reset_transaction_status();
+				this.props.history.push('/student-dashboard');
+			}
+		});
+
+		return this.setState({
+			studentType: 2
+		});
+	}
+
 	componentDidMount() {
-		this.setSessionFrom(this.props);
+		this.props.get_session_with(this.props.match.params.sessionSlug);
 	}
 
 	componentWillReceiveProps(nextProps) {
+		if (nextProps.get_session_status === 200) {
+			this.setSessionFrom(nextProps);
+		}
+
 		if (nextProps.transaction_status === 200) {
-
-			swal({
-				type: 'success',
-				title: `Payment transaction was created successfully, admin will contact you shortly`,
-				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.history.push('/student-dashboard');
-				}
-			});
-
-			return this.setState({
-				studentType: 2
-			});
+			this.setPaymentNotification();
 		}
 	}
 
@@ -90,21 +108,32 @@ class StudentSession extends React.Component {
 		});
 	}
 
-	rateCourseHandler = () => {
-		console.dir('rate course facilitator handler');
-	}
-
 	render() {
 
 		let sessions = <Spinner message="Loading sessions" />
 
 		let actionButton, showRateHeader, showRateAction;
 
-		if (this.state.studentType == 1) {
+		if (this.state.transaction != null && this.state.studentType == 1) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
 					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Pay With Teller </a>
-					<a className={[styles.enrollButton, styles.buttonOutline].join(' ')}> Pay Online </a>
+
+
+					<form name="form1" action="https://sandbox.interswitchng.com/collections/w/pay" method="post">
+						
+						<input name="product_id" type="hidden" value="6205" />
+						<input name="pay_item_id" type="hidden" value="101" />
+
+						<input name="amount" type="hidden" value={parseInt(this.state.transaction.amount * 100)} />
+						<input name="currency" type="hidden" value="566" />
+
+						<input name="txn_ref" type="hidden" value={this.state.transaction.reference_number} />
+						<input name="hash" type="hidden" value={this.state.transaction.hash} />
+						<input name="site_redirect_url" type="hidden" value='http://swiftpatriotapi.test/confirm-payment' />
+
+						<button className={[styles.enrollButton, styles.buttonOutline].join(' ')}> Pay Online </button>
+					</form>
 				</div>
 			)
 		}
@@ -117,19 +146,6 @@ class StudentSession extends React.Component {
 			)
 		}
 
-
-		if (this.state.studentType === 3) {
-			showRateHeader = (
-				<th>Rate Course</th>
-			);
-			showRateAction = (
-				<td>
-					<div className={styles.enrollButtons}>
-						<a className={[styles.enrollButton, styles.buttonOutline].join(' ')} onClick={this.rateCourseHandler}> Rate Facilitator Course </a>
-					</div>
-				</td>
-			)
-		}
 
 		if (this.state.session != null) {
 			sessions = (
@@ -165,52 +181,10 @@ class StudentSession extends React.Component {
 						</div>
 					</div>
 
-					<div className={styles.courseOutlines}>
-						<div className={styles.outlineHeader}>
-							Course Outlines
-						</div>
-
-						<div className={styles.outlineBody}>
-
-							<table className={styles.table}>
-								<thead>
-									<tr>
-										<th>S/N</th>
-										<th>Outline</th>
-										<th>Facilitator</th>
-										<th>Lecture Date</th>
-										{showRateHeader}
-									</tr>
-								</thead>
-								<tbody>
-									
-									{this.state.session.facilitatorSessionOutlines.map(facilitatorSessionOutline => (
-										<tr key={facilitatorSessionOutline.id}>
-											<td>1</td>
-											<td>{facilitatorSessionOutline.outline.name}</td>
-											<td>{facilitatorSessionOutline.facilitator.profile.firstname} {facilitatorSessionOutline.facilitator.profile.lastname}</td>
-											<td>{moment(facilitatorSessionOutline.date).format('MMMM Do YYYY')}</td>
-											{showRateAction}
-										</tr>
-									))}
-
-
-								</tbody>
-							</table>
-
-						</div>
-					</div>
+					<SessionOutline studentType={this.state.studentType} session={this.state.session} navigateTo={this.navigateTo} />
 				</div>
 			)
 		}
-
-		// if (this.props.get_active_and_future_session_status === 200 && this.props.sessions.length) {
-
-		// 	sessions = this.props.sessions.map(session => (
-		// 		<Course session={session} key={session.id} course={session.course} user={this.props.user} navigateWith={this.navigateWith} />
-		// 	))
-
-		// }
 
 
 		return (
@@ -236,8 +210,13 @@ class StudentSession extends React.Component {
 const mapStateToProps = state => {
 	return {
 		user: state.authReducer.user,
-		sessions: state.studentDashboardReducer.sessions,
-		transaction: state.payWithTellerReducer.transaction,
+
+		session: state.studentSessionReducer.session,
+		userTransaction: state.studentSessionReducer.transaction,
+		get_session_status: state.studentSessionReducer.get_session_status,
+
+		
+		transaction: state.payWithTellerReducer.transaction,	
 		transaction_status: state.payWithTellerReducer.status
 	}
 }
@@ -245,6 +224,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
+		get_session_with: payload => dispatch( get_session_with(payload) ),
+		reset_transaction_status: () => dispatch( reset_transaction_status() )
 	}
 }
 

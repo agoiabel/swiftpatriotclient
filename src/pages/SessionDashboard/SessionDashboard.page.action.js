@@ -4,7 +4,7 @@ import { GET_SESSION_WAS_SUCCESSFUL, GET_SESSION_WAS_UNSUCCESSFUL } from './inde
 export const get_session = payload => async dispatch => {
 
     try {
-        let response = await get(`session/show/${payload}`);
+        let response = await get(`session/admin-show/${payload}`);
 
         response = await response.json();
 

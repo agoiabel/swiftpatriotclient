@@ -17,6 +17,14 @@ import sessionDashboardReducer from '../pages/SessionDashboard/SessionDashboard.
 import studentDashboardReducer from '../pages/StudentDashboard/StudentDashboard.page.reducer.js';
 import payWithTellerReducer from '../components/Modal/PayWithTeller/PayWithTeller.component.reducer.js';
 import facilitatorOutlinesReducer from '../shared/store/FacilitatorOutline/FacilitatorOutline.reducer.js';
+import feedbackQuestionReducer from '../shared/store/FeedbackQuestion/FeedbackQuestion.reducer.js';
+
+
+import studentSessionReducer from '../pages/StudentSession/StudentSession.page.reducer.js';
+import facilitatorOutlineAddFeedbackReducer from '../pages/FacilitatorOutlineAddFeedback/FacilitatorOutlineAddFeedback.page.reducer.js';
+
+import generalFeedbackReducer from '../pages/FeedbackGeneralCreate/FeedbackGeneralCreate.page.reducer.js';
+
 
 export default combineReducers({
     form: formReducer,
@@ -35,5 +43,10 @@ export default combineReducers({
     registerProfileReducer: registerProfileReducer,
     sessionDashboardReducer: sessionDashboardReducer,
     studentDashboardReducer: studentDashboardReducer,
-    facilitatorOutlinesReducer: facilitatorOutlinesReducer
+    facilitatorOutlinesReducer: facilitatorOutlinesReducer,
+
+    studentSessionReducer: studentSessionReducer,
+    generalFeedbackReducer: generalFeedbackReducer,
+    feedbackQuestionReducer: feedbackQuestionReducer,
+    facilitatorOutlineAddFeedbackReducer: facilitatorOutlineAddFeedbackReducer,
 });

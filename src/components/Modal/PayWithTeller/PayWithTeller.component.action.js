@@ -1,5 +1,5 @@
 import { post } from '../../../utils/http_client';
-import { PAY_WITH_TELLER_WAS_SUCCESSFUL, PAY_WITH_TELLER_WAS_UNSUCCESSFUL } from './index';
+import { PAY_WITH_TELLER_WAS_SUCCESSFUL, PAY_WITH_TELLER_WAS_UNSUCCESSFUL, RESET_TRANSACTION_STATUS } from './index';
 
 export const initial_transaction = payload => {
     return async dispatch => {
@@ -36,6 +36,14 @@ export const pay_with_transaction_was_successful = payload => {
 export const pay_with_transaction_was_unsuccessful = payload => {
     return {
         type: PAY_WITH_TELLER_WAS_UNSUCCESSFUL,
+        payload: payload
+    }
+}
+
+
+export const reset_transaction_status = payload => {
+    return {
+        type: RESET_TRANSACTION_STATUS,
         payload: payload
     }
 }

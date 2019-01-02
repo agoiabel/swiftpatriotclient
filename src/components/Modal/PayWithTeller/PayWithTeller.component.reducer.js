@@ -19,6 +19,11 @@ const payWithTellerWasUnSuccessFul = (state, action) => {
     });
 }
 
+const resetTransactionStatus = (state, action) => {
+    return updateObject(state, {
+        status: null,
+    });
+}
 
 const initialState = {
     status: null,
@@ -29,7 +34,8 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     const lookup = {
         PAY_WITH_TELLER_WAS_SUCCESSFUL: payWithTellerWasSuccessFul,
-        PAY_WITH_TELLER_WAS_UNSUCCESSFUL: payWithTellerWasUnSuccessFul
+        PAY_WITH_TELLER_WAS_UNSUCCESSFUL: payWithTellerWasUnSuccessFul,
+        RESET_TRANSACTION_STATUS: resetTransactionStatus
     }
 
     return lookup[action.type] ? lookup[action.type](state, action) : state;

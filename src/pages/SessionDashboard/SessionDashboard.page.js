@@ -10,6 +10,7 @@ import { get_session } from './SessionDashboard.page.action';
 class SessionDashboard extends React.Component {
 
 	componentDidMount() {
+		console.dir('here');
 		this.props.get_session(this.props.match.params.sessionSlug);
 	}
 
@@ -30,7 +31,6 @@ class SessionDashboard extends React.Component {
 		let session = <Spinner />
 
 		if (this.props.status === 200) {
-
 
 			const unverifiedTransaction = this.props.session.transactions.filter(transaction => transaction.status === 0).length;
 			const successfulTransaction = this.props.session.transactions.filter(transaction => transaction.status === 1).length;

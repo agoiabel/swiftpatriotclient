@@ -30,11 +30,18 @@ import FacilitatorCreate from './pages/FacilitatorCreate';
 import StudentSession from './pages/StudentSession';
 import StudentDashboard from './pages/StudentDashboard';
 
+import FeedbackQuestionEdit from './pages/FeedbackQuestionEdit';
+import FeedbackQuestionIndex from './pages/FeedbackQuestionIndex';
+import FeedbackQuestionCreate from './pages/FeedbackQuestionCreate';
+
 import FacilitatorOutlineIndex from './pages/FacilitatorOutlineIndex';
 import FacilitatorOutlineCreate from './pages/FacilitatorOutlineCreate'
 
+import FacilitatorOutlineAddFeedback from './pages/FacilitatorOutlineAddFeedback';
+
 import PendingTransaction from './pages/PendingTransaction';
 
+import FeedbackGeneralCreate from './pages/FeedbackGeneralCreate';
 
 import {Route, Switch, Redirect} from 'react-router-dom';
 import ModalManager from './components/Modal/ModalManager.component';
@@ -80,9 +87,17 @@ class App extends React.Component {
           <Route path="/facilitator-outline/index/:sessionSlug" exact component={RequiresAuth(FacilitatorOutlineIndex)} />
           <Route path="/facilitator-outline/create/:sessionSlug" exact component={RequiresAuth(FacilitatorOutlineCreate)} />
 
+          <Route path="/feedback-question/index" exact component={RequiresAuth(FeedbackQuestionIndex)} />
+          <Route path="/feedback-question/create" exact component={RequiresAuth(FeedbackQuestionCreate)} />
+          <Route path="/feedback-question/edit/:feedbackQuestionSlug" exact component={RequiresAuth(FeedbackQuestionEdit)} />
+
           <Route path="/session/dashboard/:sessionSlug" exact component={RequiresAuth(SessionDashboard)} />
 
+          <Route path="/facilitator-outline/add-feedback/:facilitatorOutlineId" exact component={RequiresAuth(FacilitatorOutlineAddFeedback)} />
+
           <Route path="/transaction/pending/:sessionSlug" exact component={RequiresAuth(PendingTransaction)} />
+
+          <Route path="/feedback-general/create" exact component={RequiresAuth(FeedbackGeneralCreate)} />
 
           <Redirect to="/" />
         </Switch>
