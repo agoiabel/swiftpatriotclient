@@ -1,10 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { PayWithTeller } from './index';
+import NewForumPostModal from './NewForumPost';
 import PayWithTellerModal from './PayWithTeller';
+import NewForumPostCommentModal from './NewForumPostComment';
+import { PayWithTeller, NewForumPost, NewForumPostComment } from './index';
 
 const MODAL_COMPONENTS = {
-    PayWithTeller: PayWithTellerModal 
+    PayWithTeller: PayWithTellerModal,
+    NewForumPost: NewForumPostModal,
+    NewForumPostComment: NewForumPostCommentModal
 }
 
 const mapStateToProps = state => {

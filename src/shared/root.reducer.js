@@ -24,6 +24,17 @@ import studentSessionReducer from '../pages/StudentSession/StudentSession.page.r
 import facilitatorOutlineAddFeedbackReducer from '../pages/FacilitatorOutlineAddFeedback/FacilitatorOutlineAddFeedback.page.reducer.js';
 
 import generalFeedbackReducer from '../pages/FeedbackGeneralCreate/FeedbackGeneralCreate.page.reducer.js';
+import feedbackGeneralIndexReducer from '../pages/FeedbackGeneralIndex/FeedbackGeneralIndex.page.reducer.js';
+
+import newForumPostReducer from '../components/Modal/NewForumPost/NewForumPost.component.reducer';
+import newForumPostCommentReducer from '../components/Modal/NewForumPostComment/NewForumPostComment.component.reducer';
+import forumIndexReducer from '../pages/ForumIndex/ForumIndex.page.reducer';
+import myForumPostReducer from '../pages/ForumMyPost/ForumMyPost.page.reducer';
+
+import forumShowReducer from '../pages/ForumShow/ForumShow.page.reducer';
+import donationCreateReducer from '../pages/DonationCreate/DonateCreate.page.reducer';
+import messageIndexReducer from '../pages/MessageIndex/MessageIndex.page.reducer';
+import studentMessageReducer from '../components/StudentMessageContainer/StudentMessageContainer.component.reducer';
 
 
 export default combineReducers({
@@ -49,4 +60,15 @@ export default combineReducers({
     generalFeedbackReducer: generalFeedbackReducer,
     feedbackQuestionReducer: feedbackQuestionReducer,
     facilitatorOutlineAddFeedbackReducer: facilitatorOutlineAddFeedbackReducer,
+
+    feedbackGeneralIndexReducer: feedbackGeneralIndexReducer,
+    newForumPostReducer: newForumPostReducer,
+    forumIndexReducer: forumIndexReducer,
+    myForumPostReducer: myForumPostReducer,
+    newForumPostCommentReducer: newForumPostCommentReducer,
+
+    forumShowReducer: forumShowReducer,
+    donationCreateReducer: donationCreateReducer,
+    messageIndexReducer: messageIndexReducer,
+    studentMessageReducer: studentMessageReducer
 });

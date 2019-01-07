@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
+import FeedbackMenu from '../../components/FeedbackMenu';
 import FeedbackQuestionData from './FeedbackQuestionData';
 import styles from './FeedbackQuestionIndex.page.module.css';
 import { get_questions, deleteQuestion, reset_store_question_status } from '../../shared/store/FeedbackQuestion/FeedbackQuestion.action.js';
@@ -76,29 +77,31 @@ class FeedbackQuestionIndex extends React.Component {
 		if (this.props.get_question_status === 200 && this.props.questions.length) {
 
 			questions = (
-				<table className={styles.table}>
-					<thead>
-						<tr>
-							<th>S/N</th>
-							<th>Question</th>
-							<th>Type</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.props.questions.map((question, index) => (
+				<div className={styles.content}>
+					<table className={styles.table}>
+						<thead>
+							<tr>
+								<th>S/N</th>
+								<th>Question</th>
+								<th>Type</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{this.props.questions.map((question, index) => (
 
-							<FeedbackQuestionData key={question.id} question={question}
-									    showAction={this.state.showAction === question.id}
-									    showActionFor={this.showActionFor}
-										navigateTo={this.navigateTo}
-										delete={() => this.delete(question)}
-										edit={() => this.edit(question) }
-							/>
+								<FeedbackQuestionData key={question.id} question={question}
+									showAction={this.state.showAction === question.id}
+									showActionFor={this.showActionFor}
+									navigateTo={this.navigateTo}
+									delete={() => this.delete(question)}
+									edit={() => this.edit(question)}
+								/>
 
-						))}
-					</tbody>
-				</table>
+							))}
+						</tbody>
+					</table>
+				</div>
 			);
 
 		}
@@ -118,7 +121,11 @@ class FeedbackQuestionIndex extends React.Component {
 						<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/create')}> ADD QUESTION </div>
 					</div>
 
-					<div>
+					<div className={styles.contentContainer}>
+						<div className={styles.sideMenu}>
+							<FeedbackMenu />
+						</div>
+
 						{ questions }
 					</div>
 				</div>

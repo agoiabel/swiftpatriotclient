@@ -66,19 +66,19 @@ class Header extends React.Component {
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/student-dashboard' }}>Forum</Link>
+						<Link to={{ pathname: '/forum/index' }}>Forum</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/student-dashboard' }}>Messaging</Link>
-					</div>
-
-					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/student-dashboard' }}>Donate</Link>
+						<Link to={{ pathname: '/donate/create' }}>Donate</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
 						<Link to={{ pathname: '/feedback-general/create' }}>Feedback</Link>
+					</div>
+					
+					<div className={styles.mobileNavItem}>
+						<Link to={{ pathname: '/message/index' }}>Message</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
@@ -133,16 +133,16 @@ class Header extends React.Component {
 					<Link to={{ pathname: '/student-dashboard' }}>Dashboard</Link>
 				</div>
 				<div className={styles.navItem}>
-					<Link to={{ pathname: '/student-dashboard' }}>Forum</Link>
+					<Link to={{ pathname: '/forum/index' }}>Forum</Link>
 				</div>
 				<div className={styles.navItem}>
-					<Link to={{ pathname: '/student-dashboard' }}>Messaging</Link>
-				</div>
-				<div className={styles.navItem}>
-					<Link to={{ pathname: '/student-dashboard' }}>Donate</Link>
+					<Link to={{ pathname: '/donate/create' }}>Donate</Link>
 				</div>
 				<div className={styles.navItem}>
 					<Link to={{ pathname: '/feedback-general/create' }}>Feedback</Link>
+				</div>
+				<div className={styles.navItem}>
+					<Link to={{ pathname: '/message/index' }}>Message</Link>
 				</div>
 			</div>
 		);
@@ -167,6 +167,9 @@ class Header extends React.Component {
 					</div>
 					<div className={styles.navItem}>
 						<Link to={{ pathname: '/feedback-question/index' }}>Feedback</Link>
+					</div>
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/message/index' }}>Message</Link>
 					</div>
 				</div>
 			);
@@ -207,8 +210,13 @@ class Header extends React.Component {
 						<div className={styles.mobileNavItem}>
 							<Link to={{ pathname: '/facilitator/index' }}>Facilitators</Link>
 						</div>
+
 						<div className={styles.mobileNavItem}>
 							<Link to={{ pathname: '/feedback-question/index' }}>Feedback</Link>
+						</div>
+						
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/message/index' }}>Message</Link>
 						</div>
 
 						<div className={styles.mobileNavItem}>

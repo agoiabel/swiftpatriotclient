@@ -1,0 +1,5 @@
+export { default } from './NewForumPostComment.component.js';
+
+export const NEW_FORUM_POST_WAS_SUCCESSFUL = 'NEW_FORUM_POST_WAS_SUCCESSFUL';
+export const NEW_FORUM_POST_WAS_UNSUCCESSFUL = 'NEW_FORUM_POST_WAS_UNSUCCESSFUL';
+export const RESET_NEW_FORUM_POST_STATUS = 'RESET_NEW_FORUM_POST_STATUS';

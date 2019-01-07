@@ -1,0 +1,11 @@
+.makeDecision {
+	margin-top: 15px;
+}
+.instruction {
+	width: 70%;
+	font-size: 16px;
+	text-align: center;
+	line-height: 1.6;
+	font-family: Lato;
+	margin: 0 auto 35px auto;
+}

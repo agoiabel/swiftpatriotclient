@@ -3,6 +3,7 @@ import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Breadcrumb from '../../components/Breadcrumb';
+import FeedbackMenu from '../../components/FeedbackMenu';
 
 import styles from './FeedbackQuestionCreate.page.module.css';
 import FeedbackQuestionForm from '../../components/Forms/FeedbackQuestionForm';
@@ -60,12 +61,20 @@ class FeedbackQuestionCreate extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/index')}> ALL FEEDBACK QUESTION </div>
+
+					<div className={styles.contentContainer}>
+						<div className={styles.sideMenu}>
+							<FeedbackMenu />
+						</div>
+						<div className={styles.content}>
+							<div className={styles.header}>
+								<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/index')}> ALL FEEDBACK QUESTION </div>
+							</div>
+
+							<FeedbackQuestionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} submitText="CREATE" />
+						</div>
 					</div>
-					<div>
-						<FeedbackQuestionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} submitText="CREATE" />
-					</div>
+					
 				</div>
 			</React.Fragment>
 		)

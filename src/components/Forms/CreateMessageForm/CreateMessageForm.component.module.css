@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.formGroup {
+    width: 80%;
+}
+.button {
+    width: 15%;
+    margin-top: -15px;
+}

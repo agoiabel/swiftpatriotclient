@@ -47,6 +47,16 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import ModalManager from './components/Modal/ModalManager.component';
 
 import RequiresAuth from './components/RequiresAuth';
+import FeedbackGeneralIndex from './pages/FeedbackGeneralIndex';
+
+import ForumShow from './pages/ForumShow';
+import ForumIndex from './pages/ForumIndex';
+import ForumMyPost from './pages/ForumMyPost';
+import ForumMyPostAwaiting from './pages/ForumMyPostAwaiting';
+import ForumMyPostDeclined from './pages/ForumMyPostDeclined';
+
+import DonateCreate from './pages/DonationCreate';
+import MessageIndex from './pages/MessageIndex';
 
 class App extends React.Component {
   render() {
@@ -94,10 +104,20 @@ class App extends React.Component {
           <Route path="/session/dashboard/:sessionSlug" exact component={RequiresAuth(SessionDashboard)} />
 
           <Route path="/facilitator-outline/add-feedback/:facilitatorOutlineId" exact component={RequiresAuth(FacilitatorOutlineAddFeedback)} />
-
           <Route path="/transaction/pending/:sessionSlug" exact component={RequiresAuth(PendingTransaction)} />
-
           <Route path="/feedback-general/create" exact component={RequiresAuth(FeedbackGeneralCreate)} />
+          <Route path="/feedback-general/index" exact component={RequiresAuth(FeedbackGeneralIndex)} />
+
+
+          <Route path="/forum/index" exact component={RequiresAuth(ForumIndex)} />
+          <Route path="/forum/me" exact component={RequiresAuth(ForumMyPost)} />
+          <Route path="/forum/me-awaiting" exact component={RequiresAuth(ForumMyPostAwaiting)} />
+          <Route path="/forum/me-declined" exact component={RequiresAuth(ForumMyPostDeclined)} />
+          <Route path="/forum/show/:forumSlug" exact component={RequiresAuth(ForumShow)} />
+
+          <Route path="/donate/create" exact component={RequiresAuth(DonateCreate)} />
+
+          <Route path="/message/index" exact component={RequiresAuth(MessageIndex)} />
 
           <Redirect to="/" />
         </Switch>

@@ -43,14 +43,9 @@ class FeedbackGeneralCreate extends React.Component {
     }
 
     componentDidMount() {
-        // console.dir(this.props.questions);
-
         this.props.get_general_questions({
             question_type: 3
         });
-
-        console.dir(this.props.get_questions_status);
-        console.dir(this.props.generalQuestions);
     }
 
     showNotificationFrom = nextProps => {
@@ -74,7 +69,6 @@ class FeedbackGeneralCreate extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.showNotificationFrom(nextProps);
-        console.dir(nextProps.generalQuestions);
     }
 
     render() {

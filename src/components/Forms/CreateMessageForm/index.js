@@ -1,0 +1,1 @@
+export { default } from './CreateMessageForm.component.js';

@@ -1,0 +1,81 @@
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.newDiscussion {
+    width: 70%;
+    margin: 35px auto;
+}
+
+.forumMenus {
+    text-align: center;
+    margin-bottom: 15px;
+
+    padding: 25px 25px;
+}
+
+
+
+.questionTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    margin-bottom: 10px;
+}
+.questionBody {
+    font-size: 16px;
+    margin-bottom: 15px;
+
+    line-height: 1.6;
+}
+.questionFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.discussion {
+    padding: 25px 25px;
+}
+.discussion:hover {
+    background: rgba(255,255,255,.3);
+}
+
+.postedTime {
+    margin-right: 5px;
+}
+.postedBy {
+    font-weight: bold;
+    color: rgba(56,91,160);
+}
+.minsAgo {
+    font-weight: bolder;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .newDiscussion {
+        width: 20%;
+        margin: 35px auto;
+    } 
+    .forumContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .forumMenus {
+        width: 20%;
+        text-align: left;
+
+        padding-left: 0;
+    }
+    .discussions {
+        width: 80%;
+    }
+    .discussion {
+        padding: 25px 25px;
+        border: 5px;
+        cursor: pointer;
+    }
+
+}

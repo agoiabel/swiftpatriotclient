@@ -7,8 +7,10 @@ const CustomInput = props => {
 
 	const inputError = (meta.invalid && meta.touched) ? styles.formControlError : '';
 	const inputValid = (meta.valid && meta.touched) ? styles.formControlValid : '';
+	const noborder = (props.noborder) ? styles.noborder : ''; 
 
-	const classes = `${styles.formControl} ${inputError} ${inputValid}`;
+	
+	const classes = `${styles.formControl} ${inputError} ${inputValid} ${noborder}`;
 
 	return (
 		<div className={styles.formGroup}>

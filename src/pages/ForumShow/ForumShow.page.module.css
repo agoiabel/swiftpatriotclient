@@ -1,0 +1,109 @@
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.newDiscussion {
+    width: 70%;
+    margin: 35px auto;
+}
+
+.forumMenus {
+    text-align: center;
+    margin-bottom: 15px;
+
+    padding: 25px 25px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nameDate,
+.questionTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    margin-right: 15px;
+}
+.title {
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgba(0,0,0, .8);
+    margin: 25px 15px 25px 0;
+
+    background: #ECF3FC;
+    padding: 25px 25px;
+    line-height: 1.7;
+
+    cursor: pointer;
+}
+.questionBody {
+    font-size: 16px;
+    margin-bottom: 15px;
+
+    line-height: 1.6;
+}
+.discussionComment {
+    line-height: 1.7;
+    font-size: 16px;
+    padding: 25px 25px;
+    border-radius: 5px;
+}
+.discussionComment:hover {
+    cursor: pointer;
+    background: rgba(255,255,255,.3);
+}
+
+.postedBy {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+    margin-right: 15px;
+}
+.postedDate {
+    font-size: 12px;
+}
+.likes {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    padding-right: 25px;
+
+}
+.likeCount {
+    margin-left: 10px;
+}
+
+
+
+.commentContainer {
+    width: 30%;
+    margin: 35px auto;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .forumContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .forumMenus {
+        width: 20%;
+        text-align: left;
+
+        padding-left: 0;
+    }
+    .discussion {
+        width: 80%;
+    }
+}

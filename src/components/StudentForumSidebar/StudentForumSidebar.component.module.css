@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+}
+.forumMenu {
+    font-size: 16px;
+    margin-bottom: 15px;
+
+    display: flex;
+}
+.forumMenu a {
+    color: #989898;
+}
+.forumMenu .icon {
+    margin-right: 15px;
+}
+.forumMenu a {
+    cursor: pointer;
+}
+.forumMenu:hover,
+.forumMenu a:hover {
+    color: rgba(56,91,160);
+}
+.discussion {
+    margin-bottom: 45px;
+}
