@@ -7,6 +7,11 @@ import QuickContact from '../../components/QuickContact';
 
 class ProfileIndex extends React.Component {
     
+
+    componentDidMount() {
+        console.dir('ComponentDidMount');
+    }
+
     render () {
         return (
             <div>
