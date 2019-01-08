@@ -61,6 +61,12 @@ import MessageIndex from './pages/MessageIndex';
 import ForumManagement from './pages/ForumManagement';
 import ForumCommentManagement from './pages/ForumCommentManagement';
 
+import ProfileEdit from './pages/ProfileEdit';
+import ProfileIndex from './pages/ProfileIndex';
+import ProfileSession from './pages/ProfileSession';
+import ProfilePayment from './pages/ProfilePayment';
+import ProfileEditChangePassword from './pages/ProfileEditChangePassword';
+
 class App extends React.Component {
   render() {
     return (
@@ -124,6 +130,13 @@ class App extends React.Component {
           <Route path="/donate/create" exact component={RequiresAuth(DonateCreate)} />
 
           <Route path="/message/index" exact component={RequiresAuth(MessageIndex)} />
+
+          <Route path="/profile/index" exact component={RequiresAuth(ProfileIndex)} />
+          <Route path="/profile/edit" exact component={RequiresAuth(ProfileEdit)} />
+          <Route path="/profile/session" exact component={RequiresAuth(ProfileSession)} />
+          <Route path="/profile/payment" exact component={RequiresAuth(ProfilePayment)} />
+
+          <Route path="/password/change" exact component={RequiresAuth(ProfileEditChangePassword)} />
 
           <Redirect to="/" />
         </Switch>

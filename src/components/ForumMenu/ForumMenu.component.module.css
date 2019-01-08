@@ -1,22 +1,32 @@
 .container {
-    background: #FFF;
-    /* padding: 25px 25px; */
-    display: table;
-    overflow-x: auto;
+    background: rgba(255, 255, 255, .7);
     width: 100%;
-
     margin-bottom: 25px;
 }
 a.menu {
     display: block;
     cursor: pointer;
     padding: 15px 15px;
-    text-align: center;
+    border-radius: 5px 5px 0 0;
 
-    font-size: 16px;
-    color: #989898;
+    font-size: 14px;
+    color: #7b8b8e;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f2f4;
+}
+a.menu:hover {
+    color: #6C7577;
+    background: #FFF;
 }
 
 a.menu:last-child {
     margin-bottom: 0 !important;
+    border-bottom: 1px solid transparent;
+}
+
+a.menu:first-child {
+    background: #fff;
+    color: #4b5658;
+    border-color: #d4d9dd;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
 }

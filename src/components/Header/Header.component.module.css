@@ -93,7 +93,14 @@
     color: rgba(0,0,0,0.4);
     font-size: 12px;
 }
-
+.profileLink a {
+    color: rgba(0,0,0,0.4);
+    font-size: 12px;
+}
+.dropdown1 a {
+    font-size: 14px;
+    color: #4B5658;
+}
 
 .mobileMenuIcon {
     display: none;

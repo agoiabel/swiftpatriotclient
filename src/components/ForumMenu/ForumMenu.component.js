@@ -5,6 +5,9 @@ import styles from './ForumMenu.component.module.css';
 const ForumMenu = props => {
     return (
         <div className={styles.container}>
+            <a className={styles.menu}>
+                Menu
+            </a>
             <Link className={styles.menu} to="/forum/management">
                 FORUM
             </Link>

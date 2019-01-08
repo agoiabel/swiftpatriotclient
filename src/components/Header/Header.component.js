@@ -82,7 +82,7 @@ class Header extends React.Component {
 					</div>
 
 					<div className={styles.mobileNavItem}>
-						<Link to={{ pathname: '/student-dashboard' }}>View Profile</Link>
+						<Link to={{ pathname: '/profile/index' }}>View Profile</Link>
 					</div>
 
 					<div className={styles.mobileNavItem}>
@@ -98,10 +98,14 @@ class Header extends React.Component {
 				<div className={styles.dropdown}>
 					<div className={[styles.dropdown1, styles.profile].join(" ")}>
 						<div className={styles.profileName}>{this.props.user.name}</div>
-						<div className={styles.profileLink}>View Profile</div>
+						<div className={styles.profileLink}>
+							<Link to={{ pathname: '/profile/index' }}>View Profile</Link>
+						</div>
 					</div>
 
-					<div className={styles.dropdown1}>Certificates</div>
+					<div className={styles.dropdown1}>
+						<Link to={{ pathname: '/profile/session' }}>Session</Link>
+					</div>
 
 					<div className={styles.dropdown1} onClick={this.logout}>Logout</div>
 				</div>

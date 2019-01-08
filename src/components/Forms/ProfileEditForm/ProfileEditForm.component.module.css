@@ -1,0 +1,23 @@
+
+.list {
+    /* padding: 15px 15px 15px 0; */
+    /* margin-bottom: 18px; */
+    border-bottom: 1px solid #edeff0;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+.parent {
+    width: 25%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6C7577;
+
+    margin-top: -40px;
+}
+.child {
+    width: 75%;
+}
