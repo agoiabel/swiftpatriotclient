@@ -19,7 +19,6 @@ import payWithTellerReducer from '../components/Modal/PayWithTeller/PayWithTelle
 import facilitatorOutlinesReducer from '../shared/store/FacilitatorOutline/FacilitatorOutline.reducer.js';
 import feedbackQuestionReducer from '../shared/store/FeedbackQuestion/FeedbackQuestion.reducer.js';
 
-
 import studentSessionReducer from '../pages/StudentSession/StudentSession.page.reducer.js';
 import facilitatorOutlineAddFeedbackReducer from '../pages/FacilitatorOutlineAddFeedback/FacilitatorOutlineAddFeedback.page.reducer.js';
 
@@ -38,6 +37,11 @@ import studentMessageReducer from '../components/StudentMessageContainer/Student
 
 import forumManagementReducer from '../pages/ForumManagement/ForumManagement.page.reducer';
 import forumCommentManagementReducer from '../pages/ForumCommentManagement/ForumCommentManagement.page.reducer';
+
+import profileIndexReducer from '../pages/ProfileIndex/ProfileIndex.page.reducer';
+import profilePaymentReducer from '../pages/ProfilePayment/ProfilePayment.page.reducer';
+import profileSessionReducer from '../pages/ProfileSession/ProfileSession.page.reducer';
+import profileEditChangePasswordReducer from '../pages/ProfileEditChangePassword/ProfileEditChangePassword.page.reducer';
 
 
 export default combineReducers({
@@ -76,5 +80,11 @@ export default combineReducers({
     studentMessageReducer: studentMessageReducer,
 
     forumManagementReducer: forumManagementReducer,
-    forumCommentManagementReducer: forumCommentManagementReducer
+    forumCommentManagementReducer: forumCommentManagementReducer,
+
+    profileIndexReducer: profileIndexReducer,
+    profileEditChangePasswordReducer: profileEditChangePasswordReducer,
+
+    profilePaymentReducer: profilePaymentReducer,
+    profileSessionReducer: profileSessionReducer
 });

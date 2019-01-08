@@ -2,8 +2,8 @@ import React from 'react';
 import CustomInput from '../../CustomInput';
 import CustomButton from '../../CustomButton';
 import { Field, reduxForm } from 'redux-form';
-import {requiredValidator} from '../../../utils/validation';
 import styles from './ProfileEditChangePassword.component.module.css';
+import { requiredValidator, matchesPassword } from '../../../utils/validation';
 
 class ProfileEditChangePassword extends React.Component {
 
@@ -32,11 +32,11 @@ class ProfileEditChangePassword extends React.Component {
 						<span className={styles.parent}>Confirm Password</span>
 						<span className={styles.child}>
 							<Field
-								name="password"
+								name="password_confirmation"
 								component={CustomInput}
 								type="password"
 								placeholder="password"
-								validate={[requiredValidator]}
+								validate={[requiredValidator, matchesPassword]}
 							/>
 						</span>
 					</div>
