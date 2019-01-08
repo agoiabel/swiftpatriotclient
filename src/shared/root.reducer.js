@@ -36,6 +36,9 @@ import donationCreateReducer from '../pages/DonationCreate/DonateCreate.page.red
 import messageIndexReducer from '../pages/MessageIndex/MessageIndex.page.reducer';
 import studentMessageReducer from '../components/StudentMessageContainer/StudentMessageContainer.component.reducer';
 
+import forumManagementReducer from '../pages/ForumManagement/ForumManagement.page.reducer';
+import forumCommentManagementReducer from '../pages/ForumCommentManagement/ForumCommentManagement.page.reducer';
+
 
 export default combineReducers({
     form: formReducer,
@@ -70,5 +73,8 @@ export default combineReducers({
     forumShowReducer: forumShowReducer,
     donationCreateReducer: donationCreateReducer,
     messageIndexReducer: messageIndexReducer,
-    studentMessageReducer: studentMessageReducer
+    studentMessageReducer: studentMessageReducer,
+
+    forumManagementReducer: forumManagementReducer,
+    forumCommentManagementReducer: forumCommentManagementReducer
 });

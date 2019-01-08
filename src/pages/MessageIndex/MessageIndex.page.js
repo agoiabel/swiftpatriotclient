@@ -40,7 +40,7 @@ class MessageIndex extends React.Component {
 
     render () {
 
-        let messageContainer;
+        let messageContainer, quickContact;
         let container = (
             <div>
                 <Spinner />
@@ -57,6 +57,14 @@ class MessageIndex extends React.Component {
             messageContainer = (
                 <div className={styles.messageContainer}>
                     <StudentMessageContainer student_id={this.state.student_id} />
+                </div>
+            )
+        }
+
+        if (this.props.user.role_id == 5) {
+            quickContact = (
+                <div>
+                    <QuickContact />
                 </div>
             )
         }
@@ -116,9 +124,8 @@ class MessageIndex extends React.Component {
                 <div>
                     <Header />
                 </div>
-                <div>
-                    <QuickContact />
-                </div>
+
+                { quickContact }
 
                 { container }
 
@@ -129,6 +136,7 @@ class MessageIndex extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.authReducer.user,
         users: state.messageIndexReducer.users,
         status: state.messageIndexReducer.status,
     }

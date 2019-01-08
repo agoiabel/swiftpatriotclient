@@ -58,6 +58,9 @@ import ForumMyPostDeclined from './pages/ForumMyPostDeclined';
 import DonateCreate from './pages/DonationCreate';
 import MessageIndex from './pages/MessageIndex';
 
+import ForumManagement from './pages/ForumManagement';
+import ForumCommentManagement from './pages/ForumCommentManagement';
+
 class App extends React.Component {
   render() {
     return (
@@ -114,6 +117,9 @@ class App extends React.Component {
           <Route path="/forum/me-awaiting" exact component={RequiresAuth(ForumMyPostAwaiting)} />
           <Route path="/forum/me-declined" exact component={RequiresAuth(ForumMyPostDeclined)} />
           <Route path="/forum/show/:forumSlug" exact component={RequiresAuth(ForumShow)} />
+
+          <Route path="/forum/management" exact component={RequiresAuth(ForumManagement)} />
+          <Route path="/forum-comment/management" exact component={RequiresAuth(ForumCommentManagement)} />
 
           <Route path="/donate/create" exact component={RequiresAuth(DonateCreate)} />
 

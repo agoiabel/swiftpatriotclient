@@ -77,31 +77,29 @@ class FeedbackQuestionIndex extends React.Component {
 		if (this.props.get_question_status === 200 && this.props.questions.length) {
 
 			questions = (
-				<div className={styles.content}>
-					<table className={styles.table}>
-						<thead>
-							<tr>
-								<th>S/N</th>
-								<th>Question</th>
-								<th>Type</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							{this.props.questions.map((question, index) => (
+				<table className={styles.table}>
+					<thead>
+						<tr>
+							<th>S/N</th>
+							<th>Question</th>
+							<th>Type</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.props.questions.map((question, index) => (
 
-								<FeedbackQuestionData key={question.id} question={question}
-									showAction={this.state.showAction === question.id}
-									showActionFor={this.showActionFor}
-									navigateTo={this.navigateTo}
-									delete={() => this.delete(question)}
-									edit={() => this.edit(question)}
-								/>
+							<FeedbackQuestionData key={question.id} question={question}
+								showAction={this.state.showAction === question.id}
+								showActionFor={this.showActionFor}
+								navigateTo={this.navigateTo}
+								delete={() => this.delete(question)}
+								edit={() => this.edit(question)}
+							/>
 
-							))}
-						</tbody>
-					</table>
-				</div>
+						))}
+					</tbody>
+				</table>			
 			);
 
 		}
@@ -117,16 +115,19 @@ class FeedbackQuestionIndex extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/create')}> ADD QUESTION </div>
-					</div>
 
 					<div className={styles.contentContainer}>
 						<div className={styles.sideMenu}>
 							<FeedbackMenu />
 						</div>
 
-						{ questions }
+						<div className={styles.content}>
+							<div className={styles.header}>
+								<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/create')}> ADD QUESTION </div>
+							</div>
+
+							{questions}
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

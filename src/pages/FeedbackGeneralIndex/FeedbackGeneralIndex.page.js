@@ -26,30 +26,28 @@ class FeedbackGeneralIndex extends React.Component {
 		if (this.props.get_feedback_status === 200 && this.props.feedbacks.length) {
 
 			feedbacks = (
-				<div className={styles.content}>
-					<table className={styles.table}>
-						<thead>
-							<tr>
-								<th>S/N</th>
-								<th>Comment</th>
-								<th>Name</th>
-								<th>Matric.No</th>
+				<table className={styles.table}>
+					<thead>
+						<tr>
+							<th>S/N</th>
+							<th>Comment</th>
+							<th>Name</th>
+							<th>Matric.No</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.props.feedbacks.map(feedback => (
+
+							<tr key={feedback.id}>
+								<td>{feedback.id}</td>
+								<td>{feedback.comment}</td>
+								<td>{feedback.student.firstname} {feedback.student.lastname}</td>
+								<td>#1-{feedback.student.matric_number}</td>
 							</tr>
-						</thead>
-						<tbody>
-							{this.props.feedbacks.map(feedback => (
 
-								<tr key={feedback.id}>
-									<td>{feedback.id}</td>
-									<td>{feedback.comment}</td>
-									<td>{feedback.student.firstname} {feedback.student.lastname}</td>
-									<td>#1-{feedback.student.matric_number}</td>
-								</tr>
-
-							))}
-						</tbody>
-					</table>
-				</div>
+						))}
+					</tbody>
+				</table>
 			);
 
 		}
@@ -70,7 +68,9 @@ class FeedbackGeneralIndex extends React.Component {
 							<FeedbackMenu />
 						</div>
 
-						{ feedbacks }
+						<div className={styles.content}>
+							{feedbacks}
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

@@ -171,6 +171,9 @@ class Header extends React.Component {
 					<div className={styles.navItem}>
 						<Link to={{ pathname: '/message/index' }}>Message</Link>
 					</div>
+					<div className={styles.navItem}>
+						<Link to={{ pathname: '/forum/management' }}>Forum</Link>
+					</div>
 				</div>
 			);
 
@@ -217,6 +220,10 @@ class Header extends React.Component {
 						
 						<div className={styles.mobileNavItem}>
 							<Link to={{ pathname: '/message/index' }}>Message</Link>
+						</div>
+
+						<div className={styles.mobileNavItem}>
+							<Link to={{ pathname: '/forum/management' }}>Forum</Link>
 						</div>
 
 						<div className={styles.mobileNavItem}>
