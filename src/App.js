@@ -117,7 +117,6 @@ class App extends React.Component {
           <Route path="/feedback-general/create" exact component={RequiresAuth(FeedbackGeneralCreate)} />
           <Route path="/feedback-general/index" exact component={RequiresAuth(FeedbackGeneralIndex)} />
 
-
           <Route path="/forum/index" exact component={RequiresAuth(ForumIndex)} />
           <Route path="/forum/me" exact component={RequiresAuth(ForumMyPost)} />
           <Route path="/forum/me-awaiting" exact component={RequiresAuth(ForumMyPostAwaiting)} />

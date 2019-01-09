@@ -24,6 +24,8 @@
     color: rgba(255, 255, 255, .5);
     margin-bottom: 3px;
     font-size: 10px;
+
+    font-weight: bolder;
 }
 .headerContent {
     font-size: 14px;
@@ -45,6 +47,8 @@
 
     height: 300px;
     max-height: 300px;
+
+    font-weight: bold;
 }
 
 .name {
@@ -56,6 +60,7 @@
 .bodyTitle {
     margin-bottom: 5px;
     color: rgba(0, 0, 0, .4);
+    font-weight: bolder;
 }
 .themeTitle {
     margin-bottom: 2px;
@@ -72,9 +77,14 @@
     border: 1px solid transparent;
     border-radius: 4px;
     cursor: pointer;
+    text-align: center;
 }
-
-
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+ 
 
 
 .theme {
@@ -91,9 +101,10 @@
 }
 .body_footer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    flex-direction: column;
+}
+.registrationDuration {
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1300px) {

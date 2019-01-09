@@ -21,6 +21,7 @@
 
 .contactUs {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 
@@ -29,10 +30,17 @@
     letter-spacing: 2;
 }
 .informations {
-    width: 40%;
+    width: 30%;
 }
 .imageContainer {
-    width: 40%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.accountDetailContainer {
+    width: 30%;
+    justify-content: flex-end;
 }
 .imageContainer img {
     width: 50%;

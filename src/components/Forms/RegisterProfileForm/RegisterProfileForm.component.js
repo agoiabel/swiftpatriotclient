@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomInput from '../../CustomInput';
+import CustomCheckbox from '../../CustomInput';
 import CustomSelect from '../../CustomSelect';
 import CustomButton from '../../CustomButton';
 import { Field, reduxForm } from 'redux-form';
@@ -8,9 +9,37 @@ import { emailValidator, requiredValidator, matchesPassword } from '../../../uti
 
 class RegisterProfileForm extends React.Component {
 
-	componentDidMount() {}
+	state = {};
+
+	religionChanged = (event, newValue, previousValue, name) => {
+		this.setState({
+			religionType: newValue
+		});
+	}
+
 
 	render() {
+
+
+		let name_of_ministry;
+		let buttonLabel = 'SUBMIT TEENAGER PROFILE';
+
+		if (this.state.religionType === "Christain") {
+			name_of_ministry = (
+				<Field
+					name="name_of_ministry"
+					component={CustomSelect}
+					validate={[requiredValidator]}
+					label="Denomination"
+					placeholder="Denomination"
+					options={[
+						{ value: 'DayStar', displayValue: 'DayStar' },
+						{ value: 'Others', displayValue: 'Others' },
+					]}
+				/>
+			)
+		}
+
 
 		let form = (
 			<React.Fragment>
@@ -68,11 +97,23 @@ class RegisterProfileForm extends React.Component {
 					label="Date Of Birth"
 				/>
 
+				<div>
+					<Field
+						name="i_agree"
+						component={CustomCheckbox}
+						type="checkbox"
+						label="I agree to DLA Parent Consent Agreement"
+						placeholder="I agree to DLA Parent Consent Agreement"
+						validate={[requiredValidator]}
+					/>
+				</div>
 
 			</React.Fragment>
 		);
 
 		if (this.props.accountType === 'ADULT') {
+			buttonLabel = 'SUBMIT ADULT PROFILE';
+
 			form = (
 				<React.Fragment>
 
@@ -136,19 +177,11 @@ class RegisterProfileForm extends React.Component {
 							{ value: 'Muslim', displayValue: 'Muslim' },
 							{ value: 'Others', displayValue: 'Others' }
 						]}
+						onChange={this.religionChanged}
 					/>
 
-					<Field
-						name="name_of_ministry"
-						component={CustomSelect}
-						validate={[requiredValidator]}
-						label="Religion"
-						placeholder="Religion"
-						options={[
-							{ value: 'DayStar', displayValue: 'DayStar' },
-							{ value: 'Others', displayValue: 'Others' },
-						]}
-					/>
+					{ name_of_ministry }
+
 				</React.Fragment>
 			)
 		}
@@ -159,7 +192,7 @@ class RegisterProfileForm extends React.Component {
 
 					{ form }
 
-					<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>SUBMIT PROFILE</CustomButton>
+					<CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>{buttonLabel}</CustomButton>
 				</form>
 			</React.Fragment>
 		);

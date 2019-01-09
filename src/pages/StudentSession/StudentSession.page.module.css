@@ -77,21 +77,29 @@
 
 .durations {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    /* justify-content: space-between; */
 
     width: 90%;
     margin: 0 auto 25px auto;
 }
 .duration {
+    margin-bottom: 25px;
+}
+.duration:last-child {
+    margin-bottom: 0;
 }
 .enrollButton:hover {
 
 }
 .durationHeader {
+    color: rgba(0, 0, 0, .6);
+    font-weight: bolder;
     margin-bottom: 10px;
+    font-size: 12px;
 }
 .date {
-    font-size: 10px;
+    font-size: 14px;
 }
 .outlineHeader {
     font-size: 20px;

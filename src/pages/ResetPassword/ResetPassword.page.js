@@ -69,6 +69,10 @@ class ResetPassword extends React.Component {
 
 
 				<div className={styles.formContainer}>
+					<div className={styles.logoContainer}>
+						<img src={require('../../assets/images/logo@2x.png')} />
+					</div>
+
 					<div className={styles.header}>
 						<div className={styles.title}>Reset Password</div>
 						<div className={styles.description}>All fields are required</div>

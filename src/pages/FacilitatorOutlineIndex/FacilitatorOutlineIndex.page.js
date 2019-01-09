@@ -80,6 +80,7 @@ class FacilitatorOutlineIndex extends React.Component {
 							<th>Outline</th>
 							<th>Facilitator</th>
 							<th>Date</th>
+							<th>Time</th>
 							<th>Action</th>
 						</tr>
 					</thead>

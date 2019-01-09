@@ -54,16 +54,20 @@ class CourseCard extends React.Component {
 
 		if (this.state.action == 1) {
 			actionButton = (
-				<div className={styles.joinButton} onClick={this.navigateWith}>
-					JOIN
-                </div>
+				<div className={styles.buttonContainer}>
+					<div className={styles.joinButton} onClick={this.navigateWith}>
+						REGISTER
+                	</div>
+				</div>
 			)
 		}
 		if (this.state.action == 2) {
 			actionButton = (
-				<div className={styles.joinButton} onClick={this.navigateWith}>
-					VIEW
-                </div>
+				<div className={styles.buttonContainer}>
+					<div className={styles.joinButton} onClick={this.navigateWith}>
+						VIEW
+                	</div>
+				</div>
 			)
 		}
 
@@ -72,7 +76,7 @@ class CourseCard extends React.Component {
 			<div className={styles.course}>
 				<div className={styles.header}>
 					<div className={styles.duration}>
-						<div className={styles.headerTitle}>Duration</div>
+						<div className={styles.headerTitle}>Training start</div>
 						<div className={styles.headerContent}>
 							{moment(this.props.session.start_date).format('MMMM Do')} - {moment(this.props.session.end_date).format('MMMM Do YYYY')}
 						</div>

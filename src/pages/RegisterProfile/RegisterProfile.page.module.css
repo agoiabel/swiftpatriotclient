@@ -36,6 +36,17 @@ a.forgotPassword {
 
     color: #989898;
 }
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+.logoContainer img {
+    width: 15%;
+}
+
 
 @media screen and (max-width: 700px) { 
     .formContainer {

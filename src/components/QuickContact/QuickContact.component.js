@@ -33,22 +33,25 @@ class QuickContact extends React.Component {
                                 <div>
                                     Our office address is 71 Kudirat Abiola Way, Oregun, Ikeja, Lagos.
                                 </div>
-                                <div>
-                                    <div className={styles.accountDetailsHeader}>Account Details</div>
-                                    <div>
-                                        <p>Daystar Leadership Academy</p>
-                                        <p>0011920185</p>
-                                        <p>Guaranty Trust Bank(GTBank) PLC</p>
-                                    </div>
-                                </div>
                             </div>
-                        </div>                        
+                        </div>        
+
                         <div className={styles.imageContainer}>
                             <img src={require('../../assets/images/contact_us.png')} />
-                        </div>                        
-                    </div>
-            </div>
+                        </div>        
 
+
+                        <div className={styles.accountDetailContainer}>
+                            <div className={styles.accountDetailsHeader}>Account Details</div>
+                            <div>
+                                <p>Daystar Leadership Academy</p>
+                                <p>0011920185</p>
+                                <p>Guaranty Trust Bank(GTBank) PLC</p>
+                            </div>
+                        </div>
+                                                        
+                    </div>
+                </div>
             );
         }
 

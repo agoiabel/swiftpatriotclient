@@ -41,6 +41,18 @@ a.forgotPassword {
     justify-content: space-between;    
 }
 
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+.logoContainer img {
+    width: 40%;
+}
+
 @media screen and (max-width: 700px) { 
     .formContainer {
         width: 80%;

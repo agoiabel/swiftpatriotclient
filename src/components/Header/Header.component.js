@@ -116,7 +116,8 @@ class Header extends React.Component {
 			<div>
 				<div>
 					<div className={styles.account} onClick={this.toogleDropdown}>
-						<i className="fa fa-caret-down" aria-hidden="true"></i>
+						{/* <i className="fa fa-caret-down" aria-hidden="true"></i> */}
+						<img src={require('../../assets/images/user.png')} />
 					</div>
 
 					{dropdown}

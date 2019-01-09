@@ -37,6 +37,10 @@ class RegisterProfile extends React.Component {
 		});
 	}
 
+	capitalize = string  => {
+		return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+	}
+
 	redirectOrNotifyOnStatusChange = nextProps => {
 		if (nextProps.status === 200) {
 			this.setState({
@@ -44,7 +48,7 @@ class RegisterProfile extends React.Component {
 			});
 			return swal({
 				type: 'success',
-				title: `Profile registration was successfully`,
+				title: `${this.capitalize(this.props.match.params.accountType)} registration was successful`,
 				allowOutsideClick: false
 			}).then((result) => {
 				if (result.value) {
@@ -66,6 +70,13 @@ class RegisterProfile extends React.Component {
 	}
 
 	render() {
+
+		let headerTitle = 'Complete your Teenager profile';
+
+		if (this.props.match.params.accountType == "ADULT") {
+			headerTitle = 'Complete your Adult profile';
+		}
+
 		return (
 			<div className={styles.container}>			
 				<ul className="cbSlideshow">
@@ -77,8 +88,13 @@ class RegisterProfile extends React.Component {
 					<li><span>Image 06</span></li>
 				</ul>
 				<div className={styles.formContainer}>
+
+					<div className={styles.logoContainer}>
+						<img src={require('../../assets/images/logo@2x.png')} />
+					</div>
+
 					<div className={styles.header}>
-						<div className={styles.title}>Complete your profile</div>
+						<div className={styles.title}>{headerTitle}</div>
 						<div className={styles.description}>All fields are required</div>
 					</div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { tConv24 } from '../../../utils/convert_time';
 import styles from '../FacilitatorOutlineIndex.page.module.css';
 
 class FacilitatorOutlineData extends React.Component {
@@ -53,6 +54,7 @@ class FacilitatorOutlineData extends React.Component {
 					{this.props.facilitator_outline.facilitator.profile.firstname} {this.props.facilitator_outline.facilitator.profile.lastname} {this.props.facilitator_outline.facilitator.profile.othername}
 				</td>
 				<td>{moment(this.props.facilitator_outline.date).format('MMMM Do YYYY')}</td>
+				<td>{tConv24(this.props.facilitator_outline.time)}</td>
 				<td className={styles.actionContainer} onClick={this.showActionFor}>
 					<i className="fa fa-ellipsis-v" aria-hidden="true"></i>
 					{actions}

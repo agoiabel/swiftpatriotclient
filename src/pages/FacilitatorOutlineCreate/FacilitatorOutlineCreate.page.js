@@ -108,6 +108,7 @@ class FacilitatorOutlineCreate extends React.Component {
 										<td>{this.getOutlineDetails(facilitatorOutline.outline_id).name}</td>
 										<td>{this.getFacilitatorDetails(facilitatorOutline.facilitator_id)}</td>
 										<td>{ moment(facilitatorOutline.date).format('MMMM Do YYYY') }</td>
+										<td>{facilitatorOutline.time}</td>
 										<td onClick={() => this.removeFacilitatorOutline(facilitatorOutline)}>
 											<i className="fa fa-trash-o" aria-hidden="true"></i>
 										</td>

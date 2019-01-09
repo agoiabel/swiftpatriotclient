@@ -81,6 +81,15 @@ class FacilitatorOutlineForm extends React.Component {
 					validate={[requiredValidator]}
 				/>
 
+				<Field
+					name="time"
+					component={CustomInput}
+					type="time"
+					label="Time"
+					placeholder="Time"
+					validate={[requiredValidator]}
+				/>
+
 				{ button }
 
 			</form>

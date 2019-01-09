@@ -223,9 +223,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
 		get_session_with: payload => dispatch( get_session_with(payload) ),
-		reset_transaction_status: () => dispatch( reset_transaction_status() )
+		reset_transaction_status: () => dispatch( reset_transaction_status() ),
+		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
 	}
 }
 
