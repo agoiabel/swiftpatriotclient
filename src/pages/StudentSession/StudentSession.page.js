@@ -23,7 +23,8 @@ class StudentSession extends React.Component {
 	state = {
 		session: null,
 		studentType: 1,
-		transaction: null
+		transaction: null,
+		showLoading: false
 	}
 
 	navigateTo = page => {
@@ -93,7 +94,7 @@ class StudentSession extends React.Component {
 	}
 
 	navigateWith = session => {
-		console.dir(session);
+		// console.dir(session);
 	}
 
 	payWithTellerHandler = () => {
@@ -108,16 +109,28 @@ class StudentSession extends React.Component {
 		});
 	}
 
+	showSessionNumber = () => {
+		console.dir('show session number');
+		console.dir(this.state.session);
+	}
+
 	render() {
 
+		let sessionNumber = 'Show Tag Number';
 		let sessions = <Spinner message="Loading sessions" />
-
 		let actionButton, showRateHeader, showRateAction;
+
+		// if (this.state.showLoading) {
+		// 	sessionNumber = <Spinner />
+		// }
+		// if (this.props.session_number_status === 200) {
+		// 	sessionNumber = this.props.session_number;
+		// }
 
 		if (this.state.transaction != null && this.state.studentType == 1) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Pay With Teller </a>
+					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Already Paid To Bank </a>
 
 
 					<form name="form1" action="https://sandbox.interswitchng.com/collections/w/pay" method="post">
@@ -141,7 +154,9 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 2) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					<a className={styles.enrollButton}> Show Course Number  </a>
+					<a className={styles.enrollButton} onClick={this.showSessionNumber}> 
+						{ sessionNumber }  
+					</a>
 				</div>
 			)
 		}
@@ -173,7 +188,7 @@ class StudentSession extends React.Component {
 							</div>
 
 							<div className={styles.duration}>
-								<div className={styles.durationHeader}>Course Duration</div>
+								<div className={styles.durationHeader}>Training Period</div>
 								<div className={styles.date}>
 									{moment(this.state.session.start_date).format('MMMM Do')} - {moment(this.state.session.end_date).format('MMMM Do YYYY')}
 								</div>

@@ -124,6 +124,7 @@ class RegisterProfileForm extends React.Component {
 						label="Employment Status"
 						placeholder="Employment Status"
 						options={[
+							{ value: 'STUDENT', displayValue: 'STUDENT' },
 							{ value: 'EMPLOYED', displayValue: 'EMPLOYED' },
 							{ value: 'UNEMPLOYED', displayValue: 'UNEMPLOYED' },
 							{ value: 'SELF EMPLOYED', displayValue: 'SELF EMPLOYED' }

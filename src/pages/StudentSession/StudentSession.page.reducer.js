@@ -41,6 +41,9 @@ const initialState = {
     get_session_status: null,
     get_session_message: null,
 
+    session_number: null,
+    session_number_status: null,
+
     get_active_and_future_session_status: null,
     get_active_and_future_session_message: null,
 };
