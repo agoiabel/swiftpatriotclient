@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
@@ -6,19 +7,18 @@ import Spinner from '../../components/Spinner';
 import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
-import styles from './PendingTransaction.page.module.css';
-import PendingTransactionData from './PendingTransactionData';
+import styles from './FailedTransaction.page.module.css';
 
 import { get_transaction_for, update_transaction, reset_update_transaction_status } from '../../shared/store/Transaction/Transaction.action.js';
 
-class PendingTransactionPage extends React.Component {
+class FailedTransactionPage extends React.Component {
 
 	state = {}
 
 	componentDidMount() {
 		this.props.get_transaction_for({
 			session_id: this.props.match.params.sessionSlug,
-			status: 0
+			status: 2
 		});
 	}
 
@@ -30,51 +30,11 @@ class PendingTransactionPage extends React.Component {
 		this.props.history.push(page);
 	}
 
-	update = (status, transaction) => {
-
-		const message = status == 1 ? "Accept": "Decline";
-
-		swal({
-			title: `Are you sure you want to ${message} ${transaction.user.firstname} ${transaction.user.lastname} payment transaction`,
-			type: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, Update!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.update_transaction({
-					transaction_id: transaction.id,
-					status: status
-				});
-			}
-		});
-	}
-
-
-	showNotificationFrom = nextProps => {
-		if (nextProps.update_transaction_status === 200) {
-			swal({
-				type: 'success',
-				title: `Transaction was updated successfully`,
-				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset_update_transaction_status();
-				}
-			});
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.showNotificationFrom(nextProps);
-	}
-
 	render() {
 		let transactions = <Spinner message="Loading Transactions" />
 		
 		if (this.props.get_transaction_status === 200 && !this.props.transactions.length) {
-			transactions = <EmptyState message="No pending transaction in database yet" />
+			transactions = <EmptyState message="No failed transaction in database yet" />
 		}
 
 		if (this.props.get_transaction_status === 200 && this.props.transactions.length) {
@@ -87,17 +47,17 @@ class PendingTransactionPage extends React.Component {
 							<th>Transaction Date</th>
 							<th>Student</th>
 							<th>Amount</th>
-							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						{this.props.transactions.map(transaction => (
 
-							<PendingTransactionData key={transaction.id} transaction={transaction}
-									    showAction={this.state.showAction === transaction.id}
-									    showActionFor={this.showActionFor}
-										update={this.update}
-							/>
+							<tr key={transaction.id}>
+								<td>{transaction.id}</td>
+								<td>{moment(transaction.payment_date).format('MMMM Do YYYY')}</td>
+								<td>{transaction.user.firstname} {transaction.user.firstname}</td>
+								<td>{transaction.amount}</td>
+							</tr>
 
 						))}
 					</tbody>
@@ -113,7 +73,7 @@ class PendingTransactionPage extends React.Component {
 				</React.Fragment>
 				
 				<React.Fragment>
-					<Breadcrumb name="Pending Transactions" />
+					<Breadcrumb name="Failed Transactions" />
 				</React.Fragment>
 
 				<div className={styles.container}>
@@ -126,7 +86,6 @@ class PendingTransactionPage extends React.Component {
 						</div>
 					</div>
 				</div>
-
 			</React.Fragment>
 		);
 	}
@@ -148,4 +107,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PendingTransactionPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FailedTransactionPage);

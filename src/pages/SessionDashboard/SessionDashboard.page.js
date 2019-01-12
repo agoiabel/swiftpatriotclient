@@ -21,8 +21,8 @@ class SessionDashboard extends React.Component {
 	componentWillReceiveProps(nextProps) {}
 
 
-	navigateToPendingTransaction = () => {
-		this.navigateTo(`/transaction/pending/${this.props.match.params.sessionSlug}`);
+	navigateToTransaction = status => {
+		this.navigateTo(`/transaction/${status}/${this.props.match.params.sessionSlug}`);
 	}
 
 
@@ -37,52 +37,58 @@ class SessionDashboard extends React.Component {
 			const unSuccessfulTransaction = this.props.session.transactions.filter(transaction => transaction.status === 2).length;
 
 			session = (
-				<div className={styles.sessionContainer}>
-					<div className={styles.containerHeader}></div>
-
-
-					<div className={styles.stats}>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-briefcase" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Students</div>
-							<div className={styles.statNumber}>{this.props.session.sessionStudents.length}</div>
+				<div className={styles.content}>
+					<div className={styles.header}>
+						<div className={styles.sessionInfo}>
+							<span className={styles.courseName}>{this.props.session.course.name}</span>
+							<span>{moment(this.props.session.start_date).format('MMMM Do YYYY')} - {moment(this.props.session.end_date).format('MMMM Do YYYY')}</span>
 						</div>
-
-						<div className={styles.stat} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}>
-							<div className={styles.statIcon}><i className="fa fa-hourglass-half" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Outline Assigned</div>
-							<div className={styles.statNumber}>{this.props.session.facilitatorSessionOutlines.length}</div>
+						<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}>
+							ALL SESSIONS
 						</div>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-check-square-o" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Successful Payment</div>
-							<div className={styles.statNumber}>{successfulTransaction}</div>
-						</div>
-
-						<div className={styles.stat} onClick={this.navigateToPendingTransaction}>
-							<div className={styles.statIcon}><i className="fa fa-window-close-o" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Pending Payment</div>
-							<div className={styles.statNumber}>{unverifiedTransaction}</div>
-						</div>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-window-close-o" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Failed Payment</div>
-							<div className={styles.statNumber}>{unSuccessfulTransaction}</div>
-						</div>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Feedbacks</div>
-							<div className={styles.statNumber}>45</div>
-						</div>
-
 					</div>
 
+					<div className={styles.sessionContainer}>
+						<div className={styles.containerHeader}></div>
+						<div className={styles.stats}>
+							<div className={styles.stat}>
+								<div className={styles.statIcon}><i className="fa fa-briefcase" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Students</div>
+								<div className={styles.statNumber}>{this.props.session.sessionStudents.length}</div>
+							</div>
 
-				</div>	
+							<div className={styles.stat} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}>
+								<div className={styles.statIcon}><i className="fa fa-hourglass-half" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Outline Assigned</div>
+								<div className={styles.statNumber}>{this.props.session.facilitatorSessionOutlines.length}</div>
+							</div>
+
+							<div className={styles.stat} onClick={() => this.navigateToTransaction('successful')}>
+								<div className={styles.statIcon}><i className="fa fa-check-square-o" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Successful Payment</div>
+								<div className={styles.statNumber}>{successfulTransaction}</div>
+							</div>
+
+							<div className={styles.stat} onClick={() => this.navigateToTransaction('pending')}>
+								<div className={styles.statIcon}><i className="fa fa-window-close-o" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Pending Payment</div>
+								<div className={styles.statNumber}>{unverifiedTransaction}</div>
+							</div>
+
+							<div className={styles.stat} onClick={() => this.navigateToTransaction('failed')}>
+								<div className={styles.statIcon}><i className="fa fa-window-close-o" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Failed Payment</div>
+								<div className={styles.statNumber}>{unSuccessfulTransaction}</div>
+							</div>
+
+							<div className={styles.stat}>
+								<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
+								<div className={styles.statTitle}>Total Feedbacks</div>
+								<div className={styles.statNumber}>45</div>
+							</div>
+						</div>
+					</div>
+					</div>
 			)
 		}
 
@@ -102,19 +108,7 @@ class SessionDashboard extends React.Component {
 					<div className={styles.sidebar}>
 						<PortalMenu />
 					</div>
-
-					<div className={styles.content}>
-						<div className={styles.header}>
-							<div className={styles.sessionInfo}>
-								<span className={styles.courseName}>{this.props.session.course.name}</span>
-								<span>{moment(this.props.session.start_date).format('MMMM Do YYYY')} - {moment(this.props.session.end_date).format('MMMM Do YYYY')}</span>
-							</div>
-							<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}>
-								ALL SESSIONS
-						</div>
-						</div>
-						{session}
-					</div>
+					{session}
 				</div>
 
 			</React.Fragment>

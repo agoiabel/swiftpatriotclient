@@ -45,7 +45,9 @@ import FacilitatorOutlineCreate from './pages/FacilitatorOutlineCreate'
 
 import FacilitatorOutlineAddFeedback from './pages/FacilitatorOutlineAddFeedback';
 
+import FailedTransaction from './pages/FailedTransaction';
 import PendingTransaction from './pages/PendingTransaction';
+import SuccessfulTransaction from './pages/SuccessfulTransaction';
 
 import FeedbackGeneralCreate from './pages/FeedbackGeneralCreate';
 
@@ -129,7 +131,11 @@ class App extends React.Component {
           <Route path="/session/dashboard/:sessionSlug" exact component={RequiresAuth(SessionDashboard)} />
 
           <Route path="/facilitator-outline/add-feedback/:facilitatorOutlineId" exact component={RequiresAuth(FacilitatorOutlineAddFeedback)} />
+          
           <Route path="/transaction/pending/:sessionSlug" exact component={RequiresAuth(PendingTransaction)} />
+          <Route path="/transaction/successful/:sessionSlug" exact component={RequiresAuth(SuccessfulTransaction)} />
+          <Route path="/transaction/failed/:sessionSlug" exact component={RequiresAuth(FailedTransaction)} />
+
           <Route path="/feedback-general/create" exact component={RequiresAuth(FeedbackGeneralCreate)} />
           <Route path="/feedback-general/index" exact component={RequiresAuth(FeedbackGeneralIndex)} />
 
