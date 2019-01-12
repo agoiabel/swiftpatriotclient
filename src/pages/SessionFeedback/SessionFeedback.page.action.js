@@ -4,11 +4,9 @@ import { GET_FEEDBACK_WAS_SUCCESSFUL, GET_FEEDBACK_WAS_UNSUCCESSFUL } from './in
 export const get_feedbacks = payload => async dispatch => {
 
     try {
-        let response = await get(`feedback/show/${payload.feedback_type}/${payload.session_id}`);
+        let response = await get(`feedback/show/${payload}`);
 
         response = await response.json();
-
-        console.dir(response);
 
         if (response.status !== 200) {
             return window.setTimeout((() => {

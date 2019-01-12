@@ -57,6 +57,8 @@ import ModalManager from './components/Modal/ModalManager.component';
 import RequiresAuth from './components/RequiresAuth';
 import FeedbackGeneralIndex from './pages/FeedbackGeneralIndex';
 
+import SessionFeedback from './pages/SessionFeedback';
+
 import ForumShow from './pages/ForumShow';
 import ForumIndex from './pages/ForumIndex';
 import ForumMyPost from './pages/ForumMyPost';
@@ -77,7 +79,7 @@ import ProfileEditChangePassword from './pages/ProfileEditChangePassword';
 import UserChangePassword from './pages/UserChangePassword';
 
 import StudentEdit from './pages/StudentEdit';
-
+import SessionStudent from './pages/SessionStudent';
 
 class App extends React.Component {
   render() {
@@ -129,6 +131,8 @@ class App extends React.Component {
           <Route path="/feedback-question/edit/:feedbackQuestionSlug" exact component={RequiresAuth(FeedbackQuestionEdit)} />
 
           <Route path="/session/dashboard/:sessionSlug" exact component={RequiresAuth(SessionDashboard)} />
+          <Route path="/session/student/:sessionSlug" exact component={RequiresAuth(SessionStudent)} />
+          <Route path="/session/feedback/:sessionSlug" exact component={RequiresAuth(SessionFeedback)} />
 
           <Route path="/facilitator-outline/add-feedback/:facilitatorOutlineId" exact component={RequiresAuth(FacilitatorOutlineAddFeedback)} />
           

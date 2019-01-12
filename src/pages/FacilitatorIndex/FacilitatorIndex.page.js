@@ -8,6 +8,8 @@ import EmptyState from '../../components/EmptyState';
 import Breadcrumb from '../../components/Breadcrumb';
 import styles from './FacilitatorIndex.page.module.css';
 import UserManagementMenu from '../../components/UserManagementMenu';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 import { get_facilitators, deleteFacilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorIndex extends React.Component {
@@ -82,7 +84,7 @@ class FacilitatorIndex extends React.Component {
 		if (this.props.get_facilitator_status === 200 && this.props.facilitators.length) {
 
 			facilitators = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -129,6 +131,14 @@ class FacilitatorIndex extends React.Component {
 					<div className={styles.content}>
 						<div className={styles.header}>
 							<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/create')}> ADD FACILITATOR </div>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNew}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
 						</div>
 
 						<div>

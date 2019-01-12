@@ -11,6 +11,7 @@ import EmptyState from '../../components/EmptyState';
 import PortalMenu from '../../components/PortalMenu';
 
 import { get_outlines, deleteOutline, reset_store_outline_status } from '../../shared/store/Outline/Outline.action.js';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 class OutlineIndex extends React.Component {
 
@@ -80,7 +81,7 @@ class OutlineIndex extends React.Component {
 		if (this.props.get_outline_status === 200 && this.props.outlines.length) {
 
 			outlines = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -127,6 +128,14 @@ class OutlineIndex extends React.Component {
 					<div className={styles.content}>
 						<div className={styles.header}>
 							<div className={styles.addNew} onClick={() => this.navigateTo('/outline/create')}> ADD OUTLINE </div>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNew}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
 						</div>
 						<div>
 							{outlines}

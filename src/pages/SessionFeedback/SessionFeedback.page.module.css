@@ -2,22 +2,16 @@
     width: 75%;
     margin: 25px auto;
 }
-.sidebar {
-}
-.allContent {
-
-}
 .content {
     background: #FFF;
-    padding: 35px 35px;
-    width: 100%;
-
+    padding: 25px 25px;
     display: table;
     overflow-x: auto;
-
-    margin-bottom: 25px;
+    width: 100%;
 }
+.sideMenu {
 
+}
 .header {
     display: flex;
     justify-content: flex-end;
@@ -46,25 +40,46 @@
 }
 
 
-.submitButton {
-    margin-top: 25px;
+
+
+.actionContainer {
+  position: relative;
+}
+.actions {
+  width: 170px;
+  background: #FFF;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+
+  position: absolute;
+  z-index: 2;
+
+  top: 35px;
+  right: 75px;
+}
+.action {
+  display: flex;
+  padding: 15px 15px;
+  align-items: center;
+  cursor: pointer;
+}
+.action:hover {
+  background: #f0f0f2;
+}
+.actionIcon {
+  margin-right: 25px;
 }
 
-.pickedFacilitatorOutlines {
-    background: #FFF;
-    padding: 35px 35px;
-    width: 100%;
-}
 @media screen and (min-width: 1200px) {
-    .container {
+    .contentContainer {
         display: flex;
         justify-content: space-between;
     }
-    .sidebar {
+    .sideMenu {
         width: 25%;
         margin-bottom: 25px;
     }
-    .allContent {
+    .content {
         width: 73%;
     }
 }

@@ -9,6 +9,7 @@ import styles from './SessionIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
 import { get_sessions, deleteSession, reset_store_session_status, activate } from '../../shared/store/Session/Session.action.js';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 class SessionIndex extends React.Component {
 
@@ -118,7 +119,7 @@ class SessionIndex extends React.Component {
 
 		if (this.props.get_session_status === 200 && this.props.sessions.length) {
 			sessions = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -171,6 +172,14 @@ class SessionIndex extends React.Component {
 					<div className={styles.content}>
 						<div className={styles.header}>
 							<div className={styles.addNew} onClick={() => this.navigateTo('/session/create')}> ADD SESSION </div>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNew}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
 						</div>
 
 						<div>

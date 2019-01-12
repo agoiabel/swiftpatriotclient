@@ -18,13 +18,18 @@ class SessionDashboard extends React.Component {
 		this.props.history.push(page);
 	}
 
-	componentWillReceiveProps(nextProps) {}
+	componentWillReceiveProps(nextProps) {
+		console.dir(nextProps.session);
+	}
 
 
 	navigateToTransaction = status => {
 		this.navigateTo(`/transaction/${status}/${this.props.match.params.sessionSlug}`);
 	}
 
+	navigateToSessionStudent = () => {
+		this.navigateTo(`/session/student/${this.props.match.params.sessionSlug}`);
+	}
 
 	render() {
 
@@ -35,6 +40,7 @@ class SessionDashboard extends React.Component {
 			const unverifiedTransaction = this.props.session.transactions.filter(transaction => transaction.status === 0).length;
 			const successfulTransaction = this.props.session.transactions.filter(transaction => transaction.status === 1).length;
 			const unSuccessfulTransaction = this.props.session.transactions.filter(transaction => transaction.status === 2).length;
+			
 
 			session = (
 				<div className={styles.content}>
@@ -51,7 +57,7 @@ class SessionDashboard extends React.Component {
 					<div className={styles.sessionContainer}>
 						<div className={styles.containerHeader}></div>
 						<div className={styles.stats}>
-							<div className={styles.stat}>
+							<div className={styles.stat} onClick={this.navigateToSessionStudent}>
 								<div className={styles.statIcon}><i className="fa fa-briefcase" aria-hidden="true"></i></div>
 								<div className={styles.statTitle}>Total Students</div>
 								<div className={styles.statNumber}>{this.props.session.sessionStudents.length}</div>
@@ -81,14 +87,14 @@ class SessionDashboard extends React.Component {
 								<div className={styles.statNumber}>{unSuccessfulTransaction}</div>
 							</div>
 
-							<div className={styles.stat}>
+							<div className={styles.stat} onClick={() => this.navigateTo(`/session/feedback/${this.props.match.params.sessionSlug}`)}>
 								<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
 								<div className={styles.statTitle}>Total Feedbacks</div>
-								<div className={styles.statNumber}>45</div>
+								<div className={styles.statNumber}>{this.props.session.feedbacks.length}</div>
 							</div>
 						</div>
 					</div>
-					</div>
+				</div>
 			)
 		}
 

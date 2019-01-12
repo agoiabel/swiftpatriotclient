@@ -59,7 +59,7 @@ class FacilitatorOutlineCreate extends React.Component {
 
 	componentDidMount() {
 		this.props.get_outlines();
-		this.props.get_facilitators();
+		this.props.get_facilitators(4);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -97,9 +97,9 @@ class FacilitatorOutlineCreate extends React.Component {
 
 		if (this.state.facilitatorOutlines.length) {
 			newFacilitatorOutline = (
-				<div className={styles.container}>
+				<div className={styles.pickedFacilitatorOutlines}>
+				
 					<div>
-
 						<table className={styles.table}>
 							<tbody>
 								{this.state.facilitatorOutlines.map((facilitatorOutline, index) => (
@@ -148,24 +148,27 @@ class FacilitatorOutlineCreate extends React.Component {
 						<PortalMenu />
 					</div>
 
+					<div className={styles.allContent}>
+						<div className={styles.content}>
+							<div className={styles.header}>
+								<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}> ALL FACILITATORS </div>
+							</div>
+							<div>
+								<FacilitatorOutlineForm
+									onSubmit={this.handleSubmit}
+									outlines={this.props.outlines}
+									facilitators={this.props.facilitators}
+									submittingForm={this.state.submittingForm}
+								/>
+							</div>
+						</div>
 
-					<div className={styles.content}>
-						<div className={styles.header}>
-							<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}> ALL FACILITATORS </div>
-						</div>
-						<div>
-							<FacilitatorOutlineForm
-								onSubmit={this.handleSubmit}
-								outlines={this.props.outlines}
-								facilitators={this.props.facilitators}
-								submittingForm={this.state.submittingForm}
-							/>
-						</div>
+						{ newFacilitatorOutline }
+
 					</div>
+
 				</div>
 
-
-				{ newFacilitatorOutline }
 
 
 			</React.Fragment>
@@ -185,7 +188,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		get_outlines: () => dispatch( get_outlines() ),
-		get_facilitators: () => dispatch( get_facilitators() ),
+		get_facilitators: payload => dispatch( get_facilitators(payload) ),
 		store_facilitator_outline: payload => dispatch( store_facilitator_outline(payload) ),
 		resetStoreFacilitatorOutlineStatus: () => dispatch( reset_store_facilitator_outline_status() ) 
 	}

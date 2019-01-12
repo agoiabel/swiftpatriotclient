@@ -11,6 +11,7 @@ import styles from './FacilitatorOutlineIndex.page.module.css';
 import { 
 	get_facilitator_outlines, delete_facilitator_outline, reset_store_facilitator_outline_status 
 } from '../../shared/store/FacilitatorOutline/FacilitatorOutline.action.js';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 class FacilitatorOutlineIndex extends React.Component {
 
@@ -74,7 +75,7 @@ class FacilitatorOutlineIndex extends React.Component {
 		if (this.props.get_facilitator_outline_status === 200 && this.props.facilitator_outlines.length) {
 
 			facilitator_outlines = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -120,6 +121,14 @@ class FacilitatorOutlineIndex extends React.Component {
 					<div className={styles.content}>
 						<div className={styles.header}>
 							<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/create/${this.props.match.params.sessionSlug}`)}> ADD FACILITATOR OUTLINE </div>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNew}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
 						</div>
 
 						<div>

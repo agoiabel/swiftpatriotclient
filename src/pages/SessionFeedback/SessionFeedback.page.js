@@ -4,19 +4,20 @@ import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
-import FeedbackMenu from '../../components/FeedbackMenu';
-import styles from './FeedbackGeneralIndex.page.module.css';
-import { get_feedbacks } from './FeedbackGeneralIndex.page.action';
+import PortalMenu from '../../components/PortalMenu';
+import styles from './SessionFeedback.page.module.css';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-class FeedbackGeneralIndex extends React.Component {
+import { get_feedbacks } from '../FeedbackGeneralIndex/FeedbackGeneralIndex.page.action';
+
+class SessionFeedback extends React.Component {
 
 	state = {}
 
 	componentDidMount() {
 		this.props.get_feedbacks({
-			feedback_type: 3,
-			session_id: ''
+			feedback_type: 1,
+			session_id: this.props.match.params.sessionSlug
 		});
 	}
 
@@ -37,6 +38,7 @@ class FeedbackGeneralIndex extends React.Component {
 							<th>Question</th>
 							<th>Rate</th>
 							<th>Comment</th>
+							<th>Outline</th>
 							<th>Name</th>
 							<th>Matric.No</th>
 						</tr>
@@ -49,6 +51,7 @@ class FeedbackGeneralIndex extends React.Component {
 								<td>{feedback.feedback_question.question}</td>
 								<td>{feedback.rate}</td>
 								<td>{feedback.comment}</td>
+								<td>{feedback.facilitatorSessionOutline.outline.name}</td>
 								<td>{feedback.student.firstname} {feedback.student.lastname}</td>
 								<td>{feedback.student.matric_number}</td>
 							</tr>
@@ -73,12 +76,11 @@ class FeedbackGeneralIndex extends React.Component {
 				<div className={styles.container}>	
 					<div className={styles.contentContainer}>
 						<div className={styles.sideMenu}>
-							<FeedbackMenu />
+							<PortalMenu />
 						</div>
 
 						<div className={styles.content}>
 							<div className={styles.header}>
-								<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/create')}> ADD FACILITATOR </div>
 								<ReactHTMLTableToExcel
 									id="test-table-xls-button"
 									className={styles.addNew}
@@ -111,4 +113,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedbackGeneralIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionFeedback);

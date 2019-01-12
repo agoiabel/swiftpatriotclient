@@ -8,6 +8,8 @@ import EmptyState from '../../components/EmptyState';
 import FeedbackMenu from '../../components/FeedbackMenu';
 import FeedbackQuestionData from './FeedbackQuestionData';
 import styles from './FeedbackQuestionIndex.page.module.css';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 import { get_questions, deleteQuestion, reset_store_question_status } from '../../shared/store/FeedbackQuestion/FeedbackQuestion.action.js';
 
 class FeedbackQuestionIndex extends React.Component {
@@ -77,7 +79,7 @@ class FeedbackQuestionIndex extends React.Component {
 		if (this.props.get_question_status === 200 && this.props.questions.length) {
 
 			questions = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -124,6 +126,14 @@ class FeedbackQuestionIndex extends React.Component {
 						<div className={styles.content}>
 							<div className={styles.header}>
 								<div className={styles.addNew} onClick={() => this.navigateTo('/feedback-question/create')}> ADD QUESTION </div>
+								<ReactHTMLTableToExcel
+									id="test-table-xls-button"
+									className={styles.addNew}
+									table="table-to-xls"
+									filename="tablexls"
+									sheet="tablexls"
+									buttonText="EXPORT"
+								/>
 							</div>
 
 							{questions}

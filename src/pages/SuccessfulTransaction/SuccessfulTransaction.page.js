@@ -8,6 +8,7 @@ import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
 import styles from './SuccessfulTransaction.page.module.css';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 import { get_transaction_for, update_transaction, reset_update_transaction_status } from '../../shared/store/Transaction/Transaction.action.js';
 
@@ -40,7 +41,7 @@ class SuccessfulTransactionPage extends React.Component {
 		if (this.props.get_transaction_status === 200 && this.props.transactions.length) {
 
 			transactions = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -81,6 +82,16 @@ class SuccessfulTransactionPage extends React.Component {
 						<PortalMenu />
 					</div>
 					<div className={styles.content}>
+						<div className={styles.header}>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNew}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
+						</div>
 						<div>
 							{transactions}
 						</div>

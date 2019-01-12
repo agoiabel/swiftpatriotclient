@@ -9,6 +9,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import PortalMenu from '../../components/PortalMenu';
 import { get_courses, deleteCourse, reset_store_course_status } from '../../shared/store/Course/Course.action.js';
 import EmptyState from '../../components/EmptyState';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 class CourseIndex extends React.Component {
 
@@ -78,7 +79,7 @@ class CourseIndex extends React.Component {
 		if (this.props.get_course_status === 200 && this.props.courses.length) {
 
 			courses = (
-				<table className={styles.table}>
+				<table className={styles.table} id="table-to-xls">
 					<thead>
 						<tr>
 							<th>S/N</th>
@@ -123,6 +124,14 @@ class CourseIndex extends React.Component {
 					<div className={styles.content}>
 						<div className={styles.header}>
 							<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/create')}> ADD COURSE </div>
+							<ReactHTMLTableToExcel
+								id="test-table-xls-button"
+								className={styles.addNewCourse}
+								table="table-to-xls"
+								filename="tablexls"
+								sheet="tablexls"
+								buttonText="EXPORT"
+							/>
 						</div>
 
 						<div>

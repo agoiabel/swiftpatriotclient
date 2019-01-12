@@ -43,7 +43,7 @@ import profilePaymentReducer from '../pages/ProfilePayment/ProfilePayment.page.r
 import profileSessionReducer from '../pages/ProfileSession/ProfileSession.page.reducer';
 import profileEditChangePasswordReducer from '../pages/ProfileEditChangePassword/ProfileEditChangePassword.page.reducer';
 import studentEditReducer from '../pages/StudentEdit/StudentEdit.page.reducer';
-
+import sessionStudentReducer from '../pages/SessionStudent/SessionStudent.page.reducer';
 
 export default combineReducers({
     form: formReducer,
@@ -89,5 +89,6 @@ export default combineReducers({
     profilePaymentReducer: profilePaymentReducer,
     profileSessionReducer: profileSessionReducer,
 
-    studentEditReducer: studentEditReducer
+    studentEditReducer: studentEditReducer,
+    sessionStudentReducer: sessionStudentReducer
 });
