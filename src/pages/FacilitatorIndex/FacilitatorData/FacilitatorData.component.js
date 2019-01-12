@@ -15,6 +15,12 @@ class FacilitatorData extends React.Component {
 		this.props.delete(this.props.facilitator);
 	}
 
+
+	resetPassword = () => {
+		this.props.resetPassword(this.props.facilitator);
+	}
+
+
 	render () {
 		let actions = null;
 
@@ -24,17 +30,17 @@ class FacilitatorData extends React.Component {
 
 					<div className={styles.action} onClick={this.edit}>
 						<span className={styles.actionIcon}>
-							<i className="fa fa-window-close" aria-hidden="true"></i></span><span>Edit	
+							<i className="fa fa-window-close" aria-hidden="true"></i> <span>Edit</span>	
 						</span>
 					</div>
 					<div className={styles.action} onClick={this.delete}>
 						<span className={styles.actionIcon}>
-							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
+							<i className="fa fa-file-o" aria-hidden="true"></i> <span>Delete</span>
 						</span>
 					</div>
-					<div className={styles.action}>
+					<div className={styles.action} onClick={this.resetPassword}>
 						<span className={styles.actionIcon}>
-							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Info
+							<i className="fa fa-file-o" aria-hidden="true"></i> <span>Password</span>
 						</span>
 					</div>
 				

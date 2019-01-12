@@ -13,8 +13,8 @@ const OutlineForm = props => {
 				name="email"
 				component={CustomInput}
 				type="email"
-				label="Facilitator Email"
-				placeholder="Facilitator Email"
+				label="Email"
+				placeholder="Email"
 				validate={[requiredValidator, emailValidator]}
 			/>
 
@@ -49,11 +49,23 @@ const OutlineForm = props => {
 				name="gender"
 				component={CustomSelect}
 				validate={[requiredValidator]}
-				label="What is the facilitator gender?"
-				placeholder="What is the facilitator gender?"
+				label="Gender"
+				placeholder="Gender"
 				options={[
 					{ value: 'MALE', displayValue: 'MALE' },
 					{ value: 'FEMALE', displayValue: 'FEMALE' },
+				]}
+			/>
+
+			<Field
+				name="status"
+				component={CustomSelect}
+				validate={[requiredValidator]}
+				label="Status"
+				placeholder="Status"
+				options={[
+					{ value: '1', displayValue: 'ACTIVE' },
+					{ value: '0', displayValue: 'IN ACTIVE' },
 				]}
 			/>
 

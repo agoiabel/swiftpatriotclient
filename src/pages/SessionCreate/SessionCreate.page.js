@@ -2,6 +2,7 @@ import React from 'react';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
+import PortalMenu from '../../components/PortalMenu';
 import styles from './SessionCreate.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 
@@ -77,11 +78,18 @@ class SessionCreate extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSION </div>
+
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					<div>
-						<SessionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} submitText='CREATE' />
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSION </div>
+						</div>
+						<div>
+							<SessionForm onSubmit={this.handleSubmit} submittingForm={this.state.submittingForm} courses={this.props.courses} submitText='CREATE' />
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

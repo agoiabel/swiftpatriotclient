@@ -7,6 +7,7 @@ import FacilitatorData from './FacilitatorData';
 import EmptyState from '../../components/EmptyState';
 import Breadcrumb from '../../components/Breadcrumb';
 import styles from './FacilitatorIndex.page.module.css';
+import UserManagementMenu from '../../components/UserManagementMenu';
 import { get_facilitators, deleteFacilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorIndex extends React.Component {
@@ -14,7 +15,7 @@ class FacilitatorIndex extends React.Component {
 	state = {}
 
 	componentDidMount() {
-		this.props.get_facilitators();
+		this.props.get_facilitators(4);
 	}
 
 	showActionFor = facilitator => {
@@ -67,6 +68,10 @@ class FacilitatorIndex extends React.Component {
 		this.showNotificationFrom(nextProps);
 	}
 
+	resetPassword = facilitator => {
+		this.props.history.push(`/user-password/change/${facilitator.id}`);
+	}
+
 	render() {
 		let facilitators = <Spinner message="Loading Facilitators" />
 
@@ -97,6 +102,7 @@ class FacilitatorIndex extends React.Component {
 										navigateTo={this.navigateTo}
 										delete={() => this.delete(facilitator, index)}
 										edit={() => this.edit(facilitator) }
+										resetPassword={this.resetPassword}
 							/>
 
 						))}
@@ -116,15 +122,21 @@ class FacilitatorIndex extends React.Component {
 					<Breadcrumb name="Facilitator" />
 				</React.Fragment>
 
-				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/create')}> ADD FACILITATOR </div>
+				<div className={styles.container}>
+					<div className={styles.sidebar}>
+						<UserManagementMenu />
 					</div>
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/create')}> ADD FACILITATOR </div>
+						</div>
 
-					<div>
-						{ facilitators }
+						<div>
+							{facilitators}
+						</div>
 					</div>
 				</div>
+
 			</React.Fragment>
 		);
 	}
@@ -140,8 +152,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		get_facilitators: () => dispatch( get_facilitators() ),
 		delete: payload => dispatch( deleteFacilitator(payload) ),
+		get_facilitators: payload => dispatch(get_facilitators(payload)),
 		resetStoreFacilitatorStatus: () => dispatch(reset_store_facilitator_status()) 
 	}
 }

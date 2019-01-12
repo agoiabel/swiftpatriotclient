@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import styles from './CourseEdit.page.module.css';
+import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import CourseForm from '../../components/Forms/CourseForm';
 import { get_course, get_courses, store_course, reset_store_course_status, update_course } from '../../shared/store/Course/Course.action.js';
@@ -98,11 +99,17 @@ class CourseEdit extends React.Component {
 					<Breadcrumb name="Create New Course" />
 				</React.Fragment>
 
-				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/index')}> ALL COURSES </div>
+				<div className={styles.container}>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					{ courseFormContainer }
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/index')}> ALL COURSES </div>
+						</div>
+						{ courseFormContainer }
+					</div>
 				</div>
 			</React.Fragment>
 		)

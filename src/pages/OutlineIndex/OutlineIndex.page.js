@@ -7,6 +7,9 @@ import Spinner from '../../components/Spinner';
 import styles from './OutlineIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
+
+import PortalMenu from '../../components/PortalMenu';
+
 import { get_outlines, deleteOutline, reset_store_outline_status } from '../../shared/store/Outline/Outline.action.js';
 
 class OutlineIndex extends React.Component {
@@ -112,18 +115,26 @@ class OutlineIndex extends React.Component {
 				</React.Fragment>
 				
 				<React.Fragment>
-					<Breadcrumb name="Outline" />
+					<Breadcrumb name="Course Outline" />
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/outline/create')}> ADD OUTLINE </div>
+
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
 
-					<div>
-						{ outlines }
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/outline/create')}> ADD OUTLINE </div>
+						</div>
+						<div>
+							{outlines}
+						</div>
 					</div>
+
 				</div>
+
 			</React.Fragment>
 		);
 	}

@@ -23,6 +23,12 @@ import SessionCreate from './pages/SessionCreate';
 
 import SessionDashboard from './pages/SessionDashboard';
 
+import AdminEdit from './pages/AdminEdit';
+import AdminIndex from './pages/AdminIndex';
+import AdminCreate from './pages/AdminCreate';
+
+import StudentIndex from './pages/StudentIndex';
+
 import FacilitatorEdit from './pages/FacilitatorEdit';
 import FacilitatorIndex from './pages/FacilitatorIndex';
 import FacilitatorCreate from './pages/FacilitatorCreate';
@@ -66,6 +72,10 @@ import ProfileIndex from './pages/ProfileIndex';
 import ProfileSession from './pages/ProfileSession';
 import ProfilePayment from './pages/ProfilePayment';
 import ProfileEditChangePassword from './pages/ProfileEditChangePassword';
+import UserChangePassword from './pages/UserChangePassword';
+
+import StudentEdit from './pages/StudentEdit';
+
 
 class App extends React.Component {
   render() {
@@ -98,6 +108,12 @@ class App extends React.Component {
           <Route path="/facilitator/index" exact component={RequiresAuth(FacilitatorIndex)} />
           <Route path="/facilitator/create" exact component={RequiresAuth(FacilitatorCreate)} />
           <Route path="/facilitator/edit/:facilitatorSlug" exact component={RequiresAuth(FacilitatorEdit)} />
+
+          <Route path="/admin/index" exact component={RequiresAuth(AdminIndex)} />
+          <Route path="/admin/create" exact component={RequiresAuth(AdminCreate)} />
+          <Route path="/admin/edit/:facilitatorSlug" exact component={RequiresAuth(AdminEdit)} />
+
+          <Route path="/student/index" exact component={RequiresAuth(StudentIndex)} />
 
           <Route path="/session/index" exact component={RequiresAuth(SessionIndex)} />
           <Route path="/session/create" exact component={RequiresAuth(SessionCreate)} />
@@ -136,6 +152,8 @@ class App extends React.Component {
           <Route path="/profile/payment" exact component={RequiresAuth(ProfilePayment)} />
 
           <Route path="/password/change" exact component={RequiresAuth(ProfileEditChangePassword)} />
+          <Route path="/user-password/change/:userId" exact component={RequiresAuth(UserChangePassword)} />
+          <Route path="/student/edit/:studentId" exact component={RequiresAuth(StudentEdit)} />
 
           <Redirect to="/" />
         </Switch>

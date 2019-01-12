@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import styles from './SessionDashboard.page.module.css';
 import { get_session } from './SessionDashboard.page.action';
@@ -10,7 +11,6 @@ import { get_session } from './SessionDashboard.page.action';
 class SessionDashboard extends React.Component {
 
 	componentDidMount() {
-		console.dir('here');
 		this.props.get_session(this.props.match.params.sessionSlug);
 	}
 
@@ -51,7 +51,7 @@ class SessionDashboard extends React.Component {
 
 						<div className={styles.stat} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}>
 							<div className={styles.statIcon}><i className="fa fa-hourglass-half" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Total Outlines</div>
+							<div className={styles.statTitle}>Total Outline Assigned</div>
 							<div className={styles.statNumber}>{this.props.session.facilitatorSessionOutlines.length}</div>
 						</div>
 
@@ -79,23 +79,6 @@ class SessionDashboard extends React.Component {
 							<div className={styles.statNumber}>45</div>
 						</div>
 
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Start Date</div>
-							<div className={styles.statNumber}>{moment(this.props.session.start_date).format('MMMM Do YYYY')}</div>
-						</div>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>End Date</div>
-							<div className={styles.statNumber}>{moment(this.props.session.end_date).format('MMMM Do YYYY')}</div>
-						</div>
-
-						<div className={styles.stat}>
-							<div className={styles.statIcon}><i className="fa fa-users" aria-hidden="true"></i></div>
-							<div className={styles.statTitle}>Session Course</div>
-							<div className={styles.statNumber}>{this.props.session.course.name}</div>
-						</div>
 					</div>
 
 
@@ -111,15 +94,27 @@ class SessionDashboard extends React.Component {
 				</React.Fragment>
 				
 				<React.Fragment>
-					<Breadcrumb name="Facilitator Outline" />
+					<Breadcrumb name="Session Adminstration" />
 				</React.Fragment>
 
+
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSIONS </div>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					
-					{ session }
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.sessionInfo}>
+								<span className={styles.courseName}>{this.props.session.course.name}</span>
+								<span>{moment(this.props.session.start_date).format('MMMM Do YYYY')} - {moment(this.props.session.end_date).format('MMMM Do YYYY')}</span>
+							</div>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}>
+								ALL SESSIONS
+						</div>
+						</div>
+						{session}
+					</div>
 				</div>
 
 			</React.Fragment>

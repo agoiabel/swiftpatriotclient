@@ -1,10 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
-import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import Header from '../../components/Header';
 import styles from './OutlineEdit.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
+import PortalMenu from '../../components/PortalMenu';
 import OutlineForm from '../../components/Forms/OutlineForm';
 import { get_outline, get_outlines, store_outline, reset_store_outline_status, update_outline } from '../../shared/store/Outline/Outline.action.js';
 
@@ -89,10 +90,16 @@ class OutlineEdit extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/outline/index')}> ALL OUTLINES </div>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					{ outlineFormContainer }
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/outline/index')}> ALL OUTLINES </div>
+						</div>
+						{outlineFormContainer}
+					</div>
 				</div>
 			</React.Fragment>
 		)

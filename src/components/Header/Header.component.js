@@ -159,16 +159,10 @@ class Header extends React.Component {
 						<Link to={{ pathname: '/course/index' }}>Dashboard</Link>
 					</div>
 					<div className={styles.navItem}>
-						<Link to={{ pathname: '/course/index' }}>Courses</Link>
+						<Link to={{ pathname: '/course/index' }}>Portal</Link>
 					</div>
 					<div className={styles.navItem}>
-						<Link to={{ pathname: '/session/index' }}>Sessions</Link>
-					</div>
-					<div className={styles.navItem}>
-						<Link to={{ pathname: '/outline/index' }}>Outlines</Link>
-					</div>
-					<div className={styles.navItem}>
-						<Link to={{ pathname: '/facilitator/index' }}>Facilitators</Link>
+						<Link to={{ pathname: '/facilitator/index' }}>User</Link>
 					</div>
 					<div className={styles.navItem}>
 						<Link to={{ pathname: '/feedback-question/index' }}>Feedback</Link>
@@ -204,19 +198,11 @@ class Header extends React.Component {
 						</div>
 
 						<div className={styles.mobileNavItem}>
-							<Link to={{ pathname: '/course/index' }}>Courses</Link>
+							<Link to={{ pathname: '/course/index' }}>Portal</Link>
 						</div>
 
 						<div className={styles.mobileNavItem}>
-							<Link to={{ pathname: '/session/index' }}>Sessions</Link>
-						</div>
-
-						<div className={styles.mobileNavItem}>
-							<Link to={{ pathname: '/outline/index' }}>Outlines</Link>
-						</div>
-
-						<div className={styles.mobileNavItem}>
-							<Link to={{ pathname: '/facilitator/index' }}>Facilitators</Link>
+							<Link to={{ pathname: '/facilitator/index' }}>User</Link>
 						</div>
 
 						<div className={styles.mobileNavItem}>

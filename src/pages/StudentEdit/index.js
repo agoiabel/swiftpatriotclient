@@ -1,0 +1,9 @@
+export { default } from './StudentEdit.page.js';
+
+export const RESET = 'RESET';
+
+export const GET_USER_SUCCESSFUL = 'GET_USER_SUCCESSFUL';
+export const GET_USER_UNSUCCESSFUL = 'GET_USER_UNSUCCESSFUL';
+
+export const UPDATE_STUDENT_SUCCESSFUL = 'UPDATE_STUDENT_SUCCESSFUL';
+export const UPDATE_STUDENT_UNSUCCESSFUL = 'UPDATE_STUDENT_UNSUCCESSFUL';

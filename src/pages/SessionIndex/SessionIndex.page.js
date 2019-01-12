@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SessionData from './SessionData';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import PortalMenu from '../../components/PortalMenu';
 import styles from './SessionIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
@@ -162,13 +163,19 @@ class SessionIndex extends React.Component {
 					<Breadcrumb name="Sessions" />
 				</React.Fragment>
 
-				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/session/create')}> ADD SESSION </div>
+				<div className={styles.container}>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
 
-					<div>
-						{ sessions }
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/session/create')}> ADD SESSION </div>
+						</div>
+
+						<div>
+							{sessions}
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

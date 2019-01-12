@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import Breadcrumb from '../../components/Breadcrumb';
 import styles from './FacilitatorEdit.page.module.css';
+import UserManagementMenu from '../../components/UserManagementMenu';
 import FacilitatorForm from '../../components/Forms/FacilitatorForm';
 import { get_facilitator, get_facilitators, store_facilitator, reset_store_facilitator_status, update_facilitator } from '../../shared/store/Facilitator/Facilitator.action.js';
 
@@ -52,6 +53,7 @@ class FacilitatorEdit extends React.Component {
 				gender: nextProps.facilitator.gender,
 				lastname: nextProps.facilitator.lastname,
 				firstname: nextProps.facilitator.firstname,
+				status: nextProps.facilitator.status,
 				twitter: nextProps.facilitator.twitter,
 				facebook: nextProps.facilitator.facebook,
 				instagram: nextProps.facilitator.instagram,
@@ -94,11 +96,17 @@ class FacilitatorEdit extends React.Component {
 					<Breadcrumb name="Create New Facilitator" />
 				</React.Fragment>
 
-				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/index')}> ALL FACILITATORS </div>
+				<div className={styles.container}>
+					<div className={styles.sidebar}>
+						<UserManagementMenu />
 					</div>
-					{ facilitatorFormContainer }
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/index')}> ALL FACILITATORS </div>
+						</div>
+						{facilitatorFormContainer}
+					</div>
 				</div>
 			</React.Fragment>
 		)

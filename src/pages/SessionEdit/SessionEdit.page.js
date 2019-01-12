@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import styles from './SessionEdit.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
+import PortalMenu from '../../components/PortalMenu';
 import SessionForm from '../../components/Forms/SessionForm';
 import { get_courses } from '../../shared/store/Course/Course.action.js';
 import { get_session, store_session, reset_store_session_status, update_session } from '../../shared/store/Session/Session.action.js';
@@ -107,10 +108,18 @@ class SessionEdit extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSIONS </div>
+
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					{ sessionFormContainer }
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/session/index')}> ALL SESSIONS </div>
+						</div>
+						{sessionFormContainer}
+					</div>
+					
 				</div>
 			</React.Fragment>
 		)

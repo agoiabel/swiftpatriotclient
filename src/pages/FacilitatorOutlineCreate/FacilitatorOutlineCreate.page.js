@@ -3,6 +3,7 @@ import moment from 'moment';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
+import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import CustomButton from '../../components/CustomButton';
 import styles from './FacilitatorOutlineCreate.page.module.css';
@@ -143,16 +144,23 @@ class FacilitatorOutlineCreate extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}> ALL FACILITATORS </div>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
-					<div>
-						<FacilitatorOutlineForm 
-							onSubmit={this.handleSubmit} 
-							outlines={this.props.outlines}
-							facilitators={this.props.facilitators}
-							submittingForm={this.state.submittingForm}
-						/>
+
+
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`)}> ALL FACILITATORS </div>
+						</div>
+						<div>
+							<FacilitatorOutlineForm
+								onSubmit={this.handleSubmit}
+								outlines={this.props.outlines}
+								facilitators={this.props.facilitators}
+								submittingForm={this.state.submittingForm}
+							/>
+						</div>
 					</div>
 				</div>
 

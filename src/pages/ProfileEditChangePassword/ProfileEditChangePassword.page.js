@@ -15,6 +15,8 @@ class ProfileEditChangePassword extends React.Component {
     }
 
     handleSubmit = formData => {
+        formData['user_id'] = this.props.user.id;
+
         this.setState({
             submittingForm: true
         }, () => {
@@ -63,7 +65,8 @@ class ProfileEditChangePassword extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        status: state.profileEditChangePasswordReducer.status
+        user: state.authReducer.user,
+        status: state.profileEditChangePasswordReducer.status,
     }
 }
 

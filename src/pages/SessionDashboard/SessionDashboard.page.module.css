@@ -1,17 +1,30 @@
 .container {
     width: 75%;
     margin: 25px auto;
-
+}
+.sidebar {
+}
+.content {
     background: #FFF;
-    padding: 25px 25px;
+    padding: 35px 35px;
+    width: 100%;
 
     display: table;
     overflow-x: auto;
 }
 
+
 .header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+}
+.sessionInfo {
+    margin-top: -15px;
+}
+.courseName {
+    margin-right: 25px;
+    font-size: 16px;
 }
 .addNew {
     color: #FFF;
@@ -46,7 +59,7 @@
 }
 .stat {
     width: 23%;
-    padding: 35px;
+    padding: 25px;
     cursor: pointer;
     text-align: center;
     margin-bottom: 25px;
@@ -58,11 +71,11 @@
 }
 
 .statIcon {
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 15px;
 }
 .statTitle {
-    font-size: 16px;
+    font-size: 12px;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
@@ -107,5 +120,20 @@
     .stats {}
     .stat {
         width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .sidebar {
+        width: 25%;
+        margin-bottom: 25px;
+    }
+    .content {
+        width: 73%;
     }
 }

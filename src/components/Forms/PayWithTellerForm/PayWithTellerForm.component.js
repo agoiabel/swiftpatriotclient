@@ -35,6 +35,24 @@ const PayWithTellerForm = props => {
 				validate={[requiredValidator]}
 			/>
 
+			<Field
+				name="paid_by"
+				component={CustomInput}
+				type="text"
+				label="Paid by"
+				placeholder="Paid by"
+				validate={[requiredValidator]}
+			/>
+
+			<Field
+				name="amount"
+				component={CustomInput}
+				type="number"
+				label="Amount"
+				placeholder="Amount"
+				validate={[requiredValidator]}
+			/>
+
             <div className={styles.makeDecision}>
 				<CustomButton disabled={invalid || pristine} submittingForm={submittingForm}>SUBMIT</CustomButton>
             </div>

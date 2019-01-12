@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import styles from './CourseIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
+import PortalMenu from '../../components/PortalMenu';
 import { get_courses, deleteCourse, reset_store_course_status } from '../../shared/store/Course/Course.action.js';
 import EmptyState from '../../components/EmptyState';
 
@@ -115,12 +116,18 @@ class CourseIndex extends React.Component {
 				</React.Fragment>
 
 				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/create')}> ADD COURSE </div>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
 
-					<div>
-						{ courses }
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNewCourse} onClick={() => this.navigateTo('/course/create')}> ADD COURSE </div>
+						</div>
+
+						<div>
+							{courses}
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

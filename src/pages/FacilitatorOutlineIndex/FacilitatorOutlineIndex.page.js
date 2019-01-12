@@ -3,6 +3,7 @@ import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import PortalMenu from '../../components/PortalMenu';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
 import FacilitatorOutlineData from './FacilitatorOutlineData';
@@ -111,13 +112,19 @@ class FacilitatorOutlineIndex extends React.Component {
 					<Breadcrumb name="Session Facilitator Outline" />
 				</React.Fragment>
 
-				<div className={styles.container}>	
-					<div className={styles.header}>
-						<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/create/${this.props.match.params.sessionSlug}`)}> ADD FACILITATOR OUTLINE </div>
+				<div className={styles.container}>
+					<div className={styles.sidebar}>
+						<PortalMenu />
 					</div>
 
-					<div>
-						{ facilitator_outlines }
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo(`/facilitator-outline/create/${this.props.match.params.sessionSlug}`)}> ADD FACILITATOR OUTLINE </div>
+						</div>
+
+						<div>
+							{facilitator_outlines}
+						</div>
 					</div>
 				</div>
 			</React.Fragment>

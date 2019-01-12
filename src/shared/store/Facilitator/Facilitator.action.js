@@ -5,10 +5,10 @@ import {
     DELETE_FACILITATOR_WAS_UNSUCCESSFUL, GET_FACILITATOR, UPDATE_FACILITATOR_WAS_SUCCESSFUL, UPDATE_FACILITATOR_WAS_UNSUCCESSFUL
 } from './index';
 
-export const get_facilitators = () => async dispatch => {
+export const get_facilitators = payload => async dispatch => {
 
     try {
-        let response = await get('facilitator/index');
+        let response = await get(`facilitator/index/${payload}`);
 
         response = await response.json();
 
