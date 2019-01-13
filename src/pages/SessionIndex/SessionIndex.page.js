@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import SessionData from './SessionData';
 import Header from '../../components/Header';
@@ -8,8 +8,8 @@ import PortalMenu from '../../components/PortalMenu';
 import styles from './SessionIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
-import { get_sessions, deleteSession, reset_store_session_status, activate } from '../../shared/store/Session/Session.action.js';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { get_sessions, deleteSession, reset_store_session_status, activate } from '../../shared/store/Session/Session.action.js';
 
 class SessionIndex extends React.Component {
 
@@ -28,81 +28,76 @@ class SessionIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = (session, index) => {
-		swal({
-			title: `Are you sure you want to delete ${session.name}`,
+	delete = async session => {
+		let alert = await swal({
+			title: `Are you sure you want to delete [${session.course.name}]`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					sessionId: session.id,
-					arrayKey: index
-				});
-			}
 		});
-	}
 
+		if (alert) {
+			this.props.delete({
+				sessionId: session.id
+			});
+		}
+	}
 
 	edit = session => {
 		return this.navigateTo(`/session/edit/${session.id}`);
 	} 
 
-	activate = session => {
-		swal({
+	activate = async session => {
+		let alert = await swal({
 			title: `Are you sure you set ${session.name} as active?`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then(result => {
-
-			if (result.value) {
-				this.props.activate({
-					sessionId: session.id,
-				});
-			}
 		});
+
+		if (alert) {
+			this.props.activate({
+				sessionId: session.id,
+			});
+		}
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_session_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Session was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreSessionStatus();
-				}
 			});
-		}
 
+			if (alert) {
+				this.props.resetStoreSessionStatus();
+			}
+		}
 		if (nextProps.activate_session_status === 200) {
-			swal({
+			let alert = swal({
 				type: 'success',
 				title: `Session was activated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreSessionStatus();
-				}
 			});
+			if (alert) {
+				this.props.resetStoreSessionStatus();
+			}
 		}
 		if (nextProps.activate_session_status === 422) {
-			swal({
+			let alert = await swal({
 				type: 'error',
 				title: `Error activating session`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreSessionStatus();
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreSessionStatus();
+			}
 		}
 	}
 
@@ -133,7 +128,7 @@ class SessionIndex extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.sessions.map((session, index) => (
+						{this.props.sessions.map(session => (
 
 							<SessionData 
 								key={session.id} 
@@ -141,8 +136,8 @@ class SessionIndex extends React.Component {
 								navigateTo={this.navigateTo}
 								edit={() => this.edit(session)}
 								showActionFor={this.showActionFor}
+								delete={() => this.delete(session)}
 								activate={() => this.activate(session)}
-								delete={() => this.delete(session, index)}
 								showAction={this.state.showAction === session.id}
 							/>
 

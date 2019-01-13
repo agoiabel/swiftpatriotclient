@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import PortalMenu from '../../components/PortalMenu';
@@ -21,8 +21,6 @@ class SessionCreate extends React.Component {
 			submittingForm: true
 		});
 
-		// console.dir(formData);
-
 		this.props.store_session(formData);
 	}
 
@@ -30,35 +28,34 @@ class SessionCreate extends React.Component {
 		this.props.history.push(page);
 	}
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_session_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `session was created successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreSessionStatus();
-					this.props.history.push('/session/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreSessionStatus();
+				this.props.history.push('/session/index');
+			}
 		}
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		this.props.get_courses();
 
 		if (! this.props.courses.length) {
-			swal({
+			let alert = await swal({
 				type: 'warning',
 				title: `you need to create course first`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					return this.props.history.push('/course/index');
-				}
 			});
+
+			if (alert) {
+				return this.props.history.push('/course/index');
+			}
 		}
 	}
 

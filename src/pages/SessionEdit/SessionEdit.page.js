@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -32,18 +32,18 @@ class SessionEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_session_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Session was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreSessionStatus();
-					this.props.history.push('/session/index');
-				}
 			});
+			
+			if (alert) {
+				this.props.resetStoreSessionStatus();
+				this.props.history.push('/session/index');
+			}
 		}
 	}
 
