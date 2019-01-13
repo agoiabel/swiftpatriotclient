@@ -1,11 +1,10 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import PortalMenu from '../../components/PortalMenu';
 import styles from './OutlineCreate.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
-
 import OutlineForm from '../../components/Forms/OutlineForm';
 import { get_outlines, store_outline, reset_store_outline_status } from '../../shared/store/Outline/Outline.action.js';
 
@@ -28,18 +27,18 @@ class OutlineCreate extends React.Component {
 	}
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_outline_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Outline was created successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreOutlineStatus();
-					this.props.history.push('/outline/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreOutlineStatus();
+				this.props.history.push('/outline/index');
+			}
 		}
 	}
 

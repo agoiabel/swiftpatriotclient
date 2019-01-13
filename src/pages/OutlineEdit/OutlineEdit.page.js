@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Spinner from '../../components/Spinner';
 import Header from '../../components/Header';
@@ -30,18 +30,18 @@ class OutlineEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_outline_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Outline was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreOutlineStatus();
-					this.props.history.push('/outline/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreOutlineStatus();
+				this.props.history.push('/outline/index');
+			}
 		}
 	}
 

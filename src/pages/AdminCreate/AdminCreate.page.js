@@ -1,10 +1,9 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
-import Breadcrumb from '../../components/Breadcrumb';
-
 import styles from './AdminCreate.page.module.css';
+import Breadcrumb from '../../components/Breadcrumb';
 import FacilitatorForm from '../../components/Forms/FacilitatorForm';
 import UserManagementMenu from '../../components/UserManagementMenu';
 import { store_facilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
@@ -29,22 +28,19 @@ class FacilitatorCreate extends React.Component {
 	}
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_facilitator_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Facilitator was created successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorStatus();
-					this.props.history.push('/admin/index');
-				}
-			});
+			});		
+			if (alert) {
+				this.props.resetStoreFacilitatorStatus();
+				this.props.history.push('/admin/index');
+			}
 		}
 	}
-
-	componentDidMount() {}
 
 	componentWillReceiveProps(nextProps) {
 		this.showNotificationFrom(nextProps);

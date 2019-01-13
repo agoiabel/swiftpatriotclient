@@ -1,17 +1,15 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import OutlineData from './OutlineData';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
+import PortalMenu from '../../components/PortalMenu';
 import styles from './OutlineIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
-
-import PortalMenu from '../../components/PortalMenu';
-
-import { get_outlines, deleteOutline, reset_store_outline_status } from '../../shared/store/Outline/Outline.action.js';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { get_outlines, deleteOutline, reset_store_outline_status } from '../../shared/store/Outline/Outline.action.js';
 
 class OutlineIndex extends React.Component {
 
@@ -29,41 +27,38 @@ class OutlineIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = (outline, index) => {
-		swal({
+	delete = async outline => {
+		let alert = await swal({
 			title: `Are you sure you want to delete ${outline.name}`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					outlineId: outline.id,
-					arrayKey: index
-				});
-			}
 		});
-	}
 
+		if (alert) {
+			this.props.delete({
+				outlineId: outline.id			
+			});
+		}
+	}
 
 	edit = outline => {
 		return this.navigateTo(`/outline/edit/${outline.id}`);
 	} 
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_outline_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Outline was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreOutlineStatus();
-				}
 			});
+		
+			if (alert) {
+				this.props.resetStoreOutlineStatus();
+			}
 		}
 	}
 
@@ -86,19 +81,18 @@ class OutlineIndex extends React.Component {
 						<tr>
 							<th>S/N</th>
 							<th>Outline Name</th>
-							{/* <th>Outline Code</th> */}
 							<th>Outline Description</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.outlines.map((outline, index) => (
+						{this.props.outlines.map(outline => (
 
 							<OutlineData key={outline.id} outline={outline}
 									    showAction={this.state.showAction === outline.id}
 									    showActionFor={this.showActionFor}
 										navigateTo={this.navigateTo}
-										delete={() => this.delete(outline, index)}
+										delete={() => this.delete(outline)}
 										edit={() => this.edit(outline) }
 							/>
 
