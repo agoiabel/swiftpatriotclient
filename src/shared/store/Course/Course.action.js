@@ -97,7 +97,6 @@ export const deleteCourse = payload => async dispatch => {
         }
 
         dispatch(delete_course_was_successful({
-            arrayKey: payload.arrayKey,
             courseId: payload.courseId,
             status: response.status
         }));

@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import CourseData from './CourseData';
 import Header from '../../components/Header';
@@ -27,41 +27,39 @@ class CourseIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = (course, index) => {
-		swal({
-			title: `Are you sure you want to delete ${course.name}`,
+	delete = async course => {
+		let alert = await swal({
+			title: `Are you sure you want to delete [${course.name}]`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					courseId: course.id,
-					arrayKey: index
-				});
-			}
 		});
+		
+		if (alert) {
+			this.props.delete({
+				courseId: course.id,
+			});		
+		}
 	}
-
 
 	edit = course => {
 		return this.navigateTo(`/course/edit/${course.id}`);
 	} 
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_course_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Course was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreCourseStatus();
-				}
 			});
+			
+			if (alert) {
+				this.props.resetStoreCourseStatus();
+			}		
 		}
 	}
 
@@ -89,13 +87,14 @@ class CourseIndex extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.courses.map((course, index) => (
+
+						{this.props.courses.map(course => (
 
 							<CourseData key={course.id} course={course}
 									    showAction={this.state.showAction === course.id}
 									    showActionFor={this.showActionFor}
 										navigateTo={this.navigateTo}
-										delete={() => this.delete(course, index)}
+										delete={() => this.delete(course)}
 										edit={() => this.edit(course) }
 							/>
 

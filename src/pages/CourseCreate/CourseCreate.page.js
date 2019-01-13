@@ -1,11 +1,10 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import PortalMenu from '../../components/PortalMenu';
 import styles from './CourseCreate.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
-
 import CourseForm from '../../components/Forms/CourseForm';
 import { get_courses, store_course, reset_store_course_status } from '../../shared/store/Course/Course.action.js';
 
@@ -28,18 +27,18 @@ class CourseCreate extends React.Component {
 	}
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_course_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Course was created successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreCourseStatus();
-					this.props.history.push('/course/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreCourseStatus();
+				this.props.history.push('/course/index');
+			}
 		}
 	}
 
