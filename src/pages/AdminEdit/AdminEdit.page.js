@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -31,18 +31,18 @@ class FacilitatorEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_facilitator_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Admin was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorStatus();
-					this.props.history.push('/admin/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorStatus();
+				this.props.history.push('/admin/index');
+			}
 		}
 	}
 

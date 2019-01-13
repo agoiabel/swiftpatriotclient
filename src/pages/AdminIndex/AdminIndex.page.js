@@ -1,15 +1,14 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import FacilitatorData from './FacilitatorData';
+import styles from './AdminIndex.page.module.css';
 import EmptyState from '../../components/EmptyState';
 import Breadcrumb from '../../components/Breadcrumb';
-import styles from './AdminIndex.page.module.css';
-import UserManagementMenu from '../../components/UserManagementMenu';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-
+import UserManagementMenu from '../../components/UserManagementMenu';
 import { get_facilitators, deleteFacilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorIndex extends React.Component {
@@ -28,22 +27,21 @@ class FacilitatorIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = (facilitator, index) => {
-		swal({
+	delete = async facilitator => {
+		let alert = await swal({
 			title: `Are you sure you want to delete ${facilitator.firstname}`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					facilitatorId: facilitator.id,
-					arrayKey: index
-				});
-			}
 		});
+
+		if (alert) {
+			this.props.delete({
+				facilitatorId: facilitator.id,
+			});
+		}
 	}
 
 
@@ -55,17 +53,17 @@ class FacilitatorIndex extends React.Component {
 		this.props.history.push(`/user-password/change/${facilitator.id}`);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_facilitator_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
-				title: `Facilitator was deleted successfully`,
+				title: `Admin was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorStatus();
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorStatus();
+			}
 		}
 	}
 
@@ -95,15 +93,16 @@ class FacilitatorIndex extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.facilitators.map((facilitator, index) => (
+						{this.props.facilitators.map(facilitator => (
 
-							<FacilitatorData key={facilitator.id} facilitator={facilitator}
-									    showAction={this.state.showAction === facilitator.id}
-									    showActionFor={this.showActionFor}
+							<FacilitatorData key={facilitator.id} 
+										facilitator={facilitator}
 										navigateTo={this.navigateTo}
-										delete={() => this.delete(facilitator, index)}
-										edit={() => this.edit(facilitator) }
 										resetPassword={this.resetPassword}
+									    showActionFor={this.showActionFor}
+										edit={() => this.edit(facilitator)}
+										delete={() => this.delete(facilitator)}
+									    showAction={this.state.showAction === facilitator.id}
 							/>
 
 						))}

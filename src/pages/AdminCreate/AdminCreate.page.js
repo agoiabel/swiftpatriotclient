@@ -32,7 +32,7 @@ class FacilitatorCreate extends React.Component {
 		if (nextProps.store_facilitator_status === 200) {
 			let alert = await swal({
 				type: 'success',
-				title: `Facilitator was created successfully`,
+				title: `Admin was created successfully`,
 				allowOutsideClick: false
 			});		
 			if (alert) {
