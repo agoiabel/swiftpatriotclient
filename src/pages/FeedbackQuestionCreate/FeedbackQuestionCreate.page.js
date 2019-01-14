@@ -1,10 +1,9 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Breadcrumb from '../../components/Breadcrumb';
 import FeedbackMenu from '../../components/FeedbackMenu';
-
 import styles from './FeedbackQuestionCreate.page.module.css';
 import FeedbackQuestionForm from '../../components/Forms/FeedbackQuestionForm';
 import { store_question, reset_store_question_status } from '../../shared/store/FeedbackQuestion/FeedbackQuestion.action.js';
@@ -27,23 +26,20 @@ class FeedbackQuestionCreate extends React.Component {
 		this.props.history.push(page);
 	}
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_question_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Question was created successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreQuestionStatus();
-					this.props.history.push('/feedback-question/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreQuestionStatus();
+				this.props.history.push('/feedback-question/index');
+			}
 		}
 	}
-
-	componentDidMount() {}
 
 	componentWillReceiveProps(nextProps) {
 		this.showNotificationFrom(nextProps);

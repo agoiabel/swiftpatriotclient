@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -28,40 +28,39 @@ class FeedbackQuestionIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = question => {
-		swal({
+	delete = async question => {
+		let alert = await swal({
 			title: `Are you sure you want to delete Question`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					feedbackQuestionId: question.id
-				});
-			}
 		});
-	}
 
+		if (alert) {
+			this.props.delete({
+				feedbackQuestionId: question.id
+			});
+		}
+	}
 
 	edit = question => {
 		return this.navigateTo(`/feedback-question/edit/${question.id}`);
 	} 
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_question_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Question was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreQuestionStatus();
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreQuestionStatus();
+			}
 		}
 	}
 

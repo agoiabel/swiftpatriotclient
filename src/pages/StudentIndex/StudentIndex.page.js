@@ -35,7 +35,7 @@ class FacilitatorIndex extends React.Component {
 		if (nextProps.delete_facilitator_status === 200) {
 			let alert = await swal({
 				type: 'success',
-				title: `Facilitator was deleted successfully`,
+				title: `Student was deleted successfully`,
 				allowOutsideClick: false
 			});
 

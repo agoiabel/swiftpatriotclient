@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -7,13 +7,13 @@ import Breadcrumb from '../../components/Breadcrumb';
 
 import styles from './FeedbackQuestionEdit.page.module.css';
 import FeedbackQuestionForm from '../../components/Forms/FeedbackQuestionForm';
-import { get_question, get_questions, store_question, reset_store_question_status, update_question } from '../../shared/store/FeedbackQuestion/FeedbackQuestion.action.js';
+import { get_question, reset_store_question_status, update_question } from '../../shared/store/FeedbackQuestion/FeedbackQuestion.action.js';
 
 class FeedbackQuestionEdit extends React.Component {
 
 	state = {
-		submittingForm: false,
 		question: null,
+		submittingForm: false,
 	};
 
 	handleSubmit = formData => {
@@ -30,18 +30,18 @@ class FeedbackQuestionEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_question_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Question was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreQuestionStatus();
-					this.props.history.push('/feedback-question/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreQuestionStatus();
+				this.props.history.push('/feedback-question/index');
+			}
 		}
 	}
 
