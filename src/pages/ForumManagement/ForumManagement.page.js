@@ -1,6 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
-
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header';
@@ -10,8 +9,8 @@ import Breadcrumb from '../../components/Breadcrumb';
 import EmptyState from '../../components/EmptyState';
 import styles from './ForumManagement.page.module.css';
 import ForumManagementData from './ForumManagementData';
-import { get_forum_for, update_forum, reset_update_forum_status } from './ForumManagement.page.action.js';
 import ForumMenu from '../../components/ForumMenu/ForumMenu.component';
+import { get_forum_for, update_forum, reset_update_forum_status } from './ForumManagement.page.action.js';
 
 class ForumManagement extends React.Component {
 
@@ -31,42 +30,37 @@ class ForumManagement extends React.Component {
 		this.props.history.push(page);
 	}
 
-	update = (status, forum) => {
-
+	update = async (status, forum) => {
 		const message = status == 1 ? "Accept": "Decline";
 
-		swal({
+		let alert = await swal({
 			title: `Are you sure you want to ${message} ${forum.owner.firstname} ${forum.owner.lastname} payment forum`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Update!'
-		}).then((result) => {
-			
-			if (result.value) {
-				this.props.update_forum({
-					forum_id: forum.id,
-					status: status
-				});
-			}
-
-			console.dir('can update ');
 		});
+
+		if (alert) {
+			this.props.update_forum({
+				forum_id: forum.id,
+				status: status
+			});
+		}
 	}
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_forum_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Forum was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset_update_forum_status();
-				}
 			});
+
+			if (alert) {
+				this.props.reset_update_forum_status();
+			}
 		}
 	}
 

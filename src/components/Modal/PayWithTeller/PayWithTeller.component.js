@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { closeModal } from '../Modal.action';
 import styles from './PayWithTeller.component.module.css';
@@ -43,14 +43,14 @@ class PayWithTeller extends React.Component {
                 showConfirmButton: true
             });
         }
-        this.props.closeModal();
-        return swal({
-            title: 'success!',
-            text: `${nextProps.message}`,
-            type: 'success',
-            timer: 2500,
-            showConfirmButton: true
-        });
+        return this.props.closeModal();
+        // return swal({
+        //     title: 'success!',
+        //     text: `${nextProps.message}`,
+        //     type: 'success',
+        //     timer: 2500,
+        //     showConfirmButton: true
+        // });
     }
 
     componentWillReceiveProps(nextProps) {

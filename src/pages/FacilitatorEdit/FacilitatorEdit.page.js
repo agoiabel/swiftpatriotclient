@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -7,7 +7,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import styles from './FacilitatorEdit.page.module.css';
 import UserManagementMenu from '../../components/UserManagementMenu';
 import FacilitatorForm from '../../components/Forms/FacilitatorForm';
-import { get_facilitator, get_facilitators, store_facilitator, reset_store_facilitator_status, update_facilitator } from '../../shared/store/Facilitator/Facilitator.action.js';
+import { get_facilitator, reset_store_facilitator_status, update_facilitator } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorEdit extends React.Component {
 

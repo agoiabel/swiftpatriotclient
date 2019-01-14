@@ -1,5 +1,9 @@
 import { updateObject } from '../../utils/updateObject';
-import { GET_ACTIVE_AND_FUTURE_SESSION_SUCCESSFUL, GET_ACTIVE_AND_FUTURE_SESSION_UNSUCCESSFUL, GET_SESSION_WAS_SUCCESSFUL, GET_SESSION_WAS_UNSUCCESSFUL } from './index';
+import { 
+    GET_ACTIVE_AND_FUTURE_SESSION_SUCCESSFUL, GET_ACTIVE_AND_FUTURE_SESSION_UNSUCCESSFUL, 
+    GET_SESSION_WAS_SUCCESSFUL, GET_SESSION_WAS_UNSUCCESSFUL, 
+    GET_SESSION_NUMBER_WAS_SUCCESSFUL, GET_SESSION_NUMBER_WAS_UNSUCCESSFUL 
+} from './index';
 
 const getActiveAndFutureSessionsSuccessful = (state, action) => {
     return updateObject(state, {
@@ -31,6 +35,20 @@ const getSessionWasUnsuccessful = (state, action) => {
     });
 }
 
+const getSessionNumberWasSuccessful = (state, action) => {
+    return updateObject(state, {
+        session_student: action.payload.data,
+        get_session_number_status: action.payload.status,
+    });
+}
+
+const getSessionNumberWasUnsuccessful = (state, action) => {
+    return updateObject(state, {
+        get_session_number_status: action.payload.status,
+        get_session_number_message: action.payload.message,
+    });
+}
+
 
 const initialState = {
     // sessions: [],
@@ -46,6 +64,9 @@ const initialState = {
 
     get_active_and_future_session_status: null,
     get_active_and_future_session_message: null,
+
+    session_student: null,
+    get_session_number_status: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -55,6 +76,9 @@ const reducer = (state = initialState, action) => {
 
         GET_SESSION_WAS_SUCCESSFUL: getSessionWasSuccessful,
         GET_SESSION_WAS_UNSUCCESSFUL: getSessionWasUnsuccessful,
+
+        GET_SESSION_NUMBER_WAS_SUCCESSFUL: getSessionNumberWasSuccessful,
+        GET_SESSION_NUMBER_WAS_UNSUCCESSFUL: getSessionNumberWasUnsuccessful,
     }
 
     return lookup[action.type] ? lookup[action.type](state, action) : state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -31,39 +31,37 @@ class PendingTransactionPage extends React.Component {
 		this.props.history.push(page);
 	}
 
-	update = (status, transaction) => {
-
+	update = async (status, transaction) => {
 		const message = status == 1 ? "Accept": "Decline";
 
-		swal({
+		let alert = await swal({
 			title: `Are you sure you want to ${message} ${transaction.user.firstname} ${transaction.user.lastname} payment transaction`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Update!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.update_transaction({
-					transaction_id: transaction.id,
-					status: status
-				});
-			}
 		});
+
+		if (alert) {
+			this.props.update_transaction({
+				transaction_id: transaction.id,
+				status: status
+			});
+		}
 	}
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_transaction_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Transaction was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset_update_transaction_status();
-				}
 			});
+
+			if (alert) {
+				this.props.reset_update_transaction_status();
+			}
 		}
 	}
 

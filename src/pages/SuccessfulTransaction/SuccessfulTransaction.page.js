@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';

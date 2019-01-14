@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { closeModal } from '../Modal.action';
 import styles from './NewForumPostComment.component.module.css';

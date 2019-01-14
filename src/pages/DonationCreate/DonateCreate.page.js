@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
@@ -31,49 +31,51 @@ class DonateCreate extends React.Component {
         });
     }
 
-    showNotification = nextProps => {
+    showNotification = async nextProps => {
         if (nextProps.status === 200 && nextProps.transaction !== this.props.transaction) {
 
-            if (nextProps.transaction.type == "bank_transfer") {
-                return swal({
+            if (nextProps.transaction.type == "bank_transfer") {                
+                let alert = await swal({
                     type: 'success',
                     title: `${nextProps.message}`,
                     allowOutsideClick: false
-                }).then((result) => {
-                    if (result.value) {
-                        this.resetFormSubmit();
-                        this.props.reset_donation_status();
-                    }
                 });
+
+                if (alert) {
+                    this.resetFormSubmit();
+                    this.props.reset_donation_status();
+                }
+                return;
             }
 
 
             //payment was successful
             if (nextProps.transaction.status == '1') {
-                return swal({
+                let alert = await swal({
                     type: 'success',
                     title: `Payment was successful, thanks for donating`,
                     allowOutsideClick: false
-                }).then((result) => {
-                    if (result.value) {
-                        this.resetFormSubmit();
-                        this.props.reset_donation_status();
-                    }
                 });
+
+                if (alert) {
+                    this.resetFormSubmit();
+                    this.props.reset_donation_status();
+                }
+                return;
             }
 
 
             //payment was unsuccessful
-            return swal({
+            let alert = await swal({
                 type: 'error',
                 title: `The payment failed, please try again`,
                 allowOutsideClick: false
-            }).then((result) => {
-                if (result.value) {
-                    this.resetFormSubmit();
-                    this.props.reset_donation_status();
-                }
             });
+            if (alert) {
+                this.resetFormSubmit();
+                this.props.reset_donation_status();
+            }
+            return;
         }
     }
 

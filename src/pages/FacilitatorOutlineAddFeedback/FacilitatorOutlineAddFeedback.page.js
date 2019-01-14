@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -54,22 +54,22 @@ class FacilitatorOutlineAddFeedback extends React.Component {
         })
     }
 
-    showNotificationFrom = nextProps => {
+    showNotificationFrom = async nextProps => {
         if (nextProps.store_facilitator_outline_status === 200) {
             this.setState({
                 submittingForm: false
             });
 
-            swal({
+            let alert = await swal({
                 type: 'success',
                 title: `Feedback was added successfully`,
                 allowOutsideClick: false
-            }).then((result) => {
-                if (result.value) {
-                    this.props.reset_store_feedback();
-                    this.props.history.push(`/student-session/${this.props.facilitator_outline.session.id}`);
-                }
             });
+
+            if (alert) {
+                this.props.reset_store_feedback();
+                this.props.history.push(`/student-session/${this.props.facilitator_outline.session.id}`);
+            }
         }
     }
 

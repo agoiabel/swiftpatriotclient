@@ -1,18 +1,18 @@
 import React from 'react';
 import moment from 'moment';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
+import SessionOutline from './SessionOutline';
 import Spinner from '../../components/Spinner';
 import styles from './StudentSession.page.module.css';
 import QuickContact from '../../components/QuickContact';
 import { PayWithTeller } from '../../components/Modal/index';
 import { openModal } from '../../components/Modal/Modal.action';
 
-import { get_session_with } from './StudentSession.page.action';
+import { get_session_with, get_session_number } from './StudentSession.page.action';
 import { reset_transaction_status } from '../../components/Modal/PayWithTeller/PayWithTeller.component.action';
 
-import SessionOutline from './SessionOutline';
 
 class StudentSession extends React.Component {
 
@@ -61,18 +61,17 @@ class StudentSession extends React.Component {
 		}
 	}
 
-	setPaymentNotification = () => {
-		swal({
+	setPaymentNotification = async () => {
+		let alert = await swal({
 			type: 'success',
 			title: `Payment transaction was created successfully, admin will contact you shortly`,
 			allowOutsideClick: false
-		}).then((result) => {
-			if (result.value) {
-				//reset transaction_status
-				this.props.reset_transaction_status();
-				this.props.history.push('/student-dashboard');
-			}
 		});
+
+		if (alert) {
+			this.props.reset_transaction_status();
+			this.props.history.push('/student-dashboard');
+		}
 
 		return this.setState({
 			studentType: 2
@@ -90,6 +89,12 @@ class StudentSession extends React.Component {
 
 		if (nextProps.transaction_status === 200) {
 			this.setPaymentNotification();
+		}
+
+		if (nextProps.get_session_number_status === 200) {
+			this.setState({
+				showLoading: false
+			})
 		}
 	}
 
@@ -110,22 +115,31 @@ class StudentSession extends React.Component {
 	}
 
 	showSessionNumber = () => {
-		console.dir('show session number');
-		console.dir(this.state.session);
+		this.setState({
+			showLoading: true
+		});
+		this.props.get_session_number({
+			session_id: this.state.session.id
+		});
 	}
 
 	render() {
 
-		let sessionNumber = 'Show Tag Number';
+		let sessionNumber = (
+			<a className={styles.enrollButton} onClick={this.showSessionNumber}> Show Tag Number </a>
+		);
+
 		let sessions = <Spinner message="Loading sessions" />
 		let actionButton, showRateHeader, showRateAction;
 
-		// if (this.state.showLoading) {
-		// 	sessionNumber = <Spinner />
-		// }
-		// if (this.props.session_number_status === 200) {
-		// 	sessionNumber = this.props.session_number;
-		// }
+		if (this.state.showLoading) {
+			sessionNumber = <Spinner />
+		}
+		if (this.props.get_session_number_status === 200) {
+			sessionNumber = (
+				<a className={styles.enrollButton}> { this.props.session_student.session_number } </a>
+			);
+		}
 
 		if (this.state.transaction != null && this.state.studentType == 1) {
 			actionButton = (
@@ -154,9 +168,7 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 2) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					<a className={styles.enrollButton} onClick={this.showSessionNumber}> 
-						{ sessionNumber }  
-					</a>
+					{ sessionNumber }  
 				</div>
 			)
 		}
@@ -212,10 +224,7 @@ class StudentSession extends React.Component {
 					<QuickContact />
 				</div>
 
-
-
 				{ sessions }
-
 
 			</div>
 		);
@@ -230,9 +239,11 @@ const mapStateToProps = state => {
 		userTransaction: state.studentSessionReducer.transaction,
 		get_session_status: state.studentSessionReducer.get_session_status,
 
-		
 		transaction: state.payWithTellerReducer.transaction,	
-		transaction_status: state.payWithTellerReducer.status
+		transaction_status: state.payWithTellerReducer.status,
+
+		session_student: state.studentSessionReducer.session_student,
+		get_session_number_status: state.studentSessionReducer.get_session_number_status,
 	}
 }
 
@@ -240,6 +251,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		get_session_with: payload => dispatch( get_session_with(payload) ),
 		reset_transaction_status: () => dispatch( reset_transaction_status() ),
+		get_session_number: payload => dispatch( get_session_number(payload) ),
 		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
 	}
 }

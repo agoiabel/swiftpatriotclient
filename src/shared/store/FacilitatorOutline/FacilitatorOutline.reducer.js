@@ -73,17 +73,22 @@ const resetStoreFacilitatorOutlineStatus = (state, action) => {
 }
 
 const deleteFacilitatorOutlineWasSuccessful = (state, action) => {
-    const oldFacilitatorOutlineArray = [...state.facilitator_outlines];
+    
+    console.dir(state.facilitator_outlines);
+    console.dir(action.payload);
 
-    const newFacilitatorOutlineArray = oldFacilitatorOutlineArray.filter(facilitator_outline => {
+    const newFacilitatorOutlineArray = [...state.facilitator_outlines].filter(facilitator_outline => {
         return facilitator_outline.id !== action.payload.facilitator_outlineId
     });
 
+    console.dir(newFacilitatorOutlineArray);
+
     return {
         ...state,
+        delete_facilitator_outline_status: 200,
         facilitator_outlines: newFacilitatorOutlineArray,
-        delete_facilitator_outline_status: 200
     }
+    
 }
 
 const deleteFacilitatorOutlineWasUnsuccessful = (state, action) => {

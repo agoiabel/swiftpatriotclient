@@ -11,16 +11,18 @@ class RateAction extends React.Component {
 
         if (this.props.studentType === 3) {
             action = (
-                <div className={styles.enrollButtons}>
-                    <a className={[styles.enrollButton, styles.buttonOutline].join(' ')} onClick={this.rateCourseHandler}> Rate Facilitator Course </a>
-                </div>
+                <td>
+                    <div className={styles.enrollButtons}>
+                        <a className={[styles.enrollButton, styles.buttonOutline].join(' ')} onClick={this.rateCourseHandler}> Rate Facilitator Course </a>
+                    </div>
+                </td>
             )
         }
 
         return (
-            <td>
-                {action}
-            </td>
+            <div>
+                { action }
+            </div>
         )
     }
 }

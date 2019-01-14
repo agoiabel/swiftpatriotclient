@@ -92,7 +92,7 @@ export const delete_facilitator_outline = payload => async dispatch => {
         }
 
         dispatch(delete_facilitator_outline_was_successful({
-            facilitator_outlineId: payload.facilitator_outlineId,
+            facilitator_outlineId: payload.facilitator_outline_id,
             status: response.status
         }));
     } catch (error) {

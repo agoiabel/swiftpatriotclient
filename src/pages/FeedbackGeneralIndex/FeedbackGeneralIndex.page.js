@@ -78,7 +78,6 @@ class FeedbackGeneralIndex extends React.Component {
 
 						<div className={styles.content}>
 							<div className={styles.header}>
-								<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/create')}> ADD FACILITATOR </div>
 								<ReactHTMLTableToExcel
 									id="test-table-xls-button"
 									className={styles.addNew}

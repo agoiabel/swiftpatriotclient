@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import styles from './UserChangePassword.page.module.css';
@@ -29,18 +29,17 @@ class UserChangePassword extends React.Component {
 	}
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Password was reset successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset_password_status();
-					
-				}
 			});
+
+			if (alert) {
+				this.props.reset_password_status();
+			}
 		}
 	}
 

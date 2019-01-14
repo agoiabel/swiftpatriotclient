@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -29,35 +29,34 @@ class FacilitatorOutlineIndex extends React.Component {
 		this.props.history.push(page);
 	}
 
-	delete = facilitator_outline => {
-		swal({
+	delete = async facilitator_outline => {
+		let alert = await swal({
 			title: `Are you sure you want to delete ${facilitator_outline.outline.name}`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Delete!'
-		}).then((result) => {
-			if (result.value) {
-				this.props.delete({
-					facilitator_outline_id: facilitator_outline.id,
-				});
-			}
 		});
+
+		if (alert) {
+			this.props.delete({
+				facilitator_outline_id: facilitator_outline.id,
+			});
+		}
 	}
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_facilitator_outline_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `FacilitatorOutline was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorOutlineStatus();
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorOutlineStatus();
+			}
 		}
 	}
 

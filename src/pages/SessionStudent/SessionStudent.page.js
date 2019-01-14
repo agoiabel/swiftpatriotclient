@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import SessionData from './SessionData';
 import Header from '../../components/Header';
@@ -47,17 +47,17 @@ class SessionStudent extends React.Component {
 		// });
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_session_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Session was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset();
-				}
 			});
+
+			if (alert) {
+				this.props.reset();
+			}
 		}
 	}
 

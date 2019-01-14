@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'; 
 import styles from './Register.page.module.css';

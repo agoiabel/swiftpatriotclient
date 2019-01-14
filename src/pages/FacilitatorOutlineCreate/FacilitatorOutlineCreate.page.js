@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import PortalMenu from '../../components/PortalMenu';
@@ -42,18 +42,18 @@ class FacilitatorOutlineCreate extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.store_facilitator_outline_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Facilitator Outline was created successfully`,
 				allowOutsideClick: false
-			}).then(result => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorOutlineStatus();
-					this.props.history.push(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`);
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorOutlineStatus();
+				this.props.history.push(`/facilitator-outline/index/${this.props.match.params.sessionSlug}`);
+			}
 		}
 	}
 

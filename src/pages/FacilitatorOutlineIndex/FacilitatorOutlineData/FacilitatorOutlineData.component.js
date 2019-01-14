@@ -24,21 +24,23 @@ class FacilitatorOutlineData extends React.Component {
 			actions = (
 				<div className={styles.actions}>
 
-					<div className={styles.action} onClick={this.feeback}>
+					{/* <div className={styles.action} onClick={this.feeback}>
 						<span className={styles.actionIcon}>
 							<i className="fa fa-window-close" aria-hidden="true"></i></span><span>Feedback	
-						</span>
-					</div>
-					<div className={styles.action} onClick={this.delete}>
-						<span className={styles.actionIcon}>
-							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
 						</span>
 					</div>
 					<div className={styles.action}>
 						<span className={styles.actionIcon}>
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Attendance
 						</span>
+					</div> */}
+
+					<div className={styles.action} onClick={this.delete}>
+						<span className={styles.actionIcon}>
+							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
+						</span>
 					</div>
+
 				
 				</div>
 			);

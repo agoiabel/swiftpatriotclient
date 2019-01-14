@@ -1,8 +1,6 @@
 import React from 'react';
-import swal from 'sweetalert2';
-
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
-
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import ForumMenu from '../../components/ForumMenu';
@@ -32,41 +30,39 @@ class ForumCommentManagement extends React.Component {
 		this.props.history.push(page);
 	}
 
-	update = (status, forumComment) => {
+	update = async (status, forumComment) => {
 
 		const message = status == 1 ? "Accept": "Decline";
 
-		swal({
+		let alert = await swal({
 			title: `Are you sure you want to ${message} ${forumComment.owner.firstname} ${forumComment.owner.lastname} update forumComment`,
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Yes, Update!'
-		}).then((result) => {
-			
-			if (result.value) {
-				this.props.update_forum_comment({
-					forum_comment_id: forumComment.id,
-					status: status
-				});
-			}
-
 		});
+
+		if (alert) {
+			this.props.update_forum_comment({
+				forum_comment_id: forumComment.id,
+				status: status
+			});
+		}
 	}
 
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_forum_comment_status === 200) {
-			swal({
+			let alert = swal({
 				type: 'success',
 				title: `Comment was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset_forum_comment_status();
-				}
 			});
+
+			if (alert) {
+				this.props.reset_forum_comment_status();
+			}
 		}
 	}
 

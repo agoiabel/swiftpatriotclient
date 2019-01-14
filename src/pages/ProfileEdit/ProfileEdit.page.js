@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -24,18 +24,18 @@ class ProfileIndex extends React.Component {
         this.props.update_user(formData);
     }
 
-    componentWillReceiveProps(nextProps) {
+    async componentWillReceiveProps(nextProps) {
         if (nextProps.update_profile_status === 200) {
-            swal({
+            let alert = await swal({
                 type: 'success',
                 title: `Profile was updated successfully`,
                 allowOutsideClick: false
-            }).then((result) => {
-                if (result.value) {
-                    this.props.reset_profile_update();
-                    this.props.history.push('/profile/index');
-                }
             });
+            
+            if (alert) {
+                this.props.reset_profile_update();
+                this.props.history.push('/profile/index');
+            }
         }
     }
 

@@ -78,6 +78,7 @@
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    margin-top: 10px;
 }
 .buttonContainer {
     display: flex;

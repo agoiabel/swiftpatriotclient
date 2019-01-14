@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import { closeModal } from '../Modal.action';
 import styles from './NewForumPost.component.module.css';
@@ -20,7 +20,7 @@ class PayWithTeller extends React.Component {
         this.props.store_forum_post(formData);
     }
 
-    showNotification = nextProps => {
+    showNotification = async nextProps => {
         this.setState({
             submittingForm: false
         });
