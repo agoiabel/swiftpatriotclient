@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -30,18 +30,18 @@ class StudentEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_student_status === 200) {
-			swal({
+			let alert = swal({
 				type: 'success',
 				title: `Student was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.reset();
-					this.props.history.push('/student/index');
-				}
 			});
+
+			if (alert) {
+				this.props.reset();
+				this.props.history.push('/student/index');
+			}
 		}
 	}
 

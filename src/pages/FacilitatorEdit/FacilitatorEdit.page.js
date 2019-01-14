@@ -31,18 +31,18 @@ class FacilitatorEdit extends React.Component {
 		this.props.history.push(page);
 	}
 
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.update_facilitator_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Facilitator was updated successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorStatus();
-					this.props.history.push('/facilitator/index');
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorStatus();
+				this.props.history.push('/facilitator/index');
+			}
 		}
 	}
 

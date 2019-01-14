@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
@@ -7,9 +7,8 @@ import FacilitatorData from './FacilitatorData';
 import EmptyState from '../../components/EmptyState';
 import Breadcrumb from '../../components/Breadcrumb';
 import styles from './StudentIndex.page.module.css';
-import UserManagementMenu from '../../components/UserManagementMenu';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-
+import UserManagementMenu from '../../components/UserManagementMenu';
 import { get_facilitators, deleteFacilitator, reset_store_facilitator_status } from '../../shared/store/Facilitator/Facilitator.action.js';
 
 class FacilitatorIndex extends React.Component {
@@ -32,18 +31,17 @@ class FacilitatorIndex extends React.Component {
 		return this.navigateTo(`/student/edit/${facilitator.id}`);
 	} 
 
-
-	showNotificationFrom = nextProps => {
+	showNotificationFrom = async nextProps => {
 		if (nextProps.delete_facilitator_status === 200) {
-			swal({
+			let alert = await swal({
 				type: 'success',
 				title: `Facilitator was deleted successfully`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					this.props.resetStoreFacilitatorStatus();
-				}
 			});
+
+			if (alert) {
+				this.props.resetStoreFacilitatorStatus();
+			}
 		}
 	}
 
