@@ -26,7 +26,7 @@ export const store_donation = payload => {
 
             //show payment popup
             const handler = await window.PaystackPop.setup({
-                key: 'pk_test_c6107f2bff6d8a2d211f6cce9b9067f612f29a14',
+                key: 'pk_test_c55d9dcdebe969cf1cbd0e742cfe36bcb1b71370',
                 email: transaction.user.email,
                 amount: transaction.amount * 100,
                 ref: transaction.reference_number,
