@@ -84,7 +84,6 @@ class Auth extends React.Component {
 
 					<div className={styles.header}>
 						<div className={styles.title}>Login to your account</div>
-						<div className={styles.description}>All fields are required</div>
 					</div>
 
 					<div className={styles.body}>

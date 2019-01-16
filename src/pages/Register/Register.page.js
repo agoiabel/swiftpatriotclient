@@ -78,7 +78,6 @@ class Register extends React.Component {
 
 					<div className={styles.header}>
 						<div className={styles.title}>Register your account</div>
-						<div className={styles.description}>All fields are required</div>
 					</div>
 
 					<div className={styles.body}>

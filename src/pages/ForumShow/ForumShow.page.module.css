@@ -15,6 +15,12 @@
     padding: 25px 25px;
 }
 
+
+.discussion {
+    margin-top: 25px;
+    padding: 25px 25px;
+    background: rgba(255, 255, 255, .7);
+}
 .header {
     display: flex;
     align-items: center;
@@ -98,12 +104,12 @@
         justify-content: space-between;
     }
     .forumMenus {
-        width: 20%;
+        width: 25%;
         text-align: left;
 
         padding-left: 0;
     }
     .discussion {
-        width: 80%;
+        width: 73%;
     }
 }

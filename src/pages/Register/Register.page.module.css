@@ -2,23 +2,21 @@
 
 }
 .formContainer {
-    background: #FFF;
-    padding: 35px 55px;
-    border: 1px solid #FFF;
-    border-radius: 5px;
-
+    background: #fff;
+    padding: 25px 35px;
+    border: 1px solid #fff;
+    border-radius: 15px;
     position: absolute;
     z-index: 1;
-    left: 25%;
+    left: 32%;
     top: 5%;
-
-    width: 48%;
+    width: 35%;
 }
 
 
 .header {
     text-align: center;
-    margin: 15px 0 55px 0;
+    margin: 15px 0 35px;
 }
 
 .title {
@@ -31,10 +29,10 @@
 a.forgotPassword {
     display: block;
     cursor: pointer;
-    margin-top: 15px;
+    padding-top: 15px;
     text-align: center;
-
     color: #989898;
+    padding-bottom: 10px;
 }
 .logoContainer {
     display: flex;
@@ -44,7 +42,7 @@ a.forgotPassword {
     margin-bottom: 25px;
 }
 .logoContainer img {
-    width: 15%;
+    width: 33.5%;
 }
 
 @media screen and (max-width: 700px) { 
