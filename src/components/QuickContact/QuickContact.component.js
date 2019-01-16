@@ -25,7 +25,7 @@ class QuickContact extends React.Component {
 
                     <div className={styles.contactUs}>
                         <div className={styles.informations}>
-                            <div className={styles.header}>Welcome to SwiftPatriot</div>
+                            <div className={styles.header}>Welcome to Daystar Leadership Academy</div>
                             <div>
                                 <div>
                                     Do you have any question we want to ask us? You can always reach us on these numbers: +2348068423092, +2348026249615.
@@ -42,11 +42,13 @@ class QuickContact extends React.Component {
 
 
                         <div className={styles.accountDetailContainer}>
-                            <div className={styles.accountDetailsHeader}>Account Details</div>
                             <div>
-                                <p>Daystar Leadership Academy</p>
-                                <p>0011920185</p>
-                                <p>Guaranty Trust Bank(GTBank) PLC</p>
+                                <div className={styles.accountDetailsHeader}>Account Details</div>
+                                <div>
+                                    <p>Daystar Leadership Academy</p>
+                                    <p>0011920185</p>
+                                    <p>Guaranty Trust Bank(GTBank) PLC</p>
+                                </div>
                             </div>
                         </div>
                                                         

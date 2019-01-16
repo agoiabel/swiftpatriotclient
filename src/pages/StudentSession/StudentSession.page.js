@@ -9,16 +9,15 @@ import styles from './StudentSession.page.module.css';
 import QuickContact from '../../components/QuickContact';
 import { PayWithTeller } from '../../components/Modal/index';
 import { openModal } from '../../components/Modal/Modal.action';
-
-import { get_session_with, get_session_number } from './StudentSession.page.action';
 import { reset_transaction_status } from '../../components/Modal/PayWithTeller/PayWithTeller.component.action';
-
+import { get_session_with, get_session_number, confirm_payment_for, reset_online_payment_transaction } from './StudentSession.page.action';
 
 class StudentSession extends React.Component {
 
 	//1 = unpaid
 	//2 = paid, not confirmed
 	//3 = paid confirmed
+	//4 = differed
 
 	state = {
 		session: null,
@@ -48,9 +47,15 @@ class StudentSession extends React.Component {
 
 			if (typeof (studentPaid) == 'object') {
 
-				if (studentPaid.status == 1) {
+				if (studentPaid.status == 2) {
 					return this.setState({
 						studentType: 3
+					});
+				}
+
+				if (studentPaid.status == 3) {
+					return this.setState({
+						studentType: 4
 					});
 				}
 
@@ -82,6 +87,39 @@ class StudentSession extends React.Component {
 		this.props.get_session_with(this.props.match.params.sessionSlug);
 	}
 
+	showOnlinePaymentTransaction = async nextProps => {
+
+		//transaction was successful
+		if (nextProps.userTransaction.status == 1) {
+			let alert = await swal({
+				type: 'success',
+				title: `Payment transaction was successfully`,
+				allowOutsideClick: false
+			});
+
+			this.setState({
+				studentType: 3
+			});
+
+			if (alert) {
+				this.props.reset_online_payment_transaction();
+			}
+		}
+
+		//transaction was unsuccessful
+		if (nextProps.userTransaction.status == 2) {
+			let alert = await swal({
+				type: 'error',
+				title: `Payment transaction was unsuccessfully`,
+				allowOutsideClick: false
+			});
+
+			if (alert) {
+				this.props.reset_online_payment_transaction();
+			}
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.get_session_status === 200) {
 			this.setSessionFrom(nextProps);
@@ -95,6 +133,10 @@ class StudentSession extends React.Component {
 			this.setState({
 				showLoading: false
 			})
+		}
+
+		if (nextProps.online_payment_transaction_status === 200) {
+			this.showOnlinePaymentTransaction(nextProps);
 		}
 	}
 
@@ -123,6 +165,30 @@ class StudentSession extends React.Component {
 		});
 	}
 
+	handlePaymentCallback = response => {
+		console.dir('before handle');
+		this.props.confirm_payment_for({
+			reference_number: response.reference
+		});
+		console.dir('after handle');
+	}
+
+	payOnline = async () => {
+		const transaction = this.state.transaction;
+
+		const handler = await window.PaystackPop.setup({
+			key: 'pk_test_c6107f2bff6d8a2d211f6cce9b9067f612f29a14',
+			email: transaction.user.email,
+			amount: transaction.amount * 100,
+			ref: transaction.reference_number,
+			callback: this.handlePaymentCallback,
+			onClose: function () {
+				console.dir('window closed');
+			}
+		});
+		handler.openIframe();
+	}
+
 	render() {
 
 		let sessionNumber = (
@@ -130,7 +196,7 @@ class StudentSession extends React.Component {
 		);
 
 		let sessions = <Spinner message="Loading sessions" />
-		let actionButton, showRateHeader, showRateAction;
+		let actionButton;
 
 		if (this.state.showLoading) {
 			sessionNumber = <Spinner />
@@ -141,26 +207,11 @@ class StudentSession extends React.Component {
 			);
 		}
 
-		if (this.state.transaction != null && this.state.studentType == 1) {
+		if (this.state.transaction != null && this.state.studentType == 1 && this.props.done_all_prerequisite) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
 					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Already Paid To Bank </a>
-
-
-					<form name="form1" action="https://sandbox.interswitchng.com/collections/w/pay" method="post">
-						
-						<input name="product_id" type="hidden" value="6205" />
-						<input name="pay_item_id" type="hidden" value="101" />
-
-						<input name="amount" type="hidden" value={parseInt(this.state.transaction.amount * 100)} />
-						<input name="currency" type="hidden" value="566" />
-
-						<input name="txn_ref" type="hidden" value={this.state.transaction.reference_number} />
-						<input name="hash" type="hidden" value={this.state.transaction.hash} />
-						<input name="site_redirect_url" type="hidden" value='http://swiftpatriotapi.test/confirm-payment' />
-
-						<button className={[styles.enrollButton, styles.buttonOutline].join(' ')}> Pay Online </button>
-					</form>
+					<button className={[styles.enrollButton, styles.buttonOutline].join(' ')} onClick={this.payOnline}> Pay Online </button>
 				</div>
 			)
 		}
@@ -168,7 +219,17 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 2) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					{ sessionNumber }  
+					<div className={styles.tagNoHeader}>Tag Number</div>
+					<div>{ sessionNumber }</div>  
+				</div>
+			)
+		}
+
+		if (this.state.studentType == 3) {
+			actionButton = (
+				<div className={styles.enrollButtons}>
+					<div className={styles.tagNoHeader}>Matric Number</div>
+					<div>{this.props.userTransaction.user.matric_number}</div>
 				</div>
 			)
 		}
@@ -187,9 +248,7 @@ class StudentSession extends React.Component {
 							&#8358; {this.state.session.fee}
 						</div>
 
-
 						{ actionButton }
-
 
 						<div className={styles.durations}>
 							<div className={styles.duration}>
@@ -237,13 +296,17 @@ const mapStateToProps = state => {
 
 		session: state.studentSessionReducer.session,
 		userTransaction: state.studentSessionReducer.transaction,
-		get_session_status: state.studentSessionReducer.get_session_status,
 
-		transaction: state.payWithTellerReducer.transaction,	
+		get_session_status: state.studentSessionReducer.get_session_status,
+		done_all_prerequisite: state.studentSessionReducer.done_all_prerequisite,
+
+		transaction: state.payWithTellerReducer.transaction,
 		transaction_status: state.payWithTellerReducer.status,
 
 		session_student: state.studentSessionReducer.session_student,
 		get_session_number_status: state.studentSessionReducer.get_session_number_status,
+
+		online_payment_transaction_status: state.studentSessionReducer.online_payment_transaction_status,
 	}
 }
 
@@ -253,6 +316,9 @@ const mapDispatchToProps = dispatch => {
 		reset_transaction_status: () => dispatch( reset_transaction_status() ),
 		get_session_number: payload => dispatch( get_session_number(payload) ),
 		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
+
+		confirm_payment_for: payload => dispatch( confirm_payment_for(payload) ),
+		reset_online_payment_transaction: () => dispatch( reset_online_payment_transaction() )
 	}
 }
 

@@ -77,7 +77,7 @@ class FacilitatorOutlineCreate extends React.Component {
 			return facilitator.id == facilitator_id;
 		});
 
-		return `${facilitator.firstname} ${facilitator.lastname} ${facilitator.othername}`;
+		return `${facilitator.firstname} ${facilitator.lastname}`;
 	}
 
 	removeFacilitatorOutline = facilitatorOutline => {
@@ -107,9 +107,12 @@ class FacilitatorOutlineCreate extends React.Component {
 									<tr key={index}>
 										<td>{index}</td>
 										<td>{this.getOutlineDetails(facilitatorOutline.outline_id).name}</td>
+										
 										<td>{this.getFacilitatorDetails(facilitatorOutline.facilitator_id)}</td>
+
 										<td>{ moment(facilitatorOutline.date).format('MMMM Do YYYY') }</td>
-										<td>{facilitatorOutline.time}</td>
+										<td>{facilitatorOutline.start_time}</td>
+										<td>{facilitatorOutline.end_time}</td>
 										<td onClick={() => this.removeFacilitatorOutline(facilitatorOutline)}>
 											<i className="fa fa-trash-o" aria-hidden="true"></i>
 										</td>

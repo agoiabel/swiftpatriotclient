@@ -92,7 +92,8 @@
 .enrollButton:hover {
 
 }
-.durationHeader {
+.durationHeader,
+.tagNoHeader {
     color: rgba(0, 0, 0, .6);
     font-weight: bolder;
     margin-bottom: 10px;
@@ -111,6 +112,10 @@
     padding: 25px 25px;
     height: 1%;
 }
+.tagNoHeader {
+    margin-bottom: 5px;
+}
+
 @media screen and (max-width: 1300px) {
     .dashboard {
         width: 75%;

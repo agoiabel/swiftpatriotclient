@@ -39,7 +39,7 @@
 }
 
 .body {
-    padding: 35px 35px;
+    padding: 25px 35px;
 
     display: flex;
     flex-direction: column;
@@ -52,10 +52,11 @@
 }
 
 .name {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .theme {
     overflow: hidden;
+    margin-bottom: 25px;
 }
 .bodyTitle {
     margin-bottom: 5px;
@@ -88,14 +89,8 @@
  
 
 
-.theme {
-    margin-bottom: 50px;
-}
-.themeName {
-    font-size: 14px;
-    color: rgba(0, 0, 0, .5);
-    line-height: 1.6;
-}
+
+
 .courseDuration {
     font-size: 14px;
     color: rgba(0, 0, 0, .5);

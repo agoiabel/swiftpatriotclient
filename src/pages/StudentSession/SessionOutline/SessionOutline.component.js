@@ -35,7 +35,8 @@ class SessionOutline extends React.Component {
                                 <th>Outline</th>
                                 <th>Facilitator</th>
                                 <th>Lecture Date</th>
-                                <th>Lecture Time</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
                                 {showRateHeader}
                             </tr>
                         </thead>
@@ -47,7 +48,8 @@ class SessionOutline extends React.Component {
                                     <td>{facilitatorSessionOutline.outline.name}</td>
                                     <td>{facilitatorSessionOutline.facilitator.profile.firstname} {facilitatorSessionOutline.facilitator.profile.lastname}</td>
                                     <td>{moment(facilitatorSessionOutline.date).format('MMMM Do YYYY')}</td>
-                                    <td>{tConv24(facilitatorSessionOutline.time)}</td>
+                                    <td>{tConv24(facilitatorSessionOutline.start_time)}</td>
+                                    <td>{tConv24(facilitatorSessionOutline.end_time)}</td>
                                     <RateAction rateCourseHandler={this.rateCourseHandler} studentType={this.props.studentType} facilitatorSessionOutline={facilitatorSessionOutline} />
                                 </tr>
                             ))}

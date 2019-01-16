@@ -10,3 +10,9 @@
 	font-family: Lato;
 	margin: 0 auto 35px auto;
 }
+
+@media screen and (max-width: 950px) { 
+	.instruction {
+		display: none;
+	}
+}

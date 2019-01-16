@@ -1,4 +1,4 @@
-export const tConv24 = (time24) => {
+export const tConv24 = time24 => {
     var ts = time24;
     
     var H = +ts.substr(0, 2);

@@ -41,20 +41,20 @@ class RegisterProfile extends React.Component {
 		return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 	}
 
-	redirectOrNotifyOnStatusChange = nextProps => {
+	redirectOrNotifyOnStatusChange = async nextProps => {
 		if (nextProps.status === 200) {
 			this.setState({
 				submittingForm: false
 			});
-			return swal({
+			let alert = await swal({
 				type: 'success',
 				title: `${this.capitalize(this.props.match.params.accountType)} registration was successful`,
 				allowOutsideClick: false
-			}).then((result) => {
-				if (result.value) {
-					return this.props.history.push('/');
-				}
 			});
+
+			if (alert) {
+				return this.props.history.push('/');
+			}
 		}
 		return this.showErrorNotificationFor(nextProps);
 	}

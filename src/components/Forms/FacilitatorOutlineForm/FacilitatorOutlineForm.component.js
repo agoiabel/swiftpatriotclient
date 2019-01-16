@@ -28,7 +28,7 @@ class FacilitatorOutlineForm extends React.Component {
 			facilitators: this.props.facilitators.map(facilitator => {
 				return {
 					value: facilitator.id,
-					displayValue: `${facilitator.firstname} ${facilitator.lastname} ${facilitator.othername}`
+					displayValue: `${facilitator.firstname} ${facilitator.lastname}`
 				}
 			})
 		});
@@ -82,11 +82,20 @@ class FacilitatorOutlineForm extends React.Component {
 				/>
 
 				<Field
-					name="time"
+					name="start_time"
 					component={CustomInput}
 					type="time"
-					label="Time"
-					placeholder="Time"
+					label="Start time"
+					placeholder="Start time"
+					validate={[requiredValidator]}
+				/>
+
+				<Field
+					name="end_time"
+					component={CustomInput}
+					type="time"
+					label="End time"
+					placeholder="End time"
 					validate={[requiredValidator]}
 				/>
 
