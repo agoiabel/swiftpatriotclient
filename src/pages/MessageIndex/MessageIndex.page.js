@@ -41,6 +41,8 @@ class MessageIndex extends React.Component {
     render () {
 
         let messageContainer, quickContact;
+        let messageHeader = 'Send message to all students';
+
         let container = (
             <div>
                 <Spinner />
@@ -54,6 +56,8 @@ class MessageIndex extends React.Component {
                 </div>
             )
         } else {
+            messageHeader = `Send message to ${this.props.user.name}`;
+
             messageContainer = (
                 <div className={styles.messageContainer}>
                     <StudentMessageContainer student_id={this.state.student_id} />
@@ -105,7 +109,7 @@ class MessageIndex extends React.Component {
 
                     <div className={styles.content}>
                         <div className={styles.contentHeader}>
-                            Send message to all students
+                            { messageHeader }
                         </div>
 
                         { messageContainer }
