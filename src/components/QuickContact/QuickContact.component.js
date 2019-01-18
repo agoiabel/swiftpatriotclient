@@ -24,14 +24,16 @@ class QuickContact extends React.Component {
                     <div className={styles.close} onClick={this.closeContainer}><i className="fa fa-close fa-2x"></i></div>
 
                     <div className={styles.contactUs}>
+
                         <div className={styles.informations}>
                             <div className={styles.header}>Welcome to Daystar Leadership Academy</div>
                             <div>
                                 <div>
-                                    Do you have any question we want to ask us? You can always reach us on these numbers: +2348068423092, +2348026249615.
+                                    Do you have any question we want to ask us?<br /> 
+                                    You can always reach us on these numbers: +2348068423092, +2348026249615.
                                 </div>         
                                 <div>
-                                    Our office address is 71 Kudirat Abiola Way, Oregun, Ikeja, Lagos.
+                                    Our office address: 71 Kudirat Abiola Way, Oregun, Ikeja, Lagos.
                                 </div>
                             </div>
                         </div>        
