@@ -8,20 +8,7 @@ class CourseData extends React.Component {
 		this.props.showActionFor(this.props.course);
 	}
 
-	handleRejectionCandidate = () => {
-		// swal({
-		// 	title: `Are you sure you want to reject ${this.props.candidate.firstname}`,
-		// 	type: 'warning',
-		// 	showCancelButton: true,
-		// 	confirmButtonColor: '#3085d6',
-		// 	cancelButtonColor: '#d33',
-		// 	confirmButtonText: 'Yes, Reject!'
-		// }).then((result) => {
-		// 	if (result.value) {
-		// 		this.props.handleRejectionCandidate(this.props.candidate);
-		// 	}
-		// });
-	}
+	handleRejectionCandidate = () => {}
 
 	edit = () => {
 		this.props.edit(this.props.course);
@@ -55,11 +42,6 @@ class CourseData extends React.Component {
 							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Delete
 						</span>
 					</div>
-					{/* <div className={styles.action}>
-						<span className={styles.actionIcon}>
-							<i className="fa fa-file-o" aria-hidden="true"></i></span> <span>Info
-						</span>
-					</div> */}
 				
 				</div>
 			);

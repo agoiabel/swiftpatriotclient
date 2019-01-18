@@ -203,7 +203,11 @@ class StudentSession extends React.Component {
 		}
 		if (this.props.get_session_number_status === 200) {
 			sessionNumber = (
-				<a className={styles.enrollButton}> { this.props.session_student.session_number } </a>
+				<div className={styles.enrollButtons}>
+					<div className={styles.tagNoHeader}>Tag No</div>
+					<a className={styles.enrollButton}> {this.props.session_student.session_number} </a>
+				</div>
+
 			);
 		}
 
@@ -227,9 +231,15 @@ class StudentSession extends React.Component {
 
 		if (this.state.studentType == 3) {
 			actionButton = (
-				<div className={styles.enrollButtons}>
-					<div className={styles.tagNoHeader}>Matric Number</div>
-					<div>{this.props.userTransaction.user.matric_number}</div>
+				<div>
+					<div className={styles.enrollButtons}>
+						<div className={styles.tagNoHeader}>Matric Number</div>
+						<div>{this.props.userTransaction.user.matric_number}</div>
+					</div>
+
+					<div>
+						{sessionNumber}
+					</div>
 				</div>
 			)
 		}
