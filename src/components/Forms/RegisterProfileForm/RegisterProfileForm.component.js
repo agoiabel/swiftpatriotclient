@@ -135,8 +135,8 @@ class RegisterProfileForm extends React.Component {
 						name="company_name"
 						component={CustomInput}
 						type="text"
-						label="Business/Company Name"
-						placeholder="Business/Company Name"
+						label="Business/Company Name/School"
+						placeholder="Business/Company Name/School"
 						validate={[requiredValidator]}
 					/>
 

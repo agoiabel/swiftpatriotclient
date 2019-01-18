@@ -93,7 +93,7 @@ class FacilitatorEdit extends React.Component {
 				</React.Fragment>
 				
 				<React.Fragment>
-					<Breadcrumb name="Create New Facilitator" />
+					<Breadcrumb name="Edit Facilitator" />
 				</React.Fragment>
 
 				<div className={styles.container}>

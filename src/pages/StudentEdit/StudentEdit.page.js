@@ -98,6 +98,9 @@ class StudentEdit extends React.Component {
 					</div>
 
 					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/student/index')}> ALL STUDENTS </div>
+						</div>
 						{studentFormContainer}
 					</div>
 					

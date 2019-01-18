@@ -103,7 +103,7 @@ class FacilitatorEdit extends React.Component {
 
 					<div className={styles.content}>
 						<div className={styles.header}>
-							<div className={styles.addNew} onClick={() => this.navigateTo('/facilitator/index')}> ALL ADMIN </div>
+							<div className={styles.addNew} onClick={() => this.navigateTo('/admin/index')}> ALL ADMIN </div>
 						</div>
 						{facilitatorFormContainer}
 					</div>

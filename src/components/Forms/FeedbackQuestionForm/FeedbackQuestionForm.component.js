@@ -25,7 +25,7 @@ const OutlineForm = props => {
 				label="Type"
 				placeholder="Type"
 				options={[
-					{ value: '1', displayValue: 'Session Course Outline' },
+					{ value: '1', displayValue: 'Facilitator Session' },
 					{ value: '2', displayValue: 'Session' },
 					{ value: '3', displayValue: 'General' }
 				]}

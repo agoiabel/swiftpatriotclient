@@ -7,9 +7,9 @@ import Spinner from '../../components/Spinner';
 import styles from './CourseIndex.page.module.css';
 import Breadcrumb from '../../components/Breadcrumb';
 import PortalMenu from '../../components/PortalMenu';
-import { get_courses, deleteCourse, reset_store_course_status } from '../../shared/store/Course/Course.action.js';
 import EmptyState from '../../components/EmptyState';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { get_courses, deleteCourse, reset_store_course_status } from '../../shared/store/Course/Course.action.js';
 
 class CourseIndex extends React.Component {
 

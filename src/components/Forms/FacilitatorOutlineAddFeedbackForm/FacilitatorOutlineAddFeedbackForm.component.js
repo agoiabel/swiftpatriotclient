@@ -4,41 +4,62 @@ import CustomButton from '../../CustomButton';
 import { Field, reduxForm } from 'redux-form';
 import { emailValidator, requiredValidator } from '../../../utils/validation';
 
-const FacilitatorOutlineAddFeedbackForm = props => {
+class FacilitatorOutlineAddFeedbackForm extends React.Component {
 
-    const { handleSubmit, pristine, invalid, submittingForm } = props
+    state = {
+        // questions: {}
+    };
 
-    const rate = props.questions.map(question => {
+    handleChange = (event, newValue, previousValue, name) => {
+        console.dir(name);
+        console.dir(newValue);
+        // this.setState({
+        //     name: newValue
+        // });
+    }
+
+    render () {
+
+        const rate = this.props.questions.map(question => { 
+
+            let inputName = `question_${question.id}`; 
+
+            return (
+                <div key={question.id}>
+                    <Field
+                        name={`${inputName}`}
+                        component={CustomInput}
+                        type="range"
+                        label={question.question}
+                        placeholder={question.question}
+                        validate={[requiredValidator]}
+                        onChange={this.handleChange}
+                    />
+                    <div>
+                        {/* {this.state.name.value} */}
+                    </div>
+                </div>
+            )
+        });
+
         return (
-            <Field
-                key={question.id}
-                name={`question_${question.id}`}
-                component={CustomInput}
-                type="range"
-                label={question.question}
-                placeholder={question.question}
-                validate={[requiredValidator]}
-            />
-        )
-    });
+            <form onSubmit={this.props.handleSubmit}>
 
-    return (
-        <form onSubmit={handleSubmit}>
+                {rate}
 
-            { rate }
+                <Field
+                    name="comment"
+                    component={CustomInput}
+                    type="text"
+                    label="Your comment"
+                    placeholder="Your comment"
+                />
 
-            <Field
-                name="comment"
-                component={CustomInput}
-                type="text"
-                label="Your comment"
-                placeholder="Your comment"
-            />
+                <CustomButton disabled={this.props.invalid || this.props.pristine} submittingForm={this.props.submittingForm}>RATE</CustomButton>
+            </form>
+        );
 
-            <CustomButton disabled={invalid || pristine} submittingForm={submittingForm}>RATE</CustomButton>
-        </form>
-    );
-
+    }
 }
 
 export default reduxForm({

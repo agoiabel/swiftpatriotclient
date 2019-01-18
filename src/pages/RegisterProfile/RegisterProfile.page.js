@@ -42,13 +42,20 @@ class RegisterProfile extends React.Component {
 	}
 
 	redirectOrNotifyOnStatusChange = async nextProps => {
+
+		let message = `${this.capitalize(this.props.match.params.accountType)} registration was successful`; 
+
+		if (this.props.match.params.accountType == "ADULT") {
+			message = `${this.capitalize(this.props.match.params.accountType)} registration was successful, Please login to your email to activate your account for subsequent login`;
+		}
+
 		if (nextProps.status === 200) {
 			this.setState({
 				submittingForm: false
 			});
 			let alert = await swal({
 				type: 'success',
-				title: `${this.capitalize(this.props.match.params.accountType)} registration was successful`,
+				title: `${message}`,
 				allowOutsideClick: false
 			});
 
