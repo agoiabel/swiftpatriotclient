@@ -24,16 +24,16 @@ class RegisterProfileForm extends React.Component {
 		let name_of_ministry;
 		let buttonLabel = 'SUBMIT TEENAGER PROFILE';
 
-		if (this.state.religionType === "Christain") {
+		if (this.state.religionType === "Christian") {
 			name_of_ministry = (
 				<Field
 					name="name_of_ministry"
 					component={CustomSelect}
 					validate={[requiredValidator]}
-					label="Denomination"
-					placeholder="Denomination"
+					label="Church"
+					placeholder="Church"
 					options={[
-						{ value: 'DayStar', displayValue: 'DayStar' },
+						{ value: 'Daystar', displayValue: 'Daystar' },
 						{ value: 'Others', displayValue: 'Others' },
 					]}
 				/>
@@ -174,7 +174,7 @@ class RegisterProfileForm extends React.Component {
 						label="Religion"
 						placeholder="Religion"
 						options={[
-							{ value: 'Christain', displayValue: 'Christain' },
+							{ value: 'Christian', displayValue: 'Christian' },
 							{ value: 'Muslim', displayValue: 'Muslim' },
 							{ value: 'Others', displayValue: 'Others' }
 						]}
