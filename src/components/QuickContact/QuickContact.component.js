@@ -36,10 +36,10 @@ class QuickContact extends React.Component {
                             </div>
                         </div>        
 
-                        <div className={styles.imageContainer}>
+                        {/* <div className={styles.imageContainer}>
                             <img src={require('../../assets/images/contact_us.png')} />
                         </div>        
-
+ */}
 
                         <div className={styles.accountDetailContainer}>
                             <div>

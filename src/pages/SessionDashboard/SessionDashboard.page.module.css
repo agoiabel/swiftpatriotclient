@@ -18,13 +18,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    border-bottom: 2px solid #385ba0;
+    margin-bottom: 10px;
 }
 .sessionInfo {
     margin-top: -15px;
+    font-size: 16px;
 }
 .courseName {
     margin-right: 25px;
-    font-size: 16px;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 .addNew {
     color: #FFF;
@@ -43,10 +49,18 @@
 }
 
 .addNew:hover {
-  color: #FFF;
-  background-color: #e43829;
-
-  opacity: 0.75;
+    color: #fff;
+    display: inline;
+    background: #385ba0;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    margin-bottom: 15px;
+    /* margin-left: 25px; */
+    /* opacity: 1; */
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
 }
 
 

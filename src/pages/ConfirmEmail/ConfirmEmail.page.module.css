@@ -16,6 +16,16 @@
 
     text-align: center;
 }
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+.logoContainer img {
+    width: 33.5%;
+}
 
 @media screen and (max-width: 700px) { 
     .formContainer {

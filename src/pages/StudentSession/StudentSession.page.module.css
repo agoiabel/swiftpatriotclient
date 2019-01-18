@@ -41,8 +41,8 @@
     margin-bottom: 20px;
 }
 .enrollButtons {
-    margin: 25px auto;
-    width: 70%;
+    margin: 10px auto;
+    width: 100%;
 }
 .enrollButton {
     display: inline-block;

@@ -49,6 +49,10 @@ class ConfirmEmail extends React.Component {
 
 
 				<div className={styles.formContainer}>
+					<div className={styles.logoContainer}>
+						<img src={require('../../assets/images/logo@2x.png')} />
+					</div>
+
 					{ body }
 				</div>	
 			</div>
