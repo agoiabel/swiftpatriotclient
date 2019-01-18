@@ -57,6 +57,8 @@
 .theme {
     overflow: hidden;
     margin-bottom: 25px;
+
+    /* font-size: 14px; */
 }
 .bodyTitle {
     margin-bottom: 5px;
@@ -66,6 +68,9 @@
 .themeTitle {
     margin-bottom: 2px;
     color: rgba(0, 0, 0, .4);
+}
+.themeName {
+    font-size: 16px;
 }
 .courseName {
     font-size: 18px;
