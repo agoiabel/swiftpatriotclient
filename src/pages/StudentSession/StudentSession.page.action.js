@@ -6,6 +6,7 @@ import { GET_ACTIVE_AND_FUTURE_SESSION_SUCCESSFUL, GET_ACTIVE_AND_FUTURE_SESSION
     RESET_ONLINE_PAYMENT_TRANSACTION
 } from './index';
 
+
 export const get_active_and_future_session = () => async dispatch => {
 
     try {
@@ -73,6 +74,36 @@ export const get_session_was_unsuccessful = payload => {
 }
 
 
+export const initial_payment_for = payload => async dispatch => {
+    try {
+        let response = await post(payload, 'transaction/store');
+
+        response = await response.json();
+
+        const transaction = response.data;
+
+        //show payment popup
+        const handler = await window.PaystackPop.setup({
+            key: 'pk_test_559cbbb96ddab970761d1f814b7623e8bee2b315',
+            email: transaction.user.email,
+            amount: transaction.amount * 100,
+            ref: transaction.reference_number,
+            callback: function (response) {
+                dispatch(confirm_payment_for({
+                    reference_number: response.reference
+                }));
+            },
+            onClose: function () {
+                console.dir('window closed');
+            }
+        });
+        handler.openIframe();
+
+    } catch (error) {
+        console.dir(error);
+    }
+}
+
 export const get_session_number = payload => async dispatch => {
 
     try {
@@ -108,8 +139,6 @@ export const get_session_number_was_unsuccessful = payload => {
 
 
 export const confirm_payment_for = payload => async dispatch => {
-    console.dir('got here');
-    console.dir(payload);
     try {
         let response = await post(payload, 'purchase-course/confirm');
 

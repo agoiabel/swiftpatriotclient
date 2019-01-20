@@ -140,21 +140,6 @@ class RegistrationForm extends React.Component {
 						{ value: 'Botswana', displayValue: 'Botswana' },
 						{ value: 'Burundi', displayValue: 'Burundi' },
 
-						{ value: 'The Bahamas', displayValue: 'The Bahamas' },
-						{ value: 'Bahrain', displayValue: 'Bahrain' },
-						{ value: 'Bangladesh', displayValue: 'Bangladesh' },
-						{ value: 'Barbados', displayValue: 'Barbados' },
-						{ value: 'Belarus', displayValue: 'Belarus' },
-						{ value: 'Belgium', displayValue: 'Belgium' },
-						{ value: 'Belize', displayValue: 'Belize' },
-						{ value: 'Benin', displayValue: 'Benin' },
-						{ value: 'Bhutan', displayValue: 'Bhutan' },
-						{ value: 'Bolivia', displayValue: 'Bolivia' },
-						{ value: 'Bosnia and Herzegovina', displayValue: 'Bosnia and Herzegovina' },
-						{ value: 'Botswana', displayValue: 'Botswana' },
-						{ value: 'Burkina Faso', displayValue: 'Burkina Faso' },
-						{ value: 'Burundi', displayValue: 'Burundi' },
-
 						{ value: 'Cabo Verde', displayValue: 'Cabo Verde' },
 						{ value: 'Cameroon', displayValue: 'Cameroon' },
 						{ value: 'Central African Republic (CAR)', displayValue: 'Central African Republic (CAR)' },
@@ -165,7 +150,6 @@ class RegistrationForm extends React.Component {
 						{ value: 'Cote d\'Ivoire', displayValue: 'Cote d\'Ivoire' },
 
 						{ value: 'Djibouti', displayValue: 'Djibouti' },
-
 
 						{ value: 'Egypt', displayValue: 'Egypt' },
 						{ value: 'Equatorial Guinea', displayValue: 'Equatorial Guinea' },

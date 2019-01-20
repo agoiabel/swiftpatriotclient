@@ -10,7 +10,7 @@ import QuickContact from '../../components/QuickContact';
 import { PayWithTeller } from '../../components/Modal/index';
 import { openModal } from '../../components/Modal/Modal.action';
 import { reset_transaction_status } from '../../components/Modal/PayWithTeller/PayWithTeller.component.action';
-import { get_session_with, get_session_number, confirm_payment_for, reset_online_payment_transaction } from './StudentSession.page.action';
+import { get_session_with, get_session_number, confirm_payment_for, reset_online_payment_transaction, initial_payment_for } from './StudentSession.page.action';
 
 class StudentSession extends React.Component {
 
@@ -22,7 +22,7 @@ class StudentSession extends React.Component {
 	state = {
 		session: null,
 		studentType: 1,
-		transaction: null,
+		// transaction: null,
 		showLoading: false
 	}
 
@@ -34,11 +34,11 @@ class StudentSession extends React.Component {
 		if (props.get_session_status === 200) {
 
 			const session = props.session;
-			const transaction = props.userTransaction;
+			// const transaction = props.userTransaction;
 
 			this.setState({
 				session: session,
-				transaction: transaction
+				// transaction: transaction
 			});
 
 			const studentPaid = session.sessionStudents.find(sessionStudent => {
@@ -174,19 +174,9 @@ class StudentSession extends React.Component {
 	}
 
 	payOnline = async () => {
-		const transaction = this.state.transaction;
-
-		const handler = await window.PaystackPop.setup({
-			key: 'pk_test_c6107f2bff6d8a2d211f6cce9b9067f612f29a14',
-			email: transaction.user.email,
-			amount: transaction.amount * 100,
-			ref: transaction.reference_number,
-			callback: this.handlePaymentCallback,
-			onClose: function () {
-				console.dir('window closed');
-			}
+		this.props.initial_payment_for({
+			session_id: this.props.match.params.sessionSlug
 		});
-		handler.openIframe();
 	}
 
 	render() {
@@ -209,7 +199,7 @@ class StudentSession extends React.Component {
 			);
 		}
 
-		if (this.state.transaction != null && this.state.studentType == 1 && this.props.done_all_prerequisite) {
+		if (this.state.studentType == 1 && this.props.done_all_prerequisite) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
 					<a className={styles.enrollButton} onClick={this.payWithTellerHandler}> Already Paid To Bank </a>
@@ -221,7 +211,6 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 2) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					{/* <div className={styles.tagNoHeader}>Tag Number</div> */}
 					<div>{ sessionNumber }</div>  
 				</div>
 			)
@@ -231,8 +220,7 @@ class StudentSession extends React.Component {
 			actionButton = (
 				<div>
 					<div className={styles.enrollButtons}>
-						{/* <div className={styles.tagNoHeader}>Matric No</div> */}
-						<a className={styles.enrollButton}>Matric No - {this.props.userTransaction.user.matric_number}</a>
+						<a className={styles.enrollButton}>Matric No - {this.props.user.matric_number}</a>
 					</div>
 
 					<div>
@@ -326,7 +314,9 @@ const mapDispatchToProps = dispatch => {
 		openModal: (modalType, modalProp) => dispatch(openModal(modalType, modalProp)),
 
 		confirm_payment_for: payload => dispatch( confirm_payment_for(payload) ),
-		reset_online_payment_transaction: () => dispatch( reset_online_payment_transaction() )
+		reset_online_payment_transaction: () => dispatch( reset_online_payment_transaction() ),
+
+		initial_payment_for: payload => dispatch( initial_payment_for(payload) )
 	}
 }
 
