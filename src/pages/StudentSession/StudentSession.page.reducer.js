@@ -25,7 +25,6 @@ const getSessionWasSuccessful = (state, action) => {
     return updateObject(state, {
         session: action.payload.data.session,
         get_session_status: action.payload.status,
-        transaction: action.payload.data.transaction,
         done_all_prerequisite: action.payload.data.done_all_prerequisite
     });
 }
@@ -40,8 +39,9 @@ const getSessionWasUnsuccessful = (state, action) => {
 
 const getSessionNumberWasSuccessful = (state, action) => {
     return updateObject(state, {
-        session_student: action.payload.data,
+        transaction: action.payload.data.transaction,
         get_session_number_status: action.payload.status,
+        session_student: action.payload.data.sessionStudent
     });
 }
 

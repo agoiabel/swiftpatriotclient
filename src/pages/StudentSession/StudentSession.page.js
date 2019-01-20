@@ -182,7 +182,7 @@ class StudentSession extends React.Component {
 	render() {
 
 		let sessionNumber = (
-			<a className={styles.enrollButton} onClick={this.showSessionNumber}> Show Tag Number </a>
+			<a className={styles.enrollButton} onClick={this.showSessionNumber}> Show Tag No & Matric No </a>
 		);
 
 		let sessions = <Spinner message="Loading sessions" />
@@ -194,7 +194,8 @@ class StudentSession extends React.Component {
 		if (this.props.get_session_number_status === 200) {
 			sessionNumber = (
 				<div className={styles.enrollButtons}>
-					<a className={styles.enrollButton}> Tag No {this.props.session_student.session_number} </a>
+					<div className={styles.enrollButton}>Tag No {this.props.session_student.session_number}</div>
+					<div className={styles.enrollButton}>Matric No - {this.props.userTransaction.user.matric_number}</div>
 				</div>
 			);
 		}
@@ -211,7 +212,7 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 2) {
 			actionButton = (
 				<div className={styles.enrollButtons}>
-					<div>{ sessionNumber }</div>  
+					{ sessionNumber }  
 				</div>
 			)
 		}
@@ -219,17 +220,10 @@ class StudentSession extends React.Component {
 		if (this.state.studentType == 3) {
 			actionButton = (
 				<div>
-					<div className={styles.enrollButtons}>
-						<a className={styles.enrollButton}>Matric No - {this.props.user.matric_number}</a>
-					</div>
-
-					<div>
-						{sessionNumber}
-					</div>
+					{ sessionNumber }
 				</div>
 			)
 		}
-
 
 		if (this.state.session != null) {
 			sessions = (

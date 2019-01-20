@@ -37,10 +37,6 @@ export const store_donation = payload => {
             });
             handler.openIframe();
 
-
-
-
-
         } catch (error) {
             console.dir(error);
         }
