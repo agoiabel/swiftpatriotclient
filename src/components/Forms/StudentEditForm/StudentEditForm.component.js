@@ -23,7 +23,6 @@ const StudentEditForm = props => {
 				type="text"
 				label="Matric Number"
 				placeholder="Matric Number"
-				validate={[requiredValidator]}
 			/>
 
 			<Field

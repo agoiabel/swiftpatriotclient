@@ -160,17 +160,18 @@ class StudentSession extends React.Component {
 		this.setState({
 			showLoading: true
 		});
+
+		console.dir(this.state.session.id);
+
 		this.props.get_session_number({
 			session_id: this.state.session.id
 		});
 	}
 
 	handlePaymentCallback = response => {
-		console.dir('before handle');
 		this.props.confirm_payment_for({
 			reference_number: response.reference
 		});
-		console.dir('after handle');
 	}
 
 	payOnline = async () => {
