@@ -21,6 +21,8 @@ export const store_donation = payload => {
                 return dispatch(store_donation_was_successful(response));
             }
 
+            // pk_live_841a2ad5b9b0ac15691599a84cd4e532658e62c4
+
             //show payment popup
             const handler = await window.PaystackPop.setup({
                 key: 'pk_live_841a2ad5b9b0ac15691599a84cd4e532658e62c4',

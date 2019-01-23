@@ -103,6 +103,7 @@ class StudentSession extends React.Component {
 
 			if (alert) {
 				this.props.reset_online_payment_transaction();
+				this.props.history.push('/student-dashboard');
 			}
 		}
 
@@ -160,8 +161,6 @@ class StudentSession extends React.Component {
 		this.setState({
 			showLoading: true
 		});
-
-		console.dir(this.state.session.id);
 
 		this.props.get_session_number({
 			session_id: this.state.session.id
