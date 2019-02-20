@@ -83,8 +83,10 @@ export const initial_payment_for = payload => async dispatch => {
         const transaction = response.data;
 
         //show payment popup
+        //pk_live_841a2ad5b9b0ac15691599a84cd4e532658e62c4
+        //pk_test_c6107f2bff6d8a2d211f6cce9b9067f612f29a14
         const handler = await window.PaystackPop.setup({
-            key: 'pk_live_841a2ad5b9b0ac15691599a84cd4e532658e62c4',
+            key: 'pk_test_c6107f2bff6d8a2d211f6cce9b9067f612f29a14',
             email: transaction.user.email,
             amount: transaction.amount * 100,
             ref: transaction.reference_number,
